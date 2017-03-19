@@ -9,7 +9,32 @@
 import UIKit
 
 class UserDetailsContViewController: UIViewController {
+    @IBOutlet var weightGoalSegment: UISegmentedControl!
+    @IBOutlet var weeklyGoalSegment: UISegmentedControl!
+    @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
+    @IBOutlet var emailSwitch: UISwitch!
+    @IBOutlet var userHeightButton: UIButton!
+    @IBOutlet var desiredWeightButton: UIButton!
 
+    @IBAction func back(_ sender: Any) {
+        
+    }
+    @IBAction func save(_ sender: Any) {
+        
+    }
+    @IBAction func userHeight(_ sender: Any) {
+        
+    }
+    @IBAction func desiredWeight(_ sender: Any) {
+        
+    }
+    @IBAction func weeklyGoal(_ sender: Any) {
+        
+    }
+    @IBAction func desiredOutcome(_ sender: Any) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -142,6 +142,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ha-5V-hbX">
                                 <rect key="frame" x="325" y="621" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="disclaimer:" destination="oMc-3O-LcU" eventType="touchUpInside" id="m7x-vo-e48"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hf5-ZJ-ndd">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -164,6 +167,9 @@
                                 <rect key="frame" x="115" y="318" width="144" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Update Profile Image"/>
+                                <connections>
+                                    <action selector="updateProfileImage:" destination="oMc-3O-LcU" eventType="touchUpInside" id="K2S-HC-ELK"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I am a:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nW-Rp-GM0">
                                 <rect key="frame" x="162" y="356" width="51" height="21"/>
@@ -180,6 +186,9 @@
                                     <segment title="Female"/>
                                     <segment title="Prefer Not To Say"/>
                                 </segments>
+                                <connections>
+                                    <action selector="gender:" destination="oMc-3O-LcU" eventType="valueChanged" id="QvT-me-0ve"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When were you born?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-RI-QvC">
                                 <rect key="frame" x="104" y="429" width="167" height="21"/>
@@ -192,6 +201,9 @@
                                 <rect key="frame" x="104" y="458" width="167" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Jan 1, 1990"/>
+                                <connections>
+                                    <action selector="dob:" destination="oMc-3O-LcU" eventType="touchUpInside" id="Ik2-6b-y4Y"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much do you weigh?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgW-lG-WWf">
                                 <rect key="frame" x="89" y="496" width="196" height="21"/>
@@ -204,11 +216,18 @@
                                 <rect key="frame" x="89" y="525" width="196" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="165.0 lbs"/>
+                                <connections>
+                                    <action selector="currentWeight:" destination="oMc-3O-LcU" eventType="touchUpInside" id="tVJ-RZ-sJg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="currentWeightButton" destination="Vnr-Ip-78U" id="YaW-2Z-aHt"/>
+                        <outlet property="dobButton" destination="fge-xe-8Jq" id="BGv-y2-XAi"/>
+                        <outlet property="genderSegment" destination="Kuj-YG-aiO" id="Lr7-KM-nLG"/>
+                        <outlet property="userImage" destination="HBn-S1-jhS" id="o3X-2G-mVa"/>
                         <segue destination="k9O-X9-1HC" kind="show" identifier="moreDetails" id="lhj-uf-hl7"/>
                     </connections>
                 </viewController>
@@ -216,10 +235,10 @@
             </objects>
             <point key="canvasLocation" x="901.60000000000002" y="509.59520239880067"/>
         </scene>
-        <!--View Controller-->
+        <!--User Details Cont View Controller-->
         <scene sceneID="66n-6J-8tc">
             <objects>
-                <viewController id="k9O-X9-1HC" sceneMemberID="viewController">
+                <viewController id="k9O-X9-1HC" customClass="UserDetailsContViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3fy-HU-7Ml"/>
                         <viewControllerLayoutGuide type="bottom" id="nn5-tj-9TW"/>
@@ -248,6 +267,9 @@
                                 <rect key="frame" x="122" y="113" width="131" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="5 ft, 9 in"/>
+                                <connections>
+                                    <action selector="userHeight:" destination="k9O-X9-1HC" eventType="touchUpInside" id="obk-kr-lrc"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How tall are you?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IF8-kv-zoq">
                                 <rect key="frame" x="122" y="84" width="131" height="21"/>
@@ -260,6 +282,9 @@
                                 <rect key="frame" x="122" y="216" width="131" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="165.0 lbs"/>
+                                <connections>
+                                    <action selector="desiredWeight:" destination="k9O-X9-1HC" eventType="touchUpInside" id="Siq-jH-RTo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your desired outcome?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKB-bQ-EYI">
                                 <rect key="frame" x="69" y="319" width="237" height="21"/>
@@ -277,6 +302,9 @@
                                     <segment title="Endurance"/>
                                     <segment title="Other"/>
                                 </segments>
+                                <connections>
+                                    <action selector="desiredOutcome:" destination="k9O-X9-1HC" eventType="valueChanged" id="833-NL-uwL"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your weekly goal?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3W-TE-I2i">
                                 <rect key="frame" x="89" y="254" width="198" height="21"/>
@@ -292,6 +320,9 @@
                                     <segment title=".5 lbs per week"/>
                                     <segment title="1 lb per week"/>
                                 </segments>
+                                <connections>
+                                    <action selector="weeklyGoal:" destination="k9O-X9-1HC" eventType="valueChanged" id="0t0-02-srI"/>
+                                </connections>
                             </segmentedControl>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fJ5-KW-KoC">
                                 <rect key="frame" x="310" y="392" width="51" height="31"/>
@@ -309,8 +340,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Profile Details" id="tm3-sU-9u9">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="gp7-AE-u1r"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="mft-d0-RRR"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="gp7-AE-u1r">
+                                            <connections>
+                                                <action selector="back:" destination="k9O-X9-1HC" id="gvI-rm-xun"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="mft-d0-RRR">
+                                            <connections>
+                                                <action selector="save:" destination="k9O-X9-1HC" id="Xvu-Tt-ho4"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -322,6 +361,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="desiredOutcomeSegment" destination="nR6-gZ-9sG" id="p8r-zg-UMF"/>
+                        <outlet property="desiredWeight" destination="F8p-Ub-A7c" id="hry-CP-LnI"/>
+                        <outlet property="desiredWeightButton" destination="F8p-Ub-A7c" id="Z1t-p4-l4L"/>
+                        <outlet property="emailSwitch" destination="fJ5-KW-KoC" id="iPK-cp-Nk8"/>
+                        <outlet property="userHeight" destination="9IB-UM-Wg8" id="GGR-A7-2j3"/>
+                        <outlet property="userHeightButton" destination="9IB-UM-Wg8" id="odD-3U-UIZ"/>
+                        <outlet property="weeklyGoalSegment" destination="bdA-og-4eI" id="ezT-Mb-Pa7"/>
+                        <outlet property="weightGoalSegment" destination="Cw8-VY-xjZ" id="OOk-2g-DhP"/>
                         <segue destination="SXR-WZ-bzm" kind="show" identifier="segueHome" id="80W-qE-EpM"/>
                     </connections>
                 </viewController>

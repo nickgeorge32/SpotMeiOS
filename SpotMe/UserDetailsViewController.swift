@@ -9,10 +9,30 @@
 import UIKit
 
 class UserDetailsViewController: UIViewController {
+    @IBOutlet var userImage: UIImageView!
+    @IBOutlet var genderSegment: UISegmentedControl!
+    @IBOutlet var dobButton: UIButton!
+    @IBOutlet var currentWeightButton: UIButton!
 
     @IBAction func nextDetails(_ sender: Any) {
         performSegue(withIdentifier: "moreDetails", sender: self)
     }
+    @IBAction func updateProfileImage(_ sender: Any) {
+        
+    }
+    @IBAction func gender(_ sender: Any) {
+        
+    }
+    @IBAction func dob(_ sender: Any) {
+        
+    }
+    @IBAction func currentWeight(_ sender: Any) {
+        
+    }
+    @IBAction func disclaimer(_ sender: Any) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
