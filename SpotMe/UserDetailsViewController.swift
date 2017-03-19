@@ -10,6 +10,9 @@ import UIKit
 
 class UserDetailsViewController: UIViewController {
 
+    @IBAction func nextDetails(_ sender: Any) {
+        performSegue(withIdentifier: "moreDetails", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

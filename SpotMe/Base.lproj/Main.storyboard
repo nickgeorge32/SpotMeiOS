@@ -148,7 +148,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Profile Details" id="TSR-w3-5aK">
-                                        <barButtonItem key="rightBarButtonItem" title="Next" id="upd-6O-VKY"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="upd-6O-VKY">
+                                            <connections>
+                                                <action selector="nextDetails:" destination="oMc-3O-LcU" id="zrS-6n-QFx"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
