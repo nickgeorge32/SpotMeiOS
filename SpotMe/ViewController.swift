@@ -52,6 +52,7 @@ class ViewController: UIViewController {
                     //Signed Up
                     print("Signed Up")
                     //redirect
+                    self.performSegue(withIdentifier: "goToUserDetails", sender: self)
                 }
             })
         } else {
@@ -68,6 +69,7 @@ class ViewController: UIViewController {
                     //Logged In
                     print("Logged In")
                     //redirect
+                    self.performSegue(withIdentifier: "goToUserDetails", sender: self)
                 }
             })
         }
@@ -83,6 +85,12 @@ class ViewController: UIViewController {
             authMode = true
             signUpOrLoginButton.setTitle("Sign Up", for: [])
             changeModeButton.setTitle("Login", for: [])
+        }
+    }
+    
+    func redirectUser() {
+        if PFUser.current() != nil {
+            performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
         }
     }
 }

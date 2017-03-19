@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
+		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
 		01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */; };
 		01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */; };
 		01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsContViewController.swift; sourceTree = "<group>"; };
 		01B8EEEB1E7CF9BA00A1D2D0 /* SpotMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 			children = (
 				01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */,
 				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
+				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
+				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
@@ -216,7 +222,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */,
+				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
+				0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
