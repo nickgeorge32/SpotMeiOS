@@ -21,6 +21,10 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     var dob:String!
     var userWeight:String!
     
+    var height:String!
+    var weightGoal:String!
+    var goalWeight:String!
+    
     @IBAction func weightGoal(_ sender: Any) {
         if weightGoalSegment.selectedSegmentIndex == 0 || weightGoalSegment.selectedSegmentIndex == 2 {
             goalWeightField.isHidden = false
