@@ -153,8 +153,7 @@
                                     <navigationItem title="Profile Details" id="TSR-w3-5aK">
                                         <barButtonItem key="rightBarButtonItem" title="Next" id="upd-6O-VKY">
                                             <connections>
-                                                <action selector="nextDetails:" destination="oMc-3O-LcU" id="uj6-Vz-5Hj"/>
-                                                <segue destination="k9O-X9-1HC" kind="show" identifier="moreDetails" id="Zzb-0D-WjX"/>
+                                                <segue destination="k9O-X9-1HC" kind="show" identifier="moreDetails" id="c2Z-TF-fiJ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -229,6 +228,7 @@
                         <outlet property="dobField" destination="Pmp-eD-N2K" id="ByF-HY-Ifc"/>
                         <outlet property="genderSegment" destination="Kuj-YG-aiO" id="Lr7-KM-nLG"/>
                         <outlet property="userImage" destination="HBn-S1-jhS" id="o3X-2G-mVa"/>
+                        <outlet property="userWeightField" destination="tz3-9B-2MF" id="ie9-OU-eRO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3s-Ca-gbI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,8 +326,7 @@
                                     <navigationItem title="Profile Details" id="tm3-sU-9u9">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="gp7-AE-u1r">
                                             <connections>
-                                                <action selector="back:" destination="k9O-X9-1HC" id="gvI-rm-xun"/>
-                                                <segue destination="oMc-3O-LcU" kind="show" identifier="backToUserDetails" id="jNN-zI-jSm"/>
+                                                <segue destination="oMc-3O-LcU" kind="show" id="FdV-5z-TkF"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="mft-d0-RRR">
@@ -521,7 +520,7 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jNN-zI-jSm"/>
         <segue reference="80W-qE-EpM"/>
+        <segue reference="FdV-5z-TkF"/>
     </inferredMetricsTieBreakers>
 </document>

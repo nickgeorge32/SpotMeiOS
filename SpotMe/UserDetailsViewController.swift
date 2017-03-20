@@ -12,6 +12,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet var dobField: UITextField!
+    @IBOutlet var userWeightField: UITextField!
     
     var gender = "male"
 
@@ -46,7 +47,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
         
         
-        let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x: 0,y: 40,width: 0,height: 0))
+        let datePickerView:UIDatePicker = UIDatePicker(frame: CGRect(x: 0,y: 40,width: 0,height: 0))
         datePickerView.datePickerMode = UIDatePickerMode.date
         inputView.addSubview(datePickerView) // add date picker to UIView
         
@@ -86,7 +87,28 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         if segue.identifier == "moreDetails" {
             let detailsCont = segue.destination as! UserDetailsContViewController
             detailsCont.userGender = gender
+            if dobField.text != "" && userWeightField.text != "" {
+                detailsCont.dob = dobField.text
+                detailsCont.userWeight = userWeightField.text
+            } else {
+                print("empty")
+            }
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (dobField.text?.isEmpty)! || (userWeightField.text?.isEmpty)! {
+            displayAlert(title: "Error in form", message: "All fields must be filled")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

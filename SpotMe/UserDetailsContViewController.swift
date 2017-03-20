@@ -16,13 +16,9 @@ class UserDetailsContViewController: UIViewController {
     
     var profileImage:UIImage!
     var userGender:String!
-    var dob:String!
-    var userWeight:String!
+    var dob:String! = "Jan 1, 1915"
+    var userWeight:String! = ""
     
-
-    @IBAction func back(_ sender: Any) {
-        performSegue(withIdentifier: "backToUserDetails", sender: self)
-    }
     @IBAction func weeklyGoal(_ sender: Any) {
         
     }
@@ -38,6 +34,9 @@ class UserDetailsContViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print(userGender)
+        print(userWeight)
+        print(dob)
     }
     
     override func didReceiveMemoryWarning() {
