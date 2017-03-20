@@ -13,20 +13,15 @@ class UserDetailsContViewController: UIViewController {
     @IBOutlet var weeklyGoalSegment: UISegmentedControl!
     @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
     @IBOutlet var emailSwitch: UISwitch!
-    @IBOutlet var userHeightButton: UIButton!
-    @IBOutlet var desiredWeightButton: UIButton!
+    
+    var profileImage:UIImage!
+    var userGender:String!
+    var dob:String!
+    var userWeight:String!
+    
 
     @IBAction func back(_ sender: Any) {
-        
-    }
-    @IBAction func save(_ sender: Any) {
-        
-    }
-    @IBAction func userHeight(_ sender: Any) {
-        
-    }
-    @IBAction func desiredWeight(_ sender: Any) {
-        
+        performSegue(withIdentifier: "backToUserDetails", sender: self)
     }
     @IBAction func weeklyGoal(_ sender: Any) {
         
@@ -35,12 +30,16 @@ class UserDetailsContViewController: UIViewController {
         
     }
     
+    @IBAction func save(_ sender: Any) {
+        performSegue(withIdentifier: "segueHome", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

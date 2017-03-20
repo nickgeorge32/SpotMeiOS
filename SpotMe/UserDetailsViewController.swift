@@ -8,29 +8,85 @@
 
 import UIKit
 
-class UserDetailsViewController: UIViewController {
+class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
-    @IBOutlet var dobButton: UIButton!
-    @IBOutlet var currentWeightButton: UIButton!
+    @IBOutlet var dobField: UITextField!
+    
+    var gender = "male"
 
-    @IBAction func nextDetails(_ sender: Any) {
-        performSegue(withIdentifier: "moreDetails", sender: self)
-    }
     @IBAction func updateProfileImage(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = false
         
+        self.present(imagePicker, animated: true, completion: nil)
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            userImage.image = image
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func gender(_ sender: Any) {
-        
+        if genderSegment.selectedSegmentIndex == 0 {
+            gender = "male"
+        } else if genderSegment.selectedSegmentIndex == 1 {
+            gender = "female"
+        } else {
+            gender = "declined"
+        }
     }
-    @IBAction func dob(_ sender: Any) {
+
+    @IBAction func setDOB(_ sender: UITextField) {
+        let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
         
-    }
-    @IBAction func currentWeight(_ sender: Any) {
         
+        let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x: 0,y: 40,width: 0,height: 0))
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        inputView.addSubview(datePickerView) // add date picker to UIView
+        
+        let doneButton = UIButton(frame: CGRect(x: (self.view.frame.size.width/2) - 50,y: 0,width: 100,height: 50))
+        doneButton.setTitle("Done", for: UIControlState.normal)
+        doneButton.setTitle("Done", for: UIControlState.highlighted)
+        doneButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        doneButton.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+        
+        inputView.addSubview(doneButton) // add Button to UIView
+        
+        doneButton.addTarget(self, action: #selector(UserDetailsViewController.doneButton(sender:)), for: UIControlEvents.touchUpInside) // set button click event
+        
+        sender.inputView = inputView
+        datePickerView.addTarget(self, action: #selector(UserDetailsViewController.datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
+        
+        datePickerValueChanged(sender: datePickerView) // Set the date on start.
     }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dobField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func doneButton(sender:UIButton)
+    {
+        dobField.resignFirstResponder() // To resign the inputView on clicking done.
+    }
+    
     @IBAction func disclaimer(_ sender: Any) {
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moreDetails" {
+            let detailsCont = segue.destination as! UserDetailsContViewController
+            detailsCont.userGender = gender
+        }
     }
     
     override func viewDidLoad() {

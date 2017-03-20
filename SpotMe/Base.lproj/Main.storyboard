@@ -123,7 +123,7 @@
         <!--User Details View Controller-->
         <scene sceneID="BfZ-ep-8Yu">
             <objects>
-                <viewController id="oMc-3O-LcU" customClass="UserDetailsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userDetails" id="oMc-3O-LcU" customClass="UserDetailsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jTG-gh-Ru5"/>
                         <viewControllerLayoutGuide type="bottom" id="Qs1-bY-rLv"/>
@@ -153,7 +153,8 @@
                                     <navigationItem title="Profile Details" id="TSR-w3-5aK">
                                         <barButtonItem key="rightBarButtonItem" title="Next" id="upd-6O-VKY">
                                             <connections>
-                                                <action selector="nextDetails:" destination="oMc-3O-LcU" id="zrS-6n-QFx"/>
+                                                <action selector="nextDetails:" destination="oMc-3O-LcU" id="uj6-Vz-5Hj"/>
+                                                <segue destination="k9O-X9-1HC" kind="show" identifier="moreDetails" id="Zzb-0D-WjX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -197,14 +198,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fge-xe-8Jq">
-                                <rect key="frame" x="104" y="458" width="167" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Jan 1, 1990"/>
-                                <connections>
-                                    <action selector="dob:" destination="oMc-3O-LcU" eventType="touchUpInside" id="Ik2-6b-y4Y"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much do you weigh?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgW-lG-WWf">
                                 <rect key="frame" x="89" y="496" width="196" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -212,23 +205,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnr-Ip-78U">
-                                <rect key="frame" x="89" y="525" width="196" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DoB" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pmp-eD-N2K">
+                                <rect key="frame" x="104" y="458" width="167" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="165.0 lbs"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="currentWeight:" destination="oMc-3O-LcU" eventType="touchUpInside" id="tVJ-RZ-sJg"/>
+                                    <action selector="setDOB:" destination="oMc-3O-LcU" eventType="editingDidBegin" id="L6P-Qd-eLB"/>
                                 </connections>
-                            </button>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="lbs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tz3-9B-2MF">
+                                <rect key="frame" x="104" y="525" width="167" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="currentWeightButton" destination="Vnr-Ip-78U" id="YaW-2Z-aHt"/>
-                        <outlet property="dobButton" destination="fge-xe-8Jq" id="BGv-y2-XAi"/>
+                        <outlet property="dobField" destination="Pmp-eD-N2K" id="ByF-HY-Ifc"/>
                         <outlet property="genderSegment" destination="Kuj-YG-aiO" id="Lr7-KM-nLG"/>
                         <outlet property="userImage" destination="HBn-S1-jhS" id="o3X-2G-mVa"/>
-                        <segue destination="k9O-X9-1HC" kind="show" identifier="moreDetails" id="lhj-uf-hl7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3s-Ca-gbI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -238,7 +238,7 @@
         <!--User Details Cont View Controller-->
         <scene sceneID="66n-6J-8tc">
             <objects>
-                <viewController id="k9O-X9-1HC" customClass="UserDetailsContViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userDetailsCont" id="k9O-X9-1HC" customClass="UserDetailsContViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3fy-HU-7Ml"/>
                         <viewControllerLayoutGuide type="bottom" id="nn5-tj-9TW"/>
@@ -263,14 +263,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-UM-Wg8">
-                                <rect key="frame" x="122" y="113" width="131" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="5 ft, 9 in"/>
-                                <connections>
-                                    <action selector="userHeight:" destination="k9O-X9-1HC" eventType="touchUpInside" id="obk-kr-lrc"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How tall are you?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IF8-kv-zoq">
                                 <rect key="frame" x="122" y="84" width="131" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -278,14 +270,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8p-Ub-A7c">
-                                <rect key="frame" x="122" y="216" width="131" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="165.0 lbs"/>
-                                <connections>
-                                    <action selector="desiredWeight:" destination="k9O-X9-1HC" eventType="touchUpInside" id="Siq-jH-RTo"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your desired outcome?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKB-bQ-EYI">
                                 <rect key="frame" x="69" y="319" width="237" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -343,6 +327,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="gp7-AE-u1r">
                                             <connections>
                                                 <action selector="back:" destination="k9O-X9-1HC" id="gvI-rm-xun"/>
+                                                <segue destination="oMc-3O-LcU" kind="show" identifier="backToUserDetails" id="jNN-zI-jSm"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="mft-d0-RRR">
@@ -357,16 +342,26 @@
                                 <rect key="frame" x="325" y="621" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="69in" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcD-Cl-Kyr">
+                                <rect key="frame" x="122" y="113" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="lbs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sMw-ZM-kqp">
+                                <rect key="frame" x="122" y="216" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="desiredOutcomeSegment" destination="nR6-gZ-9sG" id="p8r-zg-UMF"/>
-                        <outlet property="desiredWeight" destination="F8p-Ub-A7c" id="hry-CP-LnI"/>
-                        <outlet property="desiredWeightButton" destination="F8p-Ub-A7c" id="Z1t-p4-l4L"/>
                         <outlet property="emailSwitch" destination="fJ5-KW-KoC" id="iPK-cp-Nk8"/>
-                        <outlet property="userHeight" destination="9IB-UM-Wg8" id="GGR-A7-2j3"/>
-                        <outlet property="userHeightButton" destination="9IB-UM-Wg8" id="odD-3U-UIZ"/>
                         <outlet property="weeklyGoalSegment" destination="bdA-og-4eI" id="ezT-Mb-Pa7"/>
                         <outlet property="weightGoalSegment" destination="Cw8-VY-xjZ" id="OOk-2g-DhP"/>
                         <segue destination="SXR-WZ-bzm" kind="show" identifier="segueHome" id="80W-qE-EpM"/>
@@ -379,7 +374,7 @@
         <!--Near Me-->
         <scene sceneID="V9s-eL-NQM">
             <objects>
-                <viewController id="dIo-zm-QBn" sceneMemberID="viewController">
+                <viewController id="dIo-zm-QBn" customClass="NearMeViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IBs-bb-AAg"/>
                         <viewControllerLayoutGuide type="bottom" id="1bO-km-dYi"/>
@@ -387,18 +382,24 @@
                     <view key="view" contentMode="scaleToFill" id="ROq-SY-fjx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gbU-2d-qni">
+                                <rect key="frame" x="16" y="28" width="343" height="414"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Near Me" id="bap-o8-12T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANB-bO-ZlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3033" y="-609"/>
+            <point key="canvasLocation" x="3032.8000000000002" y="-609.44527736131943"/>
         </scene>
         <!--Home-->
         <scene sceneID="Gj6-Ke-QHT">
             <objects>
-                <viewController id="Dc2-pM-kef" sceneMemberID="viewController">
+                <viewController id="Dc2-pM-kef" customClass="HomeViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="54F-GD-6VV"/>
                         <viewControllerLayoutGuide type="bottom" id="tVL-HS-fVf"/>
@@ -406,9 +407,27 @@
                     <view key="view" contentMode="scaleToFill" id="S2h-BN-c94">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uu8-10-ZWb">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="A0h-EX-eO0">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="TG2-Hm-dEM">
+                                            <connections>
+                                                <action selector="logout:" destination="Dc2-pM-kef" id="z7u-kQ-8CC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="5XM-6n-LX2"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="X6s-oJ-YkK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r28-BX-EF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -471,15 +490,20 @@
             </objects>
             <point key="canvasLocation" x="3033" y="-1343"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Base Tab View Controller-->
         <scene sceneID="YJy-dK-LfG">
             <objects>
-                <tabBarController id="SXR-WZ-bzm" sceneMemberID="viewController">
+                <tabBarController id="SXR-WZ-bzm" customClass="BaseTabViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="PoS-hR-TPw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="defaultIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="apd-Qg-Xvn" kind="relationship" relationship="viewControllers" id="eV1-Fb-4Nx"/>
                         <segue destination="dIo-zm-QBn" kind="relationship" relationship="viewControllers" id="GwS-GV-ZwR"/>
@@ -497,6 +521,7 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="jNN-zI-jSm"/>
         <segue reference="80W-qE-EpM"/>
     </inferredMetricsTieBreakers>
 </document>
