@@ -16,8 +16,8 @@ class UserDetailsContViewController: UIViewController {
     
     var profileImage:UIImage!
     var userGender:String!
-    var dob:String! = "Jan 1, 1915"
-    var userWeight:String! = ""
+    var dob:String!
+    var userWeight:String!
     
     @IBAction func weeklyGoal(_ sender: Any) {
         

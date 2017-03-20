@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet var dobField: UITextField!
@@ -87,6 +87,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         if segue.identifier == "moreDetails" {
             let detailsCont = segue.destination as! UserDetailsContViewController
             detailsCont.userGender = gender
+            detailsCont.profileImage = userImage.image
             if dobField.text != "" && userWeightField.text != "" {
                 detailsCont.dob = dobField.text
                 detailsCont.userWeight = userWeightField.text
@@ -111,10 +112,45 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         self.present(alertController, animated: true, completion: nil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        addDoneButtonOnKeyboard()
+    }
+    
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.userWeightField.inputAccessoryView = doneToolbar
+        
+    }
+    
+    func doneButtonAction()
+    {
+        self.userWeightField.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
