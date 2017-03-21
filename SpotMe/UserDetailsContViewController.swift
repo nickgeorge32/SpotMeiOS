@@ -9,13 +9,29 @@
 import UIKit
 
 class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
-    
     var profileImage:UIImage!
     var userGender:String!
     var dob:String!
     var userWeight:String!
     
+    
+    @IBOutlet var userHeight: UITextField!
+    @IBOutlet var weightGoalSegment: UISegmentedControl!
+    @IBOutlet var goalWeightField: UITextField!
+    @IBOutlet var weeklyGoalSegment: UISegmentedControl!
+    @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
+    @IBOutlet var emailSwitch: UISwitch!
+    
+    @IBAction func weightGoal(_ sender: Any) {
+        
+    }
 
+    @IBAction func weeklyGoal(_ sender: Any) {
+        print(weeklyGoalSegment.selectedSegmentIndex)
+    }
+    @IBAction func desiredOutcome(_ sender: Any) {
+        
+    }
     
     @IBAction func save(_ sender: Any) {
         performSegue(withIdentifier: "segueHome", sender: self)

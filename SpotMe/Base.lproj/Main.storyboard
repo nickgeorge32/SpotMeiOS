@@ -258,6 +258,9 @@
                                     <segment title="Maintain Weight"/>
                                     <segment title="Gain Weight"/>
                                 </segments>
+                                <connections>
+                                    <action selector="weightGoal:" destination="k9O-X9-1HC" eventType="valueChanged" id="FeZ-P1-e6w"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your weight goal?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhR-wV-wEY">
                                 <rect key="frame" x="89" y="151" width="197" height="21"/>
@@ -289,6 +292,9 @@
                                     <segment title="Endurance"/>
                                     <segment title="Other"/>
                                 </segments>
+                                <connections>
+                                    <action selector="desiredOutcome:" destination="k9O-X9-1HC" eventType="valueChanged" id="R2i-1A-ZLb"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your weekly goal?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3W-TE-I2i">
                                 <rect key="frame" x="89" y="254" width="198" height="21"/>
@@ -304,6 +310,9 @@
                                     <segment title=".5 lbs per week"/>
                                     <segment title="1 lb per week"/>
                                 </segments>
+                                <connections>
+                                    <action selector="weeklyGoal:" destination="k9O-X9-1HC" eventType="valueChanged" id="18E-fj-Frv"/>
+                                </connections>
                             </segmentedControl>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fJ5-KW-KoC">
                                 <rect key="frame" x="310" y="392" width="51" height="31"/>
@@ -356,7 +365,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="desiredOutcomeSegment" destination="nR6-gZ-9sG" id="p8r-zg-UMF"/>
+                        <outlet property="desiredOutcomeSegment" destination="nR6-gZ-9sG" id="6Uh-nE-N8I"/>
+                        <outlet property="emailSwitch" destination="fJ5-KW-KoC" id="ddQ-vD-NmI"/>
+                        <outlet property="goalWeightField" destination="sMw-ZM-kqp" id="CVM-Ov-duH"/>
+                        <outlet property="userHeight" destination="bcD-Cl-Kyr" id="qj9-ji-2t6"/>
+                        <outlet property="weeklyGoalSegment" destination="bdA-og-4eI" id="pBo-bk-lUe"/>
+                        <outlet property="weightGoalSegment" destination="Cw8-VY-xjZ" id="mMf-SX-EVh"/>
                         <segue destination="SXR-WZ-bzm" kind="show" identifier="segueHome" id="80W-qE-EpM"/>
                     </connections>
                 </viewController>
