@@ -39,11 +39,12 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
         PFUser.current()?["gender"] = userGender
         PFUser.current()?["dob"] = dob
-        PFUser.current()?["userWeight"] = userWeight
+        PFUser.current()?["currentWeight"] = userWeight
         PFUser.current()?["userHeight"] = userHeight.text
         PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
         PFUser.current()?["goalWeight"] = goalWeightField.text
         PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
+        PFUser.current()?["desiredOutcome"] = desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)
         PFUser.current()?["receiveEmails"] = emailSwitch.isOn
         
         PFUser.current()?.saveInBackground(block: { (success, error) in
