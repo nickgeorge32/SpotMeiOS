@@ -141,7 +141,7 @@
 				TargetAttributes = {
 					01B8EEEA1E7CF9BA00A1D2D0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = G73FYV4BYD;
+						DevelopmentTeam = 2XPA6ZBE84;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -360,7 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = G73FYV4BYD;
+				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studios.simpleseonow.SpotMe;
@@ -376,7 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = G73FYV4BYD;
+				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studios.simpleseonow.SpotMe;

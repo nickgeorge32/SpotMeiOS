@@ -80,7 +80,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     }
     
     @IBAction func disclaimer(_ sender: Any) {
-        
+        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

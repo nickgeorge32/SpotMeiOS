@@ -9,35 +9,13 @@
 import UIKit
 
 class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet var userHeight: UITextField!
-    @IBOutlet var weightGoalSegment: UISegmentedControl!
-    @IBOutlet var goalWeightField: UITextField!
-    @IBOutlet var weeklyGoalSegment: UISegmentedControl!
-    @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
-    @IBOutlet var emailSwitch: UISwitch!
     
     var profileImage:UIImage!
     var userGender:String!
     var dob:String!
     var userWeight:String!
     
-    var height:String!
-    var weightGoal:String!
-    var goalWeight:String!
-    
-    @IBAction func weightGoal(_ sender: Any) {
-        if weightGoalSegment.selectedSegmentIndex == 0 || weightGoalSegment.selectedSegmentIndex == 2 {
-            goalWeightField.isHidden = false
-        } else {
-            goalWeightField.isHidden = true
-        }
-    }
-    @IBAction func weeklyGoal(_ sender: Any) {
 
-    }
-    @IBAction func desiredOutcome(_ sender: Any) {
-        
-    }
     
     @IBAction func save(_ sender: Any) {
         performSegue(withIdentifier: "segueHome", sender: self)
@@ -46,12 +24,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addDoneButtonOnKeyboard()
+        //addDoneButtonOnKeyboard()
 
-        // Do any additional setup after loading the view.
-        print(userGender)
-        print(userWeight)
-        print(dob)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,29 +33,27 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func addDoneButtonOnKeyboard()
-    {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
-        doneToolbar.barStyle = UIBarStyle.default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
-        
-        var items = [UIBarButtonItem]()
-        items.append(flexSpace)
-        items.append(done)
-        
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        self.userHeight.inputAccessoryView = doneToolbar
-        
-    }
-    
-    func doneButtonAction()
-    {
-        self.userHeight.resignFirstResponder()
-    }
+//    func addDoneButtonOnKeyboard() {
+//        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
+//        doneToolbar.barStyle = UIBarStyle.default
+//        
+//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+//        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+//        
+//        var items = [UIBarButtonItem]()
+//        items.append(flexSpace)
+//        items.append(done)
+//        
+//        doneToolbar.items = items
+//        doneToolbar.sizeToFit()
+//        
+//        self.userHeight.inputAccessoryView = doneToolbar
+//        
+//    }
+//    
+//    func doneButtonAction() {
+//        self.userHeight.resignFirstResponder()
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
