@@ -363,7 +363,7 @@
 				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.studios.simpleseonow.SpotMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,7 +379,7 @@
 				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.studios.simpleseonow.SpotMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

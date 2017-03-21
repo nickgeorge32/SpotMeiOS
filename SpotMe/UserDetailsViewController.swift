@@ -14,8 +14,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var dobField: UITextField!
     @IBOutlet var userWeightField: UITextField!
     
-    var gender = "male"
-
     @IBAction func updateProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -34,13 +32,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     }
     
     @IBAction func gender(_ sender: Any) {
-        if genderSegment.selectedSegmentIndex == 0 {
-            gender = "male"
-        } else if genderSegment.selectedSegmentIndex == 1 {
-            gender = "female"
-        } else {
-            gender = "declined"
-        }
+        
     }
 
     @IBAction func setDOB(_ sender: UITextField) {
@@ -86,7 +78,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreDetails" {
             let detailsCont = segue.destination as! UserDetailsContViewController
-            detailsCont.userGender = gender
+            detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
             detailsCont.profileImage = userImage.image
             if dobField.text != "" && userWeightField.text != "" {
                 detailsCont.dob = dobField.text
