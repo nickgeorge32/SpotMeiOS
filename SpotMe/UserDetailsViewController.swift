@@ -30,10 +30,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func gender(_ sender: Any) {
-        
-    }
 
     @IBAction func setDOB(_ sender: UITextField) {
         let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))

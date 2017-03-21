@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SpotMe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rR-MF-ZxJ">
-                                <rect key="frame" x="146.5" y="28" width="82" height="30"/>
+                                <rect key="frame" x="147" y="28" width="82" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="82" id="LSc-fs-2XA"/>
                                     <constraint firstAttribute="height" constant="30" id="ggV-HK-xW2"/>
@@ -186,9 +186,6 @@
                                     <segment title="Female"/>
                                     <segment title="Prefer Not To Say"/>
                                 </segments>
-                                <connections>
-                                    <action selector="gender:" destination="oMc-3O-LcU" eventType="valueChanged" id="QvT-me-0ve"/>
-                                </connections>
                             </segmentedControl>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When were you born?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-RI-QvC">
                                 <rect key="frame" x="104" y="429" width="167" height="21"/>
@@ -398,6 +395,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Near Me" id="bap-o8-12T"/>
+                    <connections>
+                        <outlet property="map" destination="gbU-2d-qni" id="CLC-Ly-1gt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANB-bO-ZlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -428,6 +428,25 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lZt-Ww-D1g">
+                                <rect key="frame" x="16" y="72" width="343" height="575"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="YwN-Bp-5Ir">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YwN-Bp-5Ir" id="pNU-vd-JKN">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Dc2-pM-kef" id="qmB-7X-q4t"/>
+                                    <outlet property="delegate" destination="Dc2-pM-kef" id="hTf-fJ-aNg"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -438,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r28-BX-EF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3033" y="123"/>
+            <point key="canvasLocation" x="3032.8000000000002" y="122.78860569715144"/>
         </scene>
         <!--Friends-->
         <scene sceneID="gv8-IJ-WDK">

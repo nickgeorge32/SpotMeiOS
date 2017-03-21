@@ -359,6 +359,7 @@
 			baseConfigurationReference = 0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
@@ -375,6 +376,7 @@
 			baseConfigurationReference = D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;

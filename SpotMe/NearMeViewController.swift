@@ -8,13 +8,28 @@
 
 import UIKit
 import MapKit
+import Parse
 
-class NearMeViewController: UIViewController {
+class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    var locationManager = CLLocationManager()
 
+    @IBOutlet var map: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = manager.location?.coordinate {
+            let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.map.setRegion(region, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {

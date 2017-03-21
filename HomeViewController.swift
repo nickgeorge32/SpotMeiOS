@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func logout(_ sender: Any) {
         PFUser.logOut()
         performSegue(withIdentifier: "logoutSegue", sender: self)
@@ -26,6 +26,16 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
+        cell.textLabel?.text = "Test"
+        
+        return cell
+    }
 
     /*
     // MARK: - Navigation
