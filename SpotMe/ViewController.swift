@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signUpOrLogin(_ sender: Any) {
+        if usernameField.text != "" && passwordField.text != "" {
         if authMode {
             let user = PFUser()
             user.username = usernameField.text?.components(separatedBy: "@")[0]
@@ -76,6 +77,9 @@ class ViewController: UIViewController {
                     self.redirectUser()
                 }
             })
+        }
+        } else {
+            displayAlert(title: "Error in Form", message: "Please fill all fields")
         }
 
     }

@@ -58,7 +58,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
                 self.displayAlert(title: "Success", message: "Profile Saved!")
             }
         })
-        //performSegue(withIdentifier: "segueHome", sender: self)
+        performSegue(withIdentifier: "segueHome", sender: self)
 
     }
     
