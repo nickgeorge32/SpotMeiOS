@@ -19,9 +19,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +27,6 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-                //displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
         redirectUser()
     }
 
@@ -63,7 +60,6 @@ class ViewController: UIViewController {
                     self.displayAlert(title: "Sign Up Error", message: errorMessage)
                 } else {
                     //Signed Up
-                    print("Signed Up")
                     //redirect
                     self.performSegue(withIdentifier: "goToUserDetails", sender: self)
                 }

@@ -24,11 +24,9 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailSwitch: UISwitch!
     
     @IBAction func weightGoal(_ sender: Any) {
-        
-    }
-
-    @IBAction func weeklyGoal(_ sender: Any) {
-        print(weeklyGoalSegment.selectedSegmentIndex)
+        if weightGoalSegment.selectedSegmentIndex == 1 {
+            goalWeightField.isHidden = true
+        }
     }
     @IBAction func desiredOutcome(_ sender: Any) {
         

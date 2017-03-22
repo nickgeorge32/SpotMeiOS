@@ -79,8 +79,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
             if dobField.text != "" && userWeightField.text != "" {
                 detailsCont.dob = dobField.text
                 detailsCont.userWeight = userWeightField.text
-            } else {
-                print("empty")
             }
         }
     }
