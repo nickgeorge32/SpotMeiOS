@@ -462,7 +462,7 @@
         <!--Friends-->
         <scene sceneID="gv8-IJ-WDK">
             <objects>
-                <viewController id="XK6-0F-pJG" sceneMemberID="viewController">
+                <viewController id="XK6-0F-pJG" customClass="FriendsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Vs-Sk-P75"/>
                         <viewControllerLayoutGuide type="bottom" id="ITb-ff-wdl"/>
@@ -481,7 +481,7 @@
         <!--Activity-->
         <scene sceneID="xja-ht-AfL">
             <objects>
-                <viewController id="SWT-w5-Kg8" sceneMemberID="viewController">
+                <viewController id="SWT-w5-Kg8" customClass="ActivityViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rkg-16-TYd"/>
                         <viewControllerLayoutGuide type="bottom" id="ect-a5-I0U"/>
@@ -500,7 +500,7 @@
         <!--Events-->
         <scene sceneID="gtI-OS-PUf">
             <objects>
-                <viewController id="apd-Qg-Xvn" sceneMemberID="viewController">
+                <viewController id="apd-Qg-Xvn" customClass="EventsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Cx-18-ZqO"/>
                         <viewControllerLayoutGuide type="bottom" id="EYB-0p-06W"/>
