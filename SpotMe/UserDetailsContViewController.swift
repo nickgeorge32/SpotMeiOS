@@ -26,38 +26,59 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     @IBAction func weightGoal(_ sender: Any) {
         if weightGoalSegment.selectedSegmentIndex == 1 {
             goalWeightField.isHidden = true
+        } else {
+            goalWeightField.isHidden = false
         }
     }
     @IBAction func desiredOutcome(_ sender: Any) {
         
     }
     
-    @IBAction func save(_ sender: Any) {
-        let imageData = UIImagePNGRepresentation(profileImage)
-        PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
-        PFUser.current()?["gender"] = userGender
-        PFUser.current()?["dob"] = dob
-        PFUser.current()?["currentWeight"] = userWeight
-        PFUser.current()?["userHeight"] = userHeight.text
-        PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
-        PFUser.current()?["goalWeight"] = goalWeightField.text
-        PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
-        PFUser.current()?["desiredOutcome"] = desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)
-        PFUser.current()?["receiveEmails"] = emailSwitch.isOn
-        
-        PFUser.current()?.saveInBackground(block: { (success, error) in
-            if error != nil {
-                var errorMessage = "Unable to save details"
-                if let parseError = (error as! NSError).userInfo["error"] as? String {
-                    errorMessage = parseError
-                    self.displayAlert(title: "Error", message: errorMessage)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueHome" {
+            let imageData = UIImagePNGRepresentation(profileImage)
+            PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
+            PFUser.current()?["gender"] = userGender
+            PFUser.current()?["dob"] = dob
+            PFUser.current()?["currentWeight"] = userWeight
+            PFUser.current()?["userHeight"] = userHeight.text
+            PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
+            PFUser.current()?["goalWeight"] = goalWeightField.text
+            PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
+            PFUser.current()?["desiredOutcome"] = desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)
+            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
+            
+            PFUser.current()?.saveInBackground(block: { (success, error) in
+                if error != nil {
+                    var errorMessage = "Unable to save details"
+                    if let parseError = (error as! NSError).userInfo["error"] as? String {
+                        errorMessage = parseError
+                        self.displayAlert(title: "Error", message: errorMessage)
+                    }
+                } else {
+                    self.displayAlert(title: "Success", message: "Profile Saved!")
                 }
+            })
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if weightGoalSegment.selectedSegmentIndex == 1 {
+            if (userHeight.text?.isEmpty)! {
+                displayAlert(title: "Error in form", message: "All fields must be filled")
+                return false
             } else {
-                self.displayAlert(title: "Success", message: "Profile Saved!")
+                return true
             }
-        })
-        performSegue(withIdentifier: "segueHome", sender: self)
+        } else {
+            if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
+                displayAlert(title: "Error in form", message: "All fields must be filled")
+                return false
+            } else {
+                return true
+            }
 
+        }
     }
     
     override func viewDidLoad() {
@@ -106,6 +127,10 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @IBAction func disclaimer(_ sender: Any) {
+        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+
+    }
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

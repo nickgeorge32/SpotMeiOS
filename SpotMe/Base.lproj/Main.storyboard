@@ -335,6 +335,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="mft-d0-RRR">
                                             <connections>
                                                 <action selector="save:" destination="k9O-X9-1HC" id="Xvu-Tt-ho4"/>
+                                                <segue destination="SXR-WZ-bzm" kind="show" identifier="segueHome" id="Smo-CT-t7c"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -343,6 +344,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kj0-6u-jo8">
                                 <rect key="frame" x="325" y="621" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="disclaimer:" destination="k9O-X9-1HC" eventType="touchUpInside" id="do2-zm-lam"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="69in" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcD-Cl-Kyr">
                                 <rect key="frame" x="122" y="113" width="131" height="30"/>
@@ -368,7 +372,6 @@
                         <outlet property="userHeight" destination="bcD-Cl-Kyr" id="qj9-ji-2t6"/>
                         <outlet property="weeklyGoalSegment" destination="bdA-og-4eI" id="pBo-bk-lUe"/>
                         <outlet property="weightGoalSegment" destination="Cw8-VY-xjZ" id="mMf-SX-EVh"/>
-                        <segue destination="SXR-WZ-bzm" kind="show" identifier="segueHome" id="80W-qE-EpM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aW-ge-6qP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -638,7 +641,7 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="80W-qE-EpM"/>
         <segue reference="FdV-5z-TkF"/>
+        <segue reference="Smo-CT-t7c"/>
     </inferredMetricsTieBreakers>
 </document>
