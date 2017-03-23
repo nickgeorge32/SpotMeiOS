@@ -50,7 +50,8 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = manager.location?.coordinate {
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+
             self.map.setRegion(region, animated: true)
             
             let query = PFUser.query()
@@ -59,16 +60,20 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 if let users = objects {
                     self.nearbyUsers.removeAll()
                     self.nearbyUserLocations.removeAll()
+                    self.map.removeAnnotations(self.map.annotations)
                     
                     for object in users {
                         if let user = object as? PFUser {
                             self.nearbyUsers.append(user.username!)
                             self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
+                            let annotation = MKPointAnnotation()
+                            annotation.coordinate = CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude)
+                            annotation.title = user.username
+                            self.map.addAnnotation(annotation)
                         }
                     }
                 }
             })
-            print("nearby is \(nearbyUsers), \(nearbyUserLocations)")
             userLabel.text = nearbyUsers.joined(separator: ", ")
         }
     }
