@@ -10,13 +10,14 @@ import UIKit
 import MapKit
 import Parse
 
-class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var nearbyUsers = [String]()
     var nearbyUserLocations = [CLLocationCoordinate2D]()
 
     @IBOutlet var map: MKMapView!
+    @IBOutlet var userLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,19 +69,8 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 }
             })
             print("nearby is \(nearbyUsers), \(nearbyUserLocations)")
+            userLabel.text = nearbyUsers.joined(separator: ", ")
         }
-    }
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        cell.textLabel?.text = "Test"
-        
-        return cell
     }
 
     override func didReceiveMemoryWarning() {
