@@ -7,13 +7,32 @@
 //
 
 import UIKit
+import Parse
 
 class NearbyUserInfoViewController: UIViewController {
+    @IBOutlet var userProfileImage: UIImageView!
+    @IBOutlet var username: UILabel!
+    @IBOutlet var addUser: UIButton!
+    
+    var passedUsername = ""
 
+    @IBAction func friendUser(_ sender: Any) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+        username.text = passedUsername
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {

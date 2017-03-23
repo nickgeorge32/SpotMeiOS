@@ -15,6 +15,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var nearbyUsers = [String]()
     var nearbyUserLocations = [CLLocationCoordinate2D]()
+    var nearUser: String? = ""
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var userLabel: UILabel!
@@ -23,10 +24,9 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         super.viewDidLoad()
 
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -105,9 +105,17 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         return view
     }
-    
+        
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        mapView.deselectAnnotation(view.annotation, animated: true)
-        performSegue(withIdentifier: "showUserInfo", sender: self)
+        if let annotation = view.annotation {
+            nearUser = annotation.title!
+
+            let myVC = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
+            myVC.passedUsername = nearUser!
+            mapView.deselectAnnotation(view.annotation, animated: true)
+            navigationController?.pushViewController(myVC, animated: true)
+        }
+        print(nearUser)
+        //performSegue(withIdentifier: "showUserInfo", sender: self)
     }
 }
