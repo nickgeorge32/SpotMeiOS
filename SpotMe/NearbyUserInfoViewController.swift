@@ -17,7 +17,7 @@ class NearbyUserInfoViewController: UIViewController {
     var passedUsername = ""
 
     @IBAction func friendUser(_ sender: Any) {
-    
+        
     }
     
     override func viewDidLoad() {

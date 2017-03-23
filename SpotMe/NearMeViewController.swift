@@ -49,7 +49,8 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
         
         let query = PFUser.query()
-        query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude))
+        query?.whereKey("username", notEqualTo: (PFUser.current()?.username!)!)
+        query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude), withinKilometers: 10)
         query?.findObjectsInBackground(block: { (objects, error) in
             if let users = objects {
                 self.nearbyUsers.removeAll()
@@ -73,7 +74,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = manager.location?.coordinate {
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 80, longitudeDelta: 80))
+            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
 
             self.mapView.setRegion(region, animated: true)
             
