@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     
     func redirectUser() {
         if PFUser.current() != nil {
-            if PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
+            if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
                 performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
             } else {
                 performSegue(withIdentifier: "goToUserDetails", sender: self)

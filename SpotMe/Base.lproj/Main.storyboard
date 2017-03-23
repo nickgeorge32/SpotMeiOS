@@ -477,6 +477,7 @@
                                                 <action selector="logout:" destination="Dc2-pM-kef" id="z7u-kQ-8CC"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="Settings-25.png" id="Ipi-Iw-kLJ"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -706,10 +707,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Settings-25.png" width="25" height="25"/>
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="T89-Nt-LCR"/>
-        <segue reference="FdV-5z-TkF"/>
+        <segue reference="mIR-ku-ctQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -115,7 +115,5 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             mapView.deselectAnnotation(view.annotation, animated: true)
             navigationController?.pushViewController(myVC, animated: true)
         }
-        print(nearUser)
-        //performSegue(withIdentifier: "showUserInfo", sender: self)
     }
 }

@@ -22,6 +22,7 @@
 		01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */; };
 		01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */; };
 		01C506C71E81FFE600ECFCB7 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */; };
+		01E263C81E84655200C292B4 /* Settings-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E263C71E84655100C292B4 /* Settings-25.png */; };
 		B3A0B846F576277042DAA77F /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		01E263C71E84655100C292B4 /* Settings-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-25.png"; sourceTree = "<group>"; };
 		0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
 		D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
 				01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */,
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
+				01E263C71E84655100C292B4 /* Settings-25.png */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
@@ -184,6 +187,7 @@
 				01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */,
 				01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
+				01E263C81E84655200C292B4 /* Settings-25.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

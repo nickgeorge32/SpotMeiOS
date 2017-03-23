@@ -17,18 +17,39 @@ class NearbyUserInfoViewController: UIViewController {
     var passedUsername = ""
 
     @IBAction func friendUser(_ sender: Any) {
-        
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         username.text = passedUsername
+        
+        let query = PFUser.query()
+        query?.whereKey("username", equalTo: username.text!)
+        query?.findObjectsInBackground(block: { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFUser {
+                        let imageFile = user["photo"] as! PFFile
+                        imageFile.getDataInBackground(block: { (data, error) in
+                            if let imageData = data {
+                                self.userProfileImage.image = UIImage(data: imageData)
+                            }
+                        })
+                    }
+                }
+                
+            }
+        })
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
