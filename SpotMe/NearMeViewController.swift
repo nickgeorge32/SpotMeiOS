@@ -10,9 +10,11 @@ import UIKit
 import MapKit
 import Parse
 
-class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     var locationManager = CLLocationManager()
     var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var nearbyUsers = [String]()
+    var nearbyUserLocations = [CLLocationCoordinate2D]()
 
     @IBOutlet var map: MKMapView!
     
@@ -23,8 +25,9 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         if userLocation.latitude != 0 && userLocation.longitude != 0 {
             PFUser.current()?["userLocation"] = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
@@ -48,7 +51,36 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.map.setRegion(region, animated: true)
+            
+            let query = PFUser.query()
+            query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: location.latitude, longitude: location.longitude))
+            query?.findObjectsInBackground(block: { (objects, error) in
+                if let users = objects {
+                    self.nearbyUsers.removeAll()
+                    self.nearbyUserLocations.removeAll()
+                    
+                    for object in users {
+                        if let user = object as? PFUser {
+                            self.nearbyUsers.append(user.username!)
+                            self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
+                        }
+                    }
+                }
+            })
+            print("nearby is \(nearbyUsers), \(nearbyUserLocations)")
         }
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        cell.textLabel?.text = "Test"
+        
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,16 +93,5 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
