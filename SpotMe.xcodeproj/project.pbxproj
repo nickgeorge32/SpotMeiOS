@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01083E681E841DB0009925B0 /* person_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01083E671E841DB0009925B0 /* person_icon.png */; };
+		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
 		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
 		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
 		0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		01083E671E841DB0009925B0 /* person_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person_icon.png; sourceTree = "<group>"; };
+		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
 		0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsContViewController.swift; sourceTree = "<group>"; };
 		0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
 				0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */,
 				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
+				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
 				0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */,
 				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
 				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
@@ -247,6 +250,7 @@
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
 				01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */,
+				01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */,
 				0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */,
 				0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */,
 				01C506C71E81FFE600ECFCB7 /* FriendsViewController.swift in Sources */,

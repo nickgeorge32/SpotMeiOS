@@ -43,7 +43,9 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 }
             })
         } else {
-            displayAlert(title: "Location Error", message: "Unable to get your location at this time, please try again.")
+            displayAlert(title: "Location Error", message: "Unable to get location at this time, using last saved location")
+            userLocation.latitude = (PFUser.current()?["userLocation"] as AnyObject).latitude
+            userLocation.longitude = (PFUser.current()?["userLocation"] as AnyObject).longitude
         }
         
         let query = PFUser.query()
@@ -71,7 +73,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = manager.location?.coordinate {
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 80, longitudeDelta: 80))
 
             self.mapView.setRegion(region, animated: true)
             
@@ -99,11 +101,13 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
         
         view?.leftCalloutAccessoryView = nil
-        view?.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
-        //swift 1.2
-        //view?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+        view?.rightCalloutAccessoryView = UIButton(type: UIButtonType.infoLight)
         
         return view
     }
-
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        mapView.deselectAnnotation(view.annotation, animated: true)
+        performSegue(withIdentifier: "showUserInfo", sender: self)
+    }
 }
