@@ -16,7 +16,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var nearbyUsers = [String]()
     var nearbyUserLocations = [CLLocationCoordinate2D]()
 
-    @IBOutlet var map: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     @IBOutlet var userLabel: UILabel!
     
     override func viewDidLoad() {
@@ -45,6 +45,27 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         } else {
             displayAlert(title: "Location Error", message: "Unable to get your location at this time, please try again.")
         }
+        
+        let query = PFUser.query()
+        query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude))
+        query?.findObjectsInBackground(block: { (objects, error) in
+            if let users = objects {
+                self.nearbyUsers.removeAll()
+                self.nearbyUserLocations.removeAll()
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                
+                for object in users {
+                    if let user = object as? PFUser {
+                        self.nearbyUsers.append(user.username!)
+                        self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude)
+                        annotation.title = user.username
+                        self.mapView.addAnnotation(annotation)
+                    }
+                }
+            }
+        })
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -52,29 +73,8 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
 
-            self.map.setRegion(region, animated: true)
+            self.mapView.setRegion(region, animated: true)
             
-            let query = PFUser.query()
-            query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: location.latitude, longitude: location.longitude))
-            query?.findObjectsInBackground(block: { (objects, error) in
-                if let users = objects {
-                    self.nearbyUsers.removeAll()
-                    self.nearbyUserLocations.removeAll()
-                    self.map.removeAnnotations(self.map.annotations)
-                    
-                    for object in users {
-                        if let user = object as? PFUser {
-                            self.nearbyUsers.append(user.username!)
-                            self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
-                            let annotation = MKPointAnnotation()
-                            annotation.coordinate = CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude)
-                            annotation.title = user.username
-                            self.map.addAnnotation(annotation)
-                        }
-                    }
-                }
-            })
-            userLabel.text = nearbyUsers.joined(separator: ", ")
         }
     }
 
@@ -87,6 +87,23 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var view = mapView.dequeueReusableAnnotationView(withIdentifier: "AnnotationView Id")
+        if view == nil{
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView Id")
+            view!.canShowCallout = true
+        } else {
+            view!.annotation = annotation
+        }
+        
+        view?.leftCalloutAccessoryView = nil
+        view?.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+        //swift 1.2
+        //view?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+        
+        return view
     }
 
 }

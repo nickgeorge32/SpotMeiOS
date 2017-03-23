@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01083E681E841DB0009925B0 /* person_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01083E671E841DB0009925B0 /* person_icon.png */; };
 		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
 		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
 		0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01083E671E841DB0009925B0 /* person_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person_icon.png; sourceTree = "<group>"; };
 		0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsContViewController.swift; sourceTree = "<group>"; };
 		0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */,
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
+				01083E671E841DB0009925B0 /* person_icon.png */,
 				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
 				01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */,
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */,
+				01083E681E841DB0009925B0 /* person_icon.png in Resources */,
 				01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
 			);
