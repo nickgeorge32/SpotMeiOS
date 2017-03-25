@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -14,6 +15,10 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        pendingFriendRequestCheck()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +37,21 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func pendingFriendRequestCheck() {
+        var badgeValue = 0
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestedUser", equalTo: (PFUser.current()?.username!)!)
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFObject {
+                        badgeValue += 1
+                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
+                    }
+                }
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

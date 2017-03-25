@@ -15,16 +15,22 @@ class NearbyUserInfoViewController: UIViewController {
     @IBOutlet var addUser: UIButton!
     
     var passedUsername = ""
+    var isFriend = false
 
     @IBAction func friendUser(_ sender: Any) {
+        let friends = PFObject(className: "FriendRequests")
+        friends["requestedUser"] = passedUsername
+        friends["requestingUser"] = PFUser.current()?.username
+        //friends.addUniqueObjects(from: [passedUsername], forKey: "requestedUser")
+        //friends.addUniqueObjects(from: [(PFUser.current()?.username!)!], forKey: "requestingUser")
+        friends.saveInBackground()
+        
+        addUser.setTitle("Cancel Request", for: [])
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
         
     }
     

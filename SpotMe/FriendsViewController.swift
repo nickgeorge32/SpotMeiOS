@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import Parse
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet var tableView: UITableView!
+    var pendingRequests = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        pendingRequests.removeAll()
+        pendingFriendRequestCheck()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +31,33 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return pendingRequests.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = "Test"
+        cell.textLabel?.text = pendingRequests[indexPath.row]
         
         return cell
+    }
+    
+    func pendingFriendRequestCheck() {
+        var badgeValue = 0
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestedUser", equalTo: (PFUser.current()?.username!)!)
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFObject {
+                        badgeValue += 1
+                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
+                        self.pendingRequests.append(user["requestingUser"] as! String)
+                        print(self.pendingRequests)
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        }
     }
 
     /*

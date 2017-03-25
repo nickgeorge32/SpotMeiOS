@@ -30,6 +30,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        pendingFriendRequestCheck()
         if userLocation.latitude != 0 && userLocation.longitude != 0 {
             PFUser.current()?["userLocation"] = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
             
@@ -115,6 +116,22 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             myVC.passedUsername = nearUser!
             mapView.deselectAnnotation(view.annotation, animated: true)
             navigationController?.pushViewController(myVC, animated: true)
+        }
+    }
+    
+    func pendingFriendRequestCheck() {
+        var badgeValue = 0
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestedUser", equalTo: (PFUser.current()?.username!)!)
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFObject {
+                        badgeValue += 1
+                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
+                    }
+                }
+            }
         }
     }
 }
