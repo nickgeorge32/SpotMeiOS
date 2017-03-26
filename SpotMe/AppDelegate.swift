@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
-            ParseMutableClientConfiguration.applicationId = "ff84645ceea6c1e297f57bad43df7ef295a6d5db"
-            ParseMutableClientConfiguration.clientKey = "336604810432a876566360e98071d9abf03f0b5f"
-            ParseMutableClientConfiguration.server = "http://ec2-52-14-219-184.us-east-2.compute.amazonaws.com/parse"
+            ParseMutableClientConfiguration.applicationId = "bfb05c79dcf2b7a59ab1f6b95cdcfeaebe2df1fd"
+            ParseMutableClientConfiguration.clientKey = "f6b0bf8832953260a89f04c63d7a312e9fac587b"
+            ParseMutableClientConfiguration.server = "http://ec2-52-14-126-168.us-east-2.compute.amazonaws.com/parse"
         })
         
         Parse.initialize(with: parseConfiguration)
@@ -67,54 +67,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              */
         }
         
-        //
-        //  Swift 1.2
-        //
-        //        if application.respondsToSelector("registerUserNotificationSettings:") {
-        //            let userNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-        //            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        //            application.registerUserNotificationSettings(settings)
-        //            application.registerForRemoteNotifications()
-        //        } else {
-        //            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
-        //            application.registerForRemoteNotificationTypes(types)
-        //        }
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
         
-        //
-        //  Swift 2.0
-        //
-        //        if #available(iOS 8.0, *) {
-        //            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        //            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        //            application.registerUserNotificationSettings(settings)
-        //            application.registerForRemoteNotifications()
-        //        } else {
-        //            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-        //            application.registerForRemoteNotificationTypes(types)
-        //        }
+        application.registerUserNotificationSettings(pushNotificationSettings)
+        application.registerForRemoteNotifications()
         
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("registered")
+        var token = ""
+        for i in 0..<deviceToken.count {
+            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+        }
+        print(token)
+        PFUser.current()?["deviceToken"] = token
+        PFUser.current()?.saveInBackground()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print(error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
     }
     
     //--------------------------------------
     // MARK: Push Notifications
     //--------------------------------------
-    
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 //        let installation = PFInstallation.current()
 //        installation?.setDeviceTokenFrom(deviceToken)
 //        installation?.saveInBackground()
-//        
-//        PFPush.subscribeToChannel(inBackground: "") { (succeeded, error) in // (succeeded: Bool, error: NSError?) is now (succeeded, error)
-//            
-//            if succeeded {
-//                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
+//        PFPush.subscribeToChannel(inBackground: "") { (success, error) in
+//            if success {
+//                print("SpotMe successfully subscribed to push notifications")
 //            } else {
-//                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
+//                print("SpotMe failed to subscbribe to push notification")
 //            }
 //        }
+//        
 //    }
-//    
+    
 //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
 //        if error.code == 3010 {
 //            print("Push notifications are not supported in the iOS Simulator.\n")
