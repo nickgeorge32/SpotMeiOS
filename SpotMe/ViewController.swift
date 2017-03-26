@@ -19,7 +19,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,6 +42,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signUpOrLogin(_ sender: Any) {
+        if usernameField.text != "" && passwordField.text != "" {
         if authMode {
             let user = PFUser()
             user.username = usernameField.text?.components(separatedBy: "@")[0]
@@ -55,7 +60,6 @@ class ViewController: UIViewController {
                     self.displayAlert(title: "Sign Up Error", message: errorMessage)
                 } else {
                     //Signed Up
-                    print("Signed Up")
                     //redirect
                     self.performSegue(withIdentifier: "goToUserDetails", sender: self)
                 }
@@ -72,11 +76,13 @@ class ViewController: UIViewController {
                     self.displayAlert(title: "Login Error", message: errorMessage)
                 } else {
                     //Logged In
-                    print("Logged In")
                     //redirect
                     self.redirectUser()
                 }
             })
+        }
+        } else {
+            displayAlert(title: "Error in Form", message: "Please fill all fields")
         }
 
     }
@@ -95,7 +101,7 @@ class ViewController: UIViewController {
     
     func redirectUser() {
         if PFUser.current() != nil {
-            if PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["height"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
+            if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
                 performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
             } else {
                 performSegue(withIdentifier: "goToUserDetails", sender: self)

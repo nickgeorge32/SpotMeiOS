@@ -1,27 +1,29 @@
 //
-//  HomeViewController.swift
+//  FriendsViewController.swift
 //  SpotMe
 //
-//  Created by Nicholas George on 3/19/17.
+//  Created by Nicholas George on 3/21/17.
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBAction func logout(_ sender: Any) {
-        PFUser.logOut()
-        performSegue(withIdentifier: "logoutSegue", sender: self)
-    }
+class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet var tableView: UITableView!
+    var pendingRequests = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        pendingRequests.removeAll()
         pendingFriendRequestCheck()
     }
 
@@ -31,12 +33,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return pendingRequests.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = "Test"
+        cell.textLabel?.text = pendingRequests[indexPath.row]
         
         return cell
     }
@@ -51,10 +53,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if let user = object as? PFObject {
                         badgeValue += 1
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
+                        self.pendingRequests.append(user["requestingUser"] as! String)
                     }
                 }
             }
+            self.tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+        
+        let showRequestingUserInfo = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
+        showRequestingUserInfo.passedUsername = (currentCell.textLabel?.text)!
+        showRequestingUserInfo.buttonText = "Accept Request"
+
+        navigationController?.pushViewController(showRequestingUserInfo, animated: true)
+
+
+        
     }
 
     /*

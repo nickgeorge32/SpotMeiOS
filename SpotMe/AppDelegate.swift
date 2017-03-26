@@ -100,35 +100,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Push Notifications
     //--------------------------------------
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let installation = PFInstallation.current()
-        installation?.setDeviceTokenFrom(deviceToken)
-        installation?.saveInBackground()
-        
-        PFPush.subscribeToChannel(inBackground: "") { (succeeded, error) in // (succeeded: Bool, error: NSError?) is now (succeeded, error)
-            
-            if succeeded {
-                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
-            } else {
-                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
-            }
-        }
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        if error.code == 3010 {
-            print("Push notifications are not supported in the iOS Simulator.\n")
-        } else {
-            print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
-        }
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handle(userInfo)
-        if application.applicationState == UIApplicationState.inactive {
-            PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
-        }
-    }
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        let installation = PFInstallation.current()
+//        installation?.setDeviceTokenFrom(deviceToken)
+//        installation?.saveInBackground()
+//        
+//        PFPush.subscribeToChannel(inBackground: "") { (succeeded, error) in // (succeeded: Bool, error: NSError?) is now (succeeded, error)
+//            
+//            if succeeded {
+//                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
+//            } else {
+//                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
+//            }
+//        }
+//    }
+//    
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+//        if error.code == 3010 {
+//            print("Push notifications are not supported in the iOS Simulator.\n")
+//        } else {
+//            print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
+//        }
+//    }
+//    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+//        PFPush.handle(userInfo)
+//        if application.applicationState == UIApplicationState.inactive {
+//            PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
+//        }
+//    }
     
     ///////////////////////////////////////////////////////////
     // Uncomment this method if you want to use Push Notifications with Background App Refresh

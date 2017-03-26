@@ -1,19 +1,15 @@
 //
-//  HomeViewController.swift
+//  EventsViewController.swift
 //  SpotMe
 //
-//  Created by Nicholas George on 3/19/17.
+//  Created by Nicholas George on 3/21/17.
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBAction func logout(_ sender: Any) {
-        PFUser.logOut()
-        performSegue(withIdentifier: "logoutSegue", sender: self)
-    }
+class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

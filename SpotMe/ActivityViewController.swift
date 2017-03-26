@@ -1,19 +1,15 @@
 //
-//  HomeViewController.swift
+//  ActivityViewController.swift
 //  SpotMe
 //
-//  Created by Nicholas George on 3/19/17.
+//  Created by Nicholas George on 3/21/17.
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBAction func logout(_ sender: Any) {
-        PFUser.logOut()
-        performSegue(withIdentifier: "logoutSegue", sender: self)
-    }
+class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +26,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 4
     }
     

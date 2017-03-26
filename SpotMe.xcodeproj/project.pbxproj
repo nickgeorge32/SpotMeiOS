@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
 		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
 		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
 		0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */; };
@@ -18,10 +19,15 @@
 		01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */; };
 		01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */; };
 		01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */; };
+		01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */; };
+		01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */; };
+		01C506C71E81FFE600ECFCB7 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */; };
+		01E263C81E84655200C292B4 /* Settings-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E263C71E84655100C292B4 /* Settings-25.png */; };
 		B3A0B846F576277042DAA77F /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
 		0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsContViewController.swift; sourceTree = "<group>"; };
 		0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +41,10 @@
 		01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01B8EEFB1E7CF9BA00A1D2D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		01E263C71E84655100C292B4 /* Settings-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-25.png"; sourceTree = "<group>"; };
 		0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
 		D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,12 +85,17 @@
 			children = (
 				01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */,
 				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
+				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
 				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
 				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
 				0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */,
 				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
+				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
 				0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */,
+				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
+				01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */,
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
+				01E263C71E84655100C292B4 /* Settings-25.png */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
@@ -141,8 +156,13 @@
 				TargetAttributes = {
 					01B8EEEA1E7CF9BA00A1D2D0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = G73FYV4BYD;
+						DevelopmentTeam = 2XPA6ZBE84;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -172,6 +192,7 @@
 				01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */,
 				01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
+				01E263C81E84655200C292B4 /* Settings-25.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,11 +254,15 @@
 				01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */,
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
+				01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */,
+				01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */,
 				0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */,
 				0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */,
+				01C506C71E81FFE600ECFCB7 /* FriendsViewController.swift in Sources */,
 				0177D9B71E7F5B91001EB3F6 /* HomeViewController.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,
+				01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,14 +384,15 @@
 			baseConfigurationReference = 0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = G73FYV4BYD;
+				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.studios.simpleseonow.SpotMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -375,14 +401,15 @@
 			baseConfigurationReference = D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = G73FYV4BYD;
+				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				INFOPLIST_FILE = SpotMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.studios.simpleseonow.SpotMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
