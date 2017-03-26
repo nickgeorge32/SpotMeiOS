@@ -62,7 +62,17 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showRequestingUserInfo", sender: self)
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+        
+        let showRequestingUserInfo = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
+        showRequestingUserInfo.passedUsername = (currentCell.textLabel?.text)!
+        showRequestingUserInfo.buttonText = "Accept Request"
+
+        navigationController?.pushViewController(showRequestingUserInfo, animated: true)
+
+
+        
     }
 
     /*
