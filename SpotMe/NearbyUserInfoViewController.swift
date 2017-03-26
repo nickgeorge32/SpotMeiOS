@@ -12,10 +12,13 @@ import Parse
 class NearbyUserInfoViewController: UIViewController {
     @IBOutlet var userProfileImage: UIImageView!
     @IBOutlet var username: UILabel!
+    @IBOutlet var gender: UILabel!
+    @IBOutlet var weightGoal: UILabel!
+    @IBOutlet var desiredOutcome: UILabel!
     @IBOutlet var addUser: UIButton!
     
     var passedUsername = ""
-    var isFriend = false
+    var buttonText = "Add Friend"
 
     @IBAction func friendUser(_ sender: Any) {
         let friends = PFObject(className: "FriendRequests")
@@ -23,7 +26,11 @@ class NearbyUserInfoViewController: UIViewController {
         friends["requestingUser"] = PFUser.current()?.username
         friends.saveInBackground()
         
-        addUser.setTitle("Cancel Request", for: [])
+        buttonText = "Cancel Request"
+        addUser.setTitle(buttonText, for: [])
+        
+    }
+    @IBAction func rejectRequest(_ sender: Any) {
         
     }
     
@@ -35,6 +42,7 @@ class NearbyUserInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         username.text = passedUsername
+        addUser.setTitle(buttonText, for: [])
         
         let query = PFUser.query()
         query?.whereKey("username", equalTo: username.text!)
@@ -42,6 +50,9 @@ class NearbyUserInfoViewController: UIViewController {
             if let users = objects {
                 for object in users {
                     if let user = object as? PFUser {
+                        self.gender.text = object["gender"] as! String?
+                        self.weightGoal.text = object["weightGoal"] as! String?
+                        self.desiredOutcome.text = object["desiredOutcome"] as! String?
                         let imageFile = user["photo"] as! PFFile
                         imageFile.getDataInBackground(block: { (data, error) in
                             if let imageData = data {
