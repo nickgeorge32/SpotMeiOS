@@ -24,14 +24,16 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailSwitch: UISwitch!
     
     @IBAction func weightGoal(_ sender: Any) {
-        if weightGoalSegment.selectedSegmentIndex == 1 {
+        if weightGoalSegment.selectedSegmentIndex == 0 {
+            goalWeightField.isHidden = false
+            weeklyGoalSegment.isEnabled = true
+        } else if weightGoalSegment.selectedSegmentIndex == 1 {
             goalWeightField.isHidden = true
+            weeklyGoalSegment.isEnabled = false
         } else {
             goalWeightField.isHidden = false
+            weeklyGoalSegment.isEnabled = true
         }
-    }
-    @IBAction func desiredOutcome(_ sender: Any) {
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,7 +46,9 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             PFUser.current()?["userHeight"] = userHeight.text
             PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
             PFUser.current()?["goalWeight"] = goalWeightField.text
-            PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
+            if weightGoalSegment.selectedSegmentIndex != 1 {
+                PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
+            }
             PFUser.current()?["desiredOutcome"] = desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)
             PFUser.current()?["receiveEmails"] = emailSwitch.isOn
             
@@ -63,7 +67,19 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if weightGoalSegment.selectedSegmentIndex == 1 {
+        if weightGoalSegment.selectedSegmentIndex == 0 {
+            if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
+                displayAlert(title: "Error in form", message: "All fields must be filled")
+                return false
+            } else {
+                if Int(goalWeightField.text!)! > Int(userWeight)! {
+                    displayAlert(title: "Error in selection", message: "Because you chose to lose weight, your goal weight should be less than your current weight")
+                    return false
+                }
+                return true
+            }
+            
+        } else if weightGoalSegment.selectedSegmentIndex == 1 {
             if (userHeight.text?.isEmpty)! {
                 displayAlert(title: "Error in form", message: "All fields must be filled")
                 return false
@@ -75,6 +91,10 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
                 displayAlert(title: "Error in form", message: "All fields must be filled")
                 return false
             } else {
+                if Int(goalWeightField.text!)! < Int(userWeight)! {
+                    displayAlert(title: "Error in Selection", message: "Because you chose to gain weight, your goal weight should be more than your current weight")
+                    return false
+                }
                 return true
             }
 

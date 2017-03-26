@@ -18,6 +18,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,12 +54,15 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         badgeValue += 1
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                         self.pendingRequests.append(user["requestingUser"] as! String)
-                        print(self.pendingRequests)
                     }
                 }
             }
             self.tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showRequestingUserInfo", sender: self)
     }
 
     /*

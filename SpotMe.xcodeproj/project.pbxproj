@@ -85,6 +85,7 @@
 			children = (
 				01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */,
 				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
+				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
 				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
 				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
 				0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */,
@@ -92,7 +93,6 @@
 				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
 				0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */,
 				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
-				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
 				01C506C61E81FFE600ECFCB7 /* FriendsViewController.swift */,
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
 				01E263C71E84655100C292B4 /* Settings-25.png */,

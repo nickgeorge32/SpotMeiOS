@@ -22,6 +22,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
 
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer

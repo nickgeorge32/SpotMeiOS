@@ -21,8 +21,6 @@ class NearbyUserInfoViewController: UIViewController {
         let friends = PFObject(className: "FriendRequests")
         friends["requestedUser"] = passedUsername
         friends["requestingUser"] = PFUser.current()?.username
-        //friends.addUniqueObjects(from: [passedUsername], forKey: "requestedUser")
-        //friends.addUniqueObjects(from: [(PFUser.current()?.username!)!], forKey: "requestingUser")
         friends.saveInBackground()
         
         addUser.setTitle("Cancel Request", for: [])
