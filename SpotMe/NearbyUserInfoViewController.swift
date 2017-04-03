@@ -19,19 +19,34 @@ class NearbyUserInfoViewController: UIViewController {
     
     var passedUsername = ""
     var buttonText = "Add Friend"
+    var activeRequest = false
+    var requestMode = true
 
     @IBAction func friendUser(_ sender: Any) {
-        let friends = PFObject(className: "FriendRequests")
-        friends["requestedUser"] = passedUsername
-        friends["requestingUser"] = PFUser.current()?.username
-        friends.saveInBackground()
-        
-        buttonText = "Cancel Request"
-        addUser.setTitle(buttonText, for: [])
-        
-    }
-    @IBAction func rejectRequest(_ sender: Any) {
-        
+        if activeRequest {
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
+            query.whereKey("pendingRequestUser", equalTo: passedUsername)
+            query.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteEventually()
+                }
+            })
+            
+            buttonText = "Add Friend"
+            addUser.setTitle(buttonText, for: [])
+            activeRequest = false
+        } else {
+            let friends = PFObject(className: "FriendRequests")
+            friends["pendingRequestUser"] = passedUsername
+            friends["requestingUser"] = PFUser.current()?.username
+            friends["requestedFriend"] = ""
+            friends.saveInBackground()
+            
+            buttonText = "Cancel Request"
+            addUser.setTitle(buttonText, for: [])
+            activeRequest = true
+        }
     }
     
     override func viewDidLoad() {

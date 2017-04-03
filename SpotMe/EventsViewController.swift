@@ -40,7 +40,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         let query = PFQuery(className: "FriendRequests")
-        query.whereKey("requestedUser", equalTo: (PFUser.current()?.username!)!)
+        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
         query.findObjectsInBackground { (objects, error) in
             if let users = objects {
                 for object in users {

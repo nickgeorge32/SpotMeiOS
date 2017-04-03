@@ -22,12 +22,9 @@ class ViewController: UIViewController {
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        redirectUser()
+        displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
+        //redirectUser()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +34,11 @@ class ViewController: UIViewController {
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in self.redirectUser()
+        }
+        alertController.addAction(okAction)
+        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
 		013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E21E8788C5003403FB /* StoreKit.framework */; };
-		013FF2E51E8788EC003403FB /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E41E8788EC003403FB /* HealthKit.framework */; };
 		013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E61E878902003403FB /* AudioToolbox.framework */; };
 		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
 		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
@@ -33,7 +32,6 @@
 		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
 		013FF2E11E8788B9003403FB /* SpotMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotMe.entitlements; sourceTree = "<group>"; };
 		013FF2E21E8788C5003403FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		013FF2E41E8788EC003403FB /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		013FF2E61E878902003403FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsContViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				013FF2E51E8788EC003403FB /* HealthKit.framework in Frameworks */,
 				B3A0B846F576277042DAA77F /* Pods_SpotMe.framework in Frameworks */,
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
@@ -128,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				013FF2E61E878902003403FB /* AudioToolbox.framework */,
-				013FF2E41E8788EC003403FB /* HealthKit.framework */,
 				013FF2E21E8788C5003403FB /* StoreKit.framework */,
 				D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */,
 			);
@@ -174,7 +170,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -416,7 +412,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -434,7 +430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

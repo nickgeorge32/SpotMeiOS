@@ -13,18 +13,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var tableView: UITableView!
     var pendingRequests = [String]()
+    var friendsArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         pendingRequests.removeAll()
+        friendsArray.removeAll()
+        
         pendingFriendRequestCheck()
+        friendsCheck()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,12 +35,13 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pendingRequests.count
+        return friendsArray.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = pendingRequests[indexPath.row]
+
+        cell.textLabel?.text = friendsArray[indexPath.row]
         
         return cell
     }
@@ -46,14 +49,33 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         let query = PFQuery(className: "FriendRequests")
-        query.whereKey("requestedUser", equalTo: (PFUser.current()?.username!)!)
+        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
         query.findObjectsInBackground { (objects, error) in
             if let users = objects {
                 for object in users {
                     if let user = object as? PFObject {
                         badgeValue += 1
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
-                        self.pendingRequests.append(user["requestingUser"] as! String)
+                        self.pendingRequests.append(String(describing: (user["requestingUser"])!) + " (Pending)")
+                        self.friendsArray.append(contentsOf: self.pendingRequests)
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func friendsCheck() {
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFObject {
+                        self.friendsArray.append(String(describing: (user["requestedFriend"])!))
+                        print("friends array is \(self.friendsArray)")
+                        self.friendsArray = self.friendsArray.filter(){$0 != ""}
+                        print("friends array is \(self.friendsArray)")
                     }
                 }
             }
@@ -74,15 +96,4 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
