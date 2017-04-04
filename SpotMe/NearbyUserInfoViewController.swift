@@ -15,7 +15,8 @@ class NearbyUserInfoViewController: UIViewController {
     @IBOutlet var gender: UILabel!
     @IBOutlet var weightGoal: UILabel!
     @IBOutlet var desiredOutcome: UILabel!
-    @IBOutlet var addUser: UIButton!
+    @IBOutlet var addUserButton: UIButton!
+    @IBOutlet var rejectUserButton: UIButton!
     
     var passedUsername = ""
     var buttonText = "Add Friend"
@@ -34,7 +35,7 @@ class NearbyUserInfoViewController: UIViewController {
             })
             
             buttonText = "Add Friend"
-            addUser.setTitle(buttonText, for: [])
+            addUserButton.setTitle(buttonText, for: [])
             activeRequest = false
         } else {
             let friends = PFObject(className: "FriendRequests")
@@ -44,9 +45,21 @@ class NearbyUserInfoViewController: UIViewController {
             friends.saveInBackground()
             
             buttonText = "Cancel Request"
-            addUser.setTitle(buttonText, for: [])
+            addUserButton.setTitle(buttonText, for: [])
             activeRequest = true
         }
+    }
+    
+    @IBAction func rejectUser(_ sender: Any) {
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
+        query.whereKey("pendingRequestUser", equalTo: passedUsername)
+        query.findObjectsInBackground(block: { (objects, error) in
+            for object in objects! {
+                object.deleteEventually()
+            }
+        })
+        activeRequest = false
     }
     
     override func viewDidLoad() {
@@ -54,10 +67,21 @@ class NearbyUserInfoViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if requestMode {
+            rejectUserButton.isHidden = true
+            addUserButton.frame.origin = CGPoint(x: (view.frame.size.width - 120) / 2, y: 410)
+        } else {
+            rejectUserButton.isHidden = false
+            addUserButton.frame.origin = CGPoint(x: 60, y: 410)
+            rejectUserButton.frame.origin = CGPoint(x: 200, y: 410)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         username.text = passedUsername
-        addUser.setTitle(buttonText, for: [])
+        addUserButton.setTitle(buttonText, for: [])
         
         let query = PFUser.query()
         query?.whereKey("username", equalTo: username.text!)

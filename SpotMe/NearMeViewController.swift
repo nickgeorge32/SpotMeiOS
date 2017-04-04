@@ -125,14 +125,15 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let query = PFQuery(className: "FriendRequests")
         query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
         query.findObjectsInBackground { (objects, error) in
-            if let users = objects {
-                for object in users {
-                    if let user = object as? PFObject {
-                        badgeValue += 1
+            if error == nil && objects != nil {
+                if (objects?.count)! > 0 {
+                    for users in objects! {
+                        badgeValue = (objects?.count)!
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                     }
+                } else {
+                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
                 }
             }
         }
-    }
-}
+    }}

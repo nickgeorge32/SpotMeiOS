@@ -46,25 +46,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let query = PFQuery(className: "FriendRequests")
         query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
         query.findObjectsInBackground { (objects, error) in
-            if let users = objects {
-                for object in users {
-                    if let user = object as? PFObject {
-                        badgeValue += 1
+            if error == nil && objects != nil {
+                if (objects?.count)! > 0 {
+                    for users in objects! {
+                        badgeValue = (objects?.count)!
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                     }
+                } else {
+                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
                 }
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
