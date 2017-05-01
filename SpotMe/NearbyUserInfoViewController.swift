@@ -38,25 +38,36 @@ class NearbyUserInfoViewController: UIViewController {
             addUserButton.setTitle(buttonText, for: [])
             activeRequest = false
         } else {
+            
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: passedUsername)
+            query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
+            query.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteInBackground()
+                }
+            })
+            
             let friends = PFObject(className: "FriendRequests")
-            friends["pendingRequestUser"] = passedUsername
-            friends["requestingUser"] = PFUser.current()?.username
-            friends["requestedFriend"] = ""
+            friends["requestingUser"] = passedUsername
+            friends["requestedFriend"] = PFUser.current()?.username
             friends.saveInBackground()
             
-            buttonText = "Cancel Request"
-            addUserButton.setTitle(buttonText, for: [])
-            activeRequest = true
+            friends["requestingUser"] = PFUser.current()?.username
+            friends["requestedFriend"] = passedUsername
+            friends.saveInBackground()
+            
+            _ = navigationController?.popToRootViewController(animated: true)
         }
     }
     
     @IBAction func rejectUser(_ sender: Any) {
         let query = PFQuery(className: "FriendRequests")
-        query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
-        query.whereKey("pendingRequestUser", equalTo: passedUsername)
+        query.whereKey("requestingUser", equalTo: passedUsername)
+        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
         query.findObjectsInBackground(block: { (objects, error) in
             for object in objects! {
-                object.deleteEventually()
+                object.deleteInBackground()
             }
         })
         activeRequest = false

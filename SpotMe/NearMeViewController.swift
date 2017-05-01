@@ -32,22 +32,27 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 
     override func viewDidAppear(_ animated: Bool) {
         pendingFriendRequestCheck()
+        
         if userLocation.latitude != 0 && userLocation.longitude != 0 {
             PFUser.current()?["userLocation"] = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
             
             PFUser.current()?.saveInBackground(block: { (success, error) in
                 if error != nil {
                     var errorMessage = "Unable to save location"
-                    if let parseError = (error as! NSError).userInfo["error"] as? String {
+                    if let parseError = (error! as NSError).userInfo["error"] as? String {
                         errorMessage = parseError
                         self.displayAlert(title: "Error", message: errorMessage)
                     }
                 }
             })
         } else {
-            displayAlert(title: "Location Error", message: "Unable to get location at this time, using last saved location")
-            userLocation.latitude = (PFUser.current()?["userLocation"] as AnyObject).latitude
-            userLocation.longitude = (PFUser.current()?["userLocation"] as AnyObject).longitude
+            if (PFUser.current()?["userLocation"] as AnyObject).latitude != nil && (PFUser.current()?["userLocation"] as AnyObject).longitude != nil {
+                displayAlert(title: "Location Error", message: "Unable to get location at this time, using last saved location")
+                userLocation.latitude = (PFUser.current()?["userLocation"] as AnyObject).latitude
+                userLocation.longitude = (PFUser.current()?["userLocation"] as AnyObject).longitude
+            } else {
+                displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
+            }
         }
         
         let query = PFUser.query()

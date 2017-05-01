@@ -24,6 +24,8 @@ class FriendsTableViewController: UITableViewController {
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
+        
+        pendingRequests.removeAll()
 
         let query = PFQuery(className: "FriendRequests")
         query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
@@ -31,7 +33,7 @@ class FriendsTableViewController: UITableViewController {
             if error == nil && objects != nil {
                 if (objects?.count)! > 0 {
                     if let users = objects {
-                        self.pendingRequests.removeAll()
+                        //self.pendingRequests.removeAll()
                         for object in users {
                             if let user = object as? PFObject {
                                 badgeValue += 1
