@@ -22,6 +22,21 @@ class NearbyUserInfoViewController: UIViewController {
     var buttonText = "Add Friend"
     var activeRequest = false
     var requestMode = true
+    
+    var isFriend = false
+    
+    func requestActive() {
+        
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
+        query.whereKey("pendingRequestUser", equalTo: passedUsername)
+        query.findObjectsInBackground { (objects, error) in
+            for object in objects! {
+                self.addUserButton.setTitle("Cancel Friend Request", for: [])
+                self.activeRequest = true
+            }
+        }
+    }
 
     @IBAction func friendUser(_ sender: Any) {
         if activeRequest {
@@ -30,7 +45,7 @@ class NearbyUserInfoViewController: UIViewController {
             query.whereKey("pendingRequestUser", equalTo: passedUsername)
             query.findObjectsInBackground(block: { (objects, error) in
                 for object in objects! {
-                    object.deleteEventually()
+                    object.deleteInBackground()
                 }
             })
             
@@ -39,24 +54,25 @@ class NearbyUserInfoViewController: UIViewController {
             activeRequest = false
         } else {
             
-            let query = PFQuery(className: "FriendRequests")
-            query.whereKey("requestingUser", equalTo: passedUsername)
-            query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
-            query.findObjectsInBackground(block: { (objects, error) in
-                for object in objects! {
-                    object.deleteInBackground()
-                }
-            })
+//            let query = PFQuery(className: "FriendRequests")
+//            query.whereKey("requestingUser", equalTo: passedUsername)
+//            query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
+//            query.findObjectsInBackground(block: { (objects, error) in
+//                for object in objects! {
+//                    object.deleteInBackground()
+//                }
+//            })
             
-            let friends = PFObject(className: "FriendRequests")
-            friends["requestingUser"] = passedUsername
-            friends["requestedFriend"] = PFUser.current()?.username
-            friends.saveInBackground()
+            let mfriends = PFObject(className: "FriendRequests")
+            mfriends["requestingUser"] = passedUsername
+            mfriends["requestedFriend"] = PFUser.current()?.username
+            mfriends.saveInBackground()
             
-            friends["requestingUser"] = PFUser.current()?.username
-            friends["requestedFriend"] = passedUsername
-            friends.saveInBackground()
-            
+            let tfriends = PFObject(className: "FriendRequests")
+            tfriends["requestingUser"] = PFUser.current()?.username
+            tfriends["requestedFriend"] = passedUsername
+            tfriends.saveInBackground()
+                        
             _ = navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -79,8 +95,15 @@ class NearbyUserInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if requestMode {
+        requestActive()
+        
+        if isFriend {
+            addUserButton.isHidden = true
             rejectUserButton.isHidden = true
+        }
+        
+        if requestMode {
+            //rejectUserButton.isHidden = true
             addUserButton.frame.origin = CGPoint(x: (view.frame.size.width - 120) / 2, y: 410)
         } else {
             rejectUserButton.isHidden = false
@@ -123,18 +146,6 @@ class NearbyUserInfoViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

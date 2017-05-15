@@ -13,13 +13,20 @@ class FriendsTableViewController: UITableViewController {
     var pendingRequests = [String]()
     var friendsArray = [String]()
     var refresher: UIRefreshControl!
+    var isFriend = [Bool]()
+    var buttonsHidden = false
     
     func refresh() {
         friendsArray.removeAll()
+        isFriend.removeAll()
         
         pendingFriendRequestCheck()
         
         friendCheck()
+        
+        print(pendingRequests)
+        print(friendsArray)
+        print(isFriend)
     }
     
     func pendingFriendRequestCheck() {
@@ -39,6 +46,7 @@ class FriendsTableViewController: UITableViewController {
                                 badgeValue += 1
                                 
                                 self.pendingRequests.append(String(describing: (user["requestingUser"])!) + " (Pending)")
+                                self.isFriend.append(false)
                                 
                                 self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                                 
@@ -65,6 +73,7 @@ class FriendsTableViewController: UITableViewController {
                 for object in users {
                     if let user = object as? PFObject {
                         self.friendsArray.append(String(describing: (user["requestedFriend"])!))
+                        self.isFriend.append(true)
                         self.friendsArray = self.friendsArray.filter(){$0 != ""}
                     }
                 }
@@ -76,6 +85,8 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         refresh()
+        
+        
     }
 
     override func viewDidLoad() {
@@ -120,7 +131,13 @@ class FriendsTableViewController: UITableViewController {
         let showRequestingUserInfo = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
         showRequestingUserInfo.passedUsername = (currentCell.textLabel?.text)!.components(separatedBy: " ")[0]
         showRequestingUserInfo.buttonText = "Accept Request"
-        showRequestingUserInfo.requestMode = false
+        //showRequestingUserInfo.requestMode = false
+        
+        if isFriend[(indexPath?.row)!] == true {
+            print("isFriend")
+            buttonsHidden = true
+            showRequestingUserInfo.isFriend = buttonsHidden
+        }
         
         navigationController?.pushViewController(showRequestingUserInfo, animated: true)
 
@@ -135,7 +152,7 @@ class FriendsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -145,7 +162,7 @@ class FriendsTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
