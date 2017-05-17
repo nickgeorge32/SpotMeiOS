@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -462,11 +462,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjI-aw-cAo">
-                                <rect key="frame" x="127" y="410" width="120" height="30"/>
+                                <rect key="frame" x="97" y="410" width="180" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Friend"/>
                                 <connections>
-                                    <action selector="friendUser:" destination="cfH-kI-LUh" eventType="touchUpInside" id="3Lo-aj-yDf"/>
+                                    <action selector="addUser:" destination="cfH-kI-LUh" eventType="touchUpInside" id="bgR-W1-q9a"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -485,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whN-1J-TBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5220" y="-609"/>
+            <point key="canvasLocation" x="5220" y="-609.44527736131943"/>
         </scene>
         <!--Home-->
         <scene sceneID="Gj6-Ke-QHT">
@@ -749,6 +749,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Smo-CT-t7c"/>
         <segue reference="FdV-5z-TkF"/>
-        <segue reference="Lwr-sd-at0"/>
+        <segue reference="Xfh-TR-vWA"/>
     </inferredMetricsTieBreakers>
 </document>

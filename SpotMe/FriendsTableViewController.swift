@@ -15,6 +15,7 @@ class FriendsTableViewController: UITableViewController {
     var refresher: UIRefreshControl!
     var isFriend = [Bool]()
     var buttonsHidden = false
+    var pendingRequest = false
     
     func refresh() {
         friendsArray.removeAll()
@@ -22,7 +23,7 @@ class FriendsTableViewController: UITableViewController {
         
         pendingFriendRequestCheck()
         
-        friendCheck()
+        //friendCheck()
         
         print(pendingRequests)
         print(friendsArray)
@@ -40,7 +41,6 @@ class FriendsTableViewController: UITableViewController {
             if error == nil && objects != nil {
                 if (objects?.count)! > 0 {
                     if let users = objects {
-                        //self.pendingRequests.removeAll()
                         for object in users {
                             if let user = object as? PFObject {
                                 badgeValue += 1
@@ -136,7 +136,6 @@ class FriendsTableViewController: UITableViewController {
         if isFriend[(indexPath?.row)!] == true {
             print("isFriend")
             buttonsHidden = true
-            showRequestingUserInfo.isFriend = buttonsHidden
         }
         
         navigationController?.pushViewController(showRequestingUserInfo, animated: true)
