@@ -22,7 +22,6 @@ class NearbyUserInfoViewController: UIViewController {
     var buttonText = "Add Friend"
     
     var activeRequest = false
-    var pendingRequest = false
     var isFriend = false
     
     func requestActive() {
@@ -32,14 +31,47 @@ class NearbyUserInfoViewController: UIViewController {
         query.whereKey("pendingRequestUser", equalTo: passedUsername)
         query.findObjectsInBackground { (objects, error) in
             for _ in objects! {
-                self.addUserButton.setTitle("Cancel Friend Request", for: [])
+                self.addUserButton.isHidden = true
+                self.rejectUserButton.isHidden = false
+                self.rejectUserButton.frame.origin = CGPoint(x: (self.view.frame.size.width - 180) / 2, y: 410)
+                self.rejectUserButton.setTitle("Cancel Friend Request", for: [])
                 self.activeRequest = true
             }
         }
     }
     
-    @IBAction func addUser(_ sender: Any) {
-        if activeRequest {
+    @IBAction func add_AcceptUser(_ sender: Any) {
+        if addUserButton.titleLabel?.text == "Add Friend" {
+            let tfriends = PFObject(className: "FriendRequests")
+            tfriends["requestingUser"] = PFUser.current()?.username
+            tfriends["pendingRequestUser"] = passedUsername
+            tfriends["requestedFriend"] = ""
+            tfriends.saveInBackground()
+        } else if addUserButton.titleLabel?.text ==  "Accept Request" {
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: passedUsername)
+            query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
+            query.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteInBackground()
+                }
+            })
+            
+            let mfriends = PFObject(className: "FriendRequests")
+            mfriends["requestingUser"] = PFUser.current()?.username
+            mfriends["requestedFriend"] = passedUsername
+            mfriends.saveInBackground()
+            
+            let tfriends = PFObject(className: "FriendRequests")
+            tfriends["requestingUser"] = passedUsername
+            tfriends["requestedFriend"] = PFUser.current()?.username
+            tfriends.saveInBackground()
+        }
+        _ = navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func reject_CancelUser(_ sender: Any) {
+        if rejectUserButton.titleLabel?.text == "Cancel Friend Request" {
             let query = PFQuery(className: "FriendRequests")
             query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
             query.whereKey("pendingRequestUser", equalTo: passedUsername)
@@ -48,30 +80,19 @@ class NearbyUserInfoViewController: UIViewController {
                     object.deleteInBackground()
                 }
             })
-            
-            buttonText = "Add Friend"
-            addUserButton.setTitle(buttonText, for: [])
             activeRequest = false
-        } else {
-            
-            let tfriends = PFObject(className: "FriendRequests")
-            tfriends["requestingUser"] = PFUser.current()?.username
-            tfriends["pendingRequestUser"] = passedUsername
-            tfriends.saveInBackground()
-            
-            _ = navigationController?.popToRootViewController(animated: true)
+        } else if rejectUserButton.titleLabel?.text == "Reject Request" {
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: passedUsername)
+            query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
+            query.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteInBackground()
+                }
+            })
+            activeRequest = false
         }
-    }
-    @IBAction func rejectUser(_ sender: Any) {
-        let query = PFQuery(className: "FriendRequests")
-        query.whereKey("requestingUser", equalTo: passedUsername)
-        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
-        query.findObjectsInBackground(block: { (objects, error) in
-            for object in objects! {
-                object.deleteInBackground()
-            }
-        })
-        activeRequest = false
+        _ = navigationController?.popToRootViewController(animated: true)
     }
 
     
@@ -83,6 +104,24 @@ class NearbyUserInfoViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         requestActive()
         
+        if activeRequest {
+            if !isFriend {
+                rejectUserButton.isHidden = false
+                addUserButton.frame.origin = CGPoint(x: 30, y: 410)
+                rejectUserButton.frame.origin = CGPoint(x: 180, y: 410)
+                addUserButton.setTitle("Accept Request", for: [])
+            } else {
+                rejectUserButton.isHidden = true
+                addUserButton.frame.origin = CGPoint(x: (view.frame.size.width - 180) / 2, y: 410)
+            }
+        } else if !activeRequest {
+            if isFriend {
+                addUserButton.isHidden = true
+                rejectUserButton.isHidden = true
+            }
+            rejectUserButton.isHidden = true
+            addUserButton.frame.origin = CGPoint(x: (view.frame.size.width - 180) / 2, y: 410)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +154,7 @@ class NearbyUserInfoViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        _ = navigationController?.popToRootViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

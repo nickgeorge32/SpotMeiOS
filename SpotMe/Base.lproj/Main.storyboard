@@ -454,11 +454,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEy-CW-LIz">
-                                <rect key="frame" x="255" y="410" width="104" height="30"/>
+                                <rect key="frame" x="179" y="410" width="180" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reject Request"/>
                                 <connections>
-                                    <action selector="rejectUser:" destination="cfH-kI-LUh" eventType="touchUpInside" id="aEc-2H-r7N"/>
+                                    <action selector="reject_CancelUser:" destination="cfH-kI-LUh" eventType="touchUpInside" id="RT4-cL-5Fj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjI-aw-cAo">
@@ -466,7 +466,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Friend"/>
                                 <connections>
-                                    <action selector="addUser:" destination="cfH-kI-LUh" eventType="touchUpInside" id="bgR-W1-q9a"/>
+                                    <action selector="add_AcceptUser:" destination="cfH-kI-LUh" eventType="touchUpInside" id="jWn-9J-XY7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -749,6 +749,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Smo-CT-t7c"/>
         <segue reference="FdV-5z-TkF"/>
-        <segue reference="Xfh-TR-vWA"/>
+        <segue reference="Lwr-sd-at0"/>
     </inferredMetricsTieBreakers>
 </document>

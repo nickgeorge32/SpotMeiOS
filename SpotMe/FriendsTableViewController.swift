@@ -10,30 +10,26 @@ import UIKit
 import Parse
 
 class FriendsTableViewController: UITableViewController {
-    var pendingRequests = [String]()
+    var pendingRequestsArray = [String]()
     var friendsArray = [String]()
     var refresher: UIRefreshControl!
     var isFriend = [Bool]()
-    var buttonsHidden = false
     var pendingRequest = false
     
     func refresh() {
         friendsArray.removeAll()
         isFriend.removeAll()
+        pendingRequestsArray.removeAll()
         
         pendingFriendRequestCheck()
         
-        //friendCheck()
-        
-        print(pendingRequests)
-        print(friendsArray)
-        print(isFriend)
+        friendCheck()
     }
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
-        pendingRequests.removeAll()
+        pendingRequestsArray.removeAll()
 
         let query = PFQuery(className: "FriendRequests")
         query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
@@ -45,7 +41,7 @@ class FriendsTableViewController: UITableViewController {
                             if let user = object as? PFObject {
                                 badgeValue += 1
                                 
-                                self.pendingRequests.append(String(describing: (user["requestingUser"])!) + " (Pending)")
+                                self.pendingRequestsArray.append(String(describing: (user["requestingUser"])!) + " (Pending)")
                                 self.isFriend.append(false)
                                 
                                 self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
@@ -58,7 +54,7 @@ class FriendsTableViewController: UITableViewController {
                     self.tabBarController?.tabBar.items?[4].badgeValue = nil
                     self.refresher.endRefreshing()
                 }
-                self.friendsArray.append(contentsOf: self.pendingRequests)
+                self.friendsArray.append(contentsOf: self.pendingRequestsArray)
                 self.tableView.reloadData()
             }
         }
@@ -72,9 +68,11 @@ class FriendsTableViewController: UITableViewController {
             if let users = objects {
                 for object in users {
                     if let user = object as? PFObject {
-                        self.friendsArray.append(String(describing: (user["requestedFriend"])!))
-                        self.isFriend.append(true)
-                        self.friendsArray = self.friendsArray.filter(){$0 != ""}
+                        if user != nil {
+                            self.friendsArray.append(String(describing: (user["requestedFriend"])!))
+                            self.isFriend.append(true)
+                            self.friendsArray = self.friendsArray.filter(){$0 != ""}
+                        }
                     }
                 }
                 self.tableView.reloadData()
@@ -130,12 +128,13 @@ class FriendsTableViewController: UITableViewController {
         
         let showRequestingUserInfo = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
         showRequestingUserInfo.passedUsername = (currentCell.textLabel?.text)!.components(separatedBy: " ")[0]
-        showRequestingUserInfo.buttonText = "Accept Request"
-        //showRequestingUserInfo.requestMode = false
         
         if isFriend[(indexPath?.row)!] == true {
-            print("isFriend")
-            buttonsHidden = true
+            showRequestingUserInfo.isFriend = true
+            showRequestingUserInfo.activeRequest = false
+        } else {
+            showRequestingUserInfo.activeRequest = true
+            showRequestingUserInfo.isFriend = false
         }
         
         navigationController?.pushViewController(showRequestingUserInfo, animated: true)
