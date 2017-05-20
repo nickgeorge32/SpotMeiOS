@@ -38,7 +38,6 @@ class ViewController: UIViewController {
             UIAlertAction in self.redirectUser()
         }
         alertController.addAction(okAction)
-        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     

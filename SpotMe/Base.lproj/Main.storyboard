@@ -648,7 +648,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="osz-Ec-gSz" id="hiu-bf-0nM">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -749,6 +749,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Smo-CT-t7c"/>
         <segue reference="FdV-5z-TkF"/>
-        <segue reference="Lwr-sd-at0"/>
+        <segue reference="Xfh-TR-vWA"/>
     </inferredMetricsTieBreakers>
 </document>

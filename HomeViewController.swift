@@ -21,8 +21,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            self.performSegue(withIdentifier: "logoutSegue", sender: self)
+            PFUser.logOut()
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        PFSession.getCurrentSessionInBackground { (session, error) in
+            if error != nil {
+                self.displayAlert(title: "Invalid Session", message: "You have been logged out, please log back in")
+            }
+        }
+        
         pendingFriendRequestCheck()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //pendingFriendRequestCheck()
     }
 
     override func didReceiveMemoryWarning() {
