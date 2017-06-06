@@ -24,6 +24,9 @@ class NearbyUserInfoViewController: UIViewController {
     var activeRequest = false
     var isFriend = false
     
+    //TODO: dasf
+    //FIXME: kffdsajf
+    
     func requestActive() {
         
         let query = PFQuery(className: "FriendRequests")
