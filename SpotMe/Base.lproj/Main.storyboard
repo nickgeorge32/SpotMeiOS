@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aW-ge-6qP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="1215"/>
+            <point key="canvasLocation" x="902" y="1313"/>
         </scene>
         <!--Near Me View Controller-->
         <scene sceneID="V9s-eL-NQM">
@@ -473,7 +473,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="User Details" id="581-wF-bgE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="McB-RB-Vxc"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="McB-RB-Vxc">
+                            <connections>
+                                <segue destination="DXE-xD-2Jc" kind="show" identifier="messagesSegue" id="UCf-EM-9pN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -489,6 +493,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whN-1J-TBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5209" y="-609"/>
+        </scene>
+        <!--Message View Controller-->
+        <scene sceneID="meN-5B-qlj">
+            <objects>
+                <viewController id="DXE-xD-2Jc" customClass="MessageViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m6x-ec-MQ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="cd4-hM-gDu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c2d-rD-ueM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dE-mj-cn2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6137" y="-609"/>
         </scene>
         <!--Home-->
         <scene sceneID="Gj6-Ke-QHT">
@@ -750,8 +772,8 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Smo-CT-t7c"/>
         <segue reference="FdV-5z-TkF"/>
+        <segue reference="Smo-CT-t7c"/>
         <segue reference="Lwr-sd-at0"/>
     </inferredMetricsTieBreakers>
 </document>

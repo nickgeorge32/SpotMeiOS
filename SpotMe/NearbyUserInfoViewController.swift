@@ -157,11 +157,17 @@ class NearbyUserInfoViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
-        _ = navigationController?.popToRootViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "messagesSegue" {
+            let messageController = segue.destination as! MessageViewController
+            messageController.user2 = passedUsername
+        }
     }
 
 }
