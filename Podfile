@@ -5,6 +5,10 @@ target 'SpotMe' do
 
   # Pods for SpotMe
 pod 'Parse'
+pod 'Firebase/Storage'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod ‘Firebase/Core’
 pod 'JSQMessagesViewController'
 
 end
