@@ -142,8 +142,6 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     private func observeMessages() {        
-        //messageRef = ref!.child("messages")
-        // 1.
         let messageQuery = messageRef.child(selectedGroup)//.queryLimited(toLast:25)
         
         // 2. We can use the observe method to listen for new
