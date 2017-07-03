@@ -9,26 +9,26 @@
 import UIKit
 import CoreData
 import Parse
+import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
         Parse.enableLocalDatastore()
+        FirebaseApp.configure()
         
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
-            ParseMutableClientConfiguration.applicationId = "ff84645ceea6c1e297f57bad43df7ef295a6d5db"
-            ParseMutableClientConfiguration.clientKey = "336604810432a876566360e98071d9abf03f0b5f"
-            ParseMutableClientConfiguration.server = "http://ec2-52-14-219-184.us-east-2.compute.amazonaws.com/parse"
+            ParseMutableClientConfiguration.applicationId = "bfb05c79dcf2b7a59ab1f6b95cdcfeaebe2df1fd"
+            ParseMutableClientConfiguration.clientKey = "f6b0bf8832953260a89f04c63d7a312e9fac587b"
+            ParseMutableClientConfiguration.server = "http://ec2-52-14-126-168.us-east-2.compute.amazonaws.com/parse"
         })
         
         Parse.initialize(with: parseConfiguration)
-        
         
         // ****************************************************************************
         // Uncomment and fill in with your Parse credentials:
@@ -67,54 +67,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              */
         }
         
-        //
-        //  Swift 1.2
-        //
-        //        if application.respondsToSelector("registerUserNotificationSettings:") {
-        //            let userNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-        //            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        //            application.registerUserNotificationSettings(settings)
-        //            application.registerForRemoteNotifications()
-        //        } else {
-        //            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
-        //            application.registerForRemoteNotificationTypes(types)
-        //        }
+//        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+//        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+//        
+//        application.registerUserNotificationSettings(pushNotificationSettings)
+//        application.registerForRemoteNotifications()
         
-        //
-        //  Swift 2.0
-        //
-        //        if #available(iOS 8.0, *) {
-        //            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        //            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        //            application.registerUserNotificationSettings(settings)
-        //            application.registerForRemoteNotifications()
-        //        } else {
-        //            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-        //            application.registerForRemoteNotificationTypes(types)
-        //        }
+        Messaging.messaging().delegate = self as? MessagingDelegate
+        
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
         
         return true
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("registered")
+        var token = ""
+        for i in 0..<deviceToken.count {
+            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+        }
+        print(token)
+        PFUser.current()?["deviceToken"] = token
+        PFUser.current()?.saveInBackground()
+        
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print(error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
+    }
+    
+    
+    
     //--------------------------------------
     // MARK: Push Notifications
     //--------------------------------------
-    
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 //        let installation = PFInstallation.current()
 //        installation?.setDeviceTokenFrom(deviceToken)
 //        installation?.saveInBackground()
-//        
-//        PFPush.subscribeToChannel(inBackground: "") { (succeeded, error) in // (succeeded: Bool, error: NSError?) is now (succeeded, error)
-//            
-//            if succeeded {
-//                print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
+//        PFPush.subscribeToChannel(inBackground: "") { (success, error) in
+//            if success {
+//                print("SpotMe successfully subscribed to push notifications")
 //            } else {
-//                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
+//                print("SpotMe failed to subscbribe to push notification")
 //            }
 //        }
+//        
 //    }
-//    
+    
 //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
 //        if error.code == 3010 {
 //            print("Push notifications are not supported in the iOS Simulator.\n")
@@ -218,4 +237,60 @@ func saveContext () {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
+}
+
+// [START ios_10_message_handling]
+@available(iOS 10, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        // Change this to your preferred presentation option
+        completionHandler([])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler()
+    }
+}
+// [END ios_10_message_handling]
+
+extension AppDelegate : MessagingDelegate {
+    // [START refresh_token]
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+    }
+    // [END refresh_token]
+    // [START ios_10_data_message]
+    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Received data message: \(remoteMessage.appData)")
+}
+// [END ios_10_data_message]
 }

@@ -10,11 +10,33 @@ import UIKit
 import Parse
 
 class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            self.tabBarController?.selectedIndex = 2
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let query = PFQuery(className: "Events")
+        query.whereKeyExists("Title")
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil && objects != nil {
+                if (objects?.count)! == 0 {
+                    self.displayAlert(title: "Coming Soon", message: "This feature is not yet available. Please look for this feature in upcoming updates!")
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,7 +49,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,27 +62,18 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         let query = PFQuery(className: "FriendRequests")
-        query.whereKey("requestedUser", equalTo: (PFUser.current()?.username!)!)
+        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
         query.findObjectsInBackground { (objects, error) in
-            if let users = objects {
-                for object in users {
-                    if let user = object as? PFObject {
-                        badgeValue += 1
+            if error == nil && objects != nil {
+                if (objects?.count)! > 0 {
+                    for users in objects! {
+                        badgeValue = (objects?.count)!
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                     }
+                } else {
+                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
                 }
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
