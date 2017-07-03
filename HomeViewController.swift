@@ -56,8 +56,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = "Test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
+        
+        cell.profileImage.image = UIImage(named: "person_icon.png")
+        cell.username.text = "Username"
+        cell.postText.text = "Message"
         
         return cell
     }
@@ -78,6 +81,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
+    }
+    
+    func loadPosts() {
+        
     }
 
 }

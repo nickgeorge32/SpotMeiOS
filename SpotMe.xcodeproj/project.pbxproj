@@ -13,6 +13,7 @@
 		013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E61E878902003403FB /* AudioToolbox.framework */; };
 		014DB4111EEC494E000E27FC /* JSQMessagesViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */; };
 		014DB4131EEC4A43000E27FC /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DB4121EEC4A43000E27FC /* MessageViewController.swift */; };
+		016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */; };
 		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
 		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
 		0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */; };
@@ -28,7 +29,7 @@
 		01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */; };
 		01E263C81E84655200C292B4 /* Settings-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E263C71E84655100C292B4 /* Settings-25.png */; };
 		01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */; };
-		B3A0B846F576277042DAA77F /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */; };
+		85F9D6AC0807891F7C10EFF0 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F71BA70F9F312FA66D5D62D /* Pods_SpotMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		013FF2E61E878902003403FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "Pods/../build/Debug-iphoneos/JSQMessagesViewController/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
 		014DB4121EEC4A43000E27FC /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsContViewController.swift; sourceTree = "<group>"; };
 		0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
@@ -56,9 +58,9 @@
 		01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		01E263C71E84655100C292B4 /* Settings-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-25.png"; sourceTree = "<group>"; };
 		01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
-		D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
-		D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C9A66A528FD980ADEC1783 /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
+		5F71BA70F9F312FA66D5D62D /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4A11BC255CF53EB844B266 /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +69,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				014DB4111EEC494E000E27FC /* JSQMessagesViewController.framework in Frameworks */,
-				B3A0B846F576277042DAA77F /* Pods_SpotMe.framework in Frameworks */,
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
+				85F9D6AC0807891F7C10EFF0 /* Pods_SpotMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,8 +83,8 @@
 			children = (
 				01B8EEED1E7CF9BA00A1D2D0 /* SpotMe */,
 				01B8EEEC1E7CF9BA00A1D2D0 /* Products */,
-				16BA562DEEE96E2AF790B961 /* Pods */,
 				22F8628B1AD9E23619C8ED68 /* Frameworks */,
+				A4B8D4AAA2AD7204FC1C637B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +109,7 @@
 				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
 				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
 				0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */,
+				016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */,
 				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
 				01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */,
 				014DB4121EEC4A43000E27FC /* MessageViewController.swift */,
@@ -121,24 +124,24 @@
 			path = SpotMe;
 			sourceTree = "<group>";
 		};
-		16BA562DEEE96E2AF790B961 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */,
-				D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		22F8628B1AD9E23619C8ED68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */,
 				013FF2E61E878902003403FB /* AudioToolbox.framework */,
 				013FF2E21E8788C5003403FB /* StoreKit.framework */,
-				D6DE815611837DE2A6191937 /* Pods_SpotMe.framework */,
+				5F71BA70F9F312FA66D5D62D /* Pods_SpotMe.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4B8D4AAA2AD7204FC1C637B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30C9A66A528FD980ADEC1783 /* Pods-SpotMe.debug.xcconfig */,
+				FD4A11BC255CF53EB844B266 /* Pods-SpotMe.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,12 +151,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01B8EF001E7CF9BA00A1D2D0 /* Build configuration list for PBXNativeTarget "SpotMe" */;
 			buildPhases = (
-				0A54A8374AE41C7ED58CF76C /* [CP] Check Pods Manifest.lock */,
+				2A65B29FDAC48C7C0A6E172F /* [CP] Check Pods Manifest.lock */,
 				01B8EEE71E7CF9BA00A1D2D0 /* Sources */,
 				01B8EEE81E7CF9BA00A1D2D0 /* Frameworks */,
 				01B8EEE91E7CF9BA00A1D2D0 /* Resources */,
-				314FC07F52D6A6BBEFBBFA0C /* [CP] Embed Pods Frameworks */,
-				E3B0AA6091563632F6C6D753 /* [CP] Copy Pods Resources */,
+				9BBA49D7B4AFA7B3CBB0339F /* [CP] Embed Pods Frameworks */,
+				6FF38A6E32839CC0D671A76B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,37 +232,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A54A8374AE41C7ED58CF76C /* [CP] Check Pods Manifest.lock */ = {
+		2A65B29FDAC48C7C0A6E172F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpotMe-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		314FC07F52D6A6BBEFBBFA0C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E3B0AA6091563632F6C6D753 /* [CP] Copy Pods Resources */ = {
+		6FF38A6E32839CC0D671A76B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,6 +263,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BBA49D7B4AFA7B3CBB0339F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -290,6 +311,7 @@
 				01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */,
 				0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */,
 				0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */,
+				016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */,
 				0177D9B71E7F5B91001EB3F6 /* HomeViewController.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,
@@ -412,7 +434,7 @@
 		};
 		01B8EF011E7CF9BA00A1D2D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C74AECD83B94C745FE5179E /* Pods-SpotMe.debug.xcconfig */;
+			baseConfigurationReference = 30C9A66A528FD980ADEC1783 /* Pods-SpotMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
@@ -435,7 +457,7 @@
 		};
 		01B8EF021E7CF9BA00A1D2D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1C0943C3D72BCEE5D5A366A /* Pods-SpotMe.release.xcconfig */;
+			baseConfigurationReference = FD4A11BC255CF53EB844B266 /* Pods-SpotMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
