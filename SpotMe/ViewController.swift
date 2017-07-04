@@ -61,7 +61,7 @@ class ViewController: UIViewController {
                 } else {
                     //Signed Up
                     //redirect
-                    self.performSegue(withIdentifier: "goToUserDetails", sender: self)
+                    self.performSegue(withIdentifier: "accountTypeSegue", sender: self)
                 }
             })
         } else {

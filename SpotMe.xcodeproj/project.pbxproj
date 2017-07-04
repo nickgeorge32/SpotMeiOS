@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */; };
+		0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010651391F0BF96500D9DFF8 /* User.storyboard */; };
 		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
 		013C5EE31EED1245007F057E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 013C5EE21EED1245007F057E /* GoogleService-Info.plist */; };
 		013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E21E8788C5003403FB /* StoreKit.framework */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
+		0106513A1F0BF96500D9DFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
 		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
 		013C5EE21EED1245007F057E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		013FF2E11E8788B9003403FB /* SpotMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotMe.entitlements; sourceTree = "<group>"; };
@@ -78,6 +82,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		016F1A551F09E129002D708D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				010651391F0BF96500D9DFF8 /* User.storyboard */,
+				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
+				0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */,
+				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
+				01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */,
+				0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */,
+				016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */,
+				014DB4121EEC4A43000E27FC /* MessageViewController.swift */,
+				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
+				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
+				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
+				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		016F1A561F09E134002D708D /* Trainer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Trainer;
+			sourceTree = "<group>";
+		};
+		016F1A571F09E430002D708D /* Distributors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Distributors;
+			sourceTree = "<group>";
+		};
 		01B8EEE21E7CF9B900A1D2D0 = {
 			isa = PBXGroup;
 			children = (
@@ -101,22 +138,15 @@
 			children = (
 				013FF2E11E8788B9003403FB /* SpotMe.entitlements */,
 				01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */,
-				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
-				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
-				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
-				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
-				0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */,
-				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
-				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
-				0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */,
-				016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */,
-				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
-				01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */,
-				014DB4121EEC4A43000E27FC /* MessageViewController.swift */,
+				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
+				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
+				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
+				016F1A571F09E430002D708D /* Distributors */,
+				016F1A561F09E134002D708D /* Trainer */,
+				016F1A551F09E129002D708D /* User */,
 				01E263C71E84655100C292B4 /* Settings-25.png */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
-				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
 				013C5EE21EED1245007F057E /* GoogleService-Info.plist */,
 				01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */,
@@ -226,6 +256,7 @@
 				013C5EE31EED1245007F057E /* GoogleService-Info.plist in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
 				01E263C81E84655200C292B4 /* Settings-25.png in Resources */,
+				0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +345,7 @@
 				016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */,
 				0177D9B71E7F5B91001EB3F6 /* HomeViewController.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
+				0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,
 				01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */,
 			);
@@ -322,6 +354,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		010651391F0BF96500D9DFF8 /* User.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0106513A1F0BF96500D9DFF8 /* Base */,
+			);
+			name = User.storyboard;
+			sourceTree = "<group>";
+		};
 		01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
