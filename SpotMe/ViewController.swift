@@ -16,15 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet var changeModeButton: UIButton!
     
     var authMode = true
+    var isTrainer:Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
-        //redirectUser()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +75,6 @@ class ViewController: UIViewController {
                     self.displayAlert(title: "Login Error", message: errorMessage)
                 } else {
                     //Logged In
-                    //redirect
                     self.redirectUser()
                 }
             })
@@ -104,7 +102,23 @@ class ViewController: UIViewController {
             if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
                 performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
             } else {
-                performSegue(withIdentifier: "goToUserDetails", sender: self)
+                let query = PFUser.query()
+                query?.whereKey("objectId", equalTo: PFUser.current()?.objectId)
+                query?.findObjectsInBackground(block: { (objects, error) in
+                    if let users = objects {
+                        for object in users {
+                            if let user = object as? PFUser {
+                                self.isTrainer = object["isTrainer"] as! Bool
+                            }
+                        }
+                    }
+                })
+                
+                if isTrainer {
+                    performSegue(withIdentifier: "trainerDetails", sender: nil)
+                } else {
+                    performSegue(withIdentifier: "goToUserDetails", sender: self)
+                }
             }
         }
     }

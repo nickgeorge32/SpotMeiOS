@@ -14,6 +14,8 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var dobField: UITextField!
     @IBOutlet var userWeightField: UITextField!
     
+    var isTrainer:Bool!
+    
     @IBAction func updateProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

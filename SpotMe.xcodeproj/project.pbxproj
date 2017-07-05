@@ -21,6 +21,8 @@
 		0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */; };
 		0177D9B71E7F5B91001EB3F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */; };
 		0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */; };
+		01B78C031F0C59DB00D65457 /* Trainers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B78C021F0C59DB00D65457 /* Trainers.storyboard */; };
+		01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78C041F0C5A4F00D65457 /* TrainerDetailsViewController.swift */; };
 		01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */; };
 		01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */; };
 		01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
 		0177D9B61E7F5B91001EB3F6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
+		01B78C021F0C59DB00D65457 /* Trainers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Trainers.storyboard; sourceTree = "<group>"; };
+		01B78C041F0C5A4F00D65457 /* TrainerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerDetailsViewController.swift; sourceTree = "<group>"; };
 		01B8EEEB1E7CF9BA00A1D2D0 /* SpotMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 		016F1A561F09E134002D708D /* Trainer */ = {
 			isa = PBXGroup;
 			children = (
+				01B78C021F0C59DB00D65457 /* Trainers.storyboard */,
+				01B78C041F0C5A4F00D65457 /* TrainerDetailsViewController.swift */,
 			);
 			name = Trainer;
 			sourceTree = "<group>";
@@ -253,6 +259,7 @@
 			files = (
 				01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */,
 				01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */,
+				01B78C031F0C59DB00D65457 /* Trainers.storyboard in Resources */,
 				013C5EE31EED1245007F057E /* GoogleService-Info.plist in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
 				01E263C81E84655200C292B4 /* Settings-25.png in Resources */,
@@ -336,6 +343,7 @@
 				01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */,
 				014DB4131EEC4A43000E27FC /* MessageViewController.swift in Sources */,
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
+				01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */,
 				01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
 				01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */,
