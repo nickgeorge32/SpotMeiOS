@@ -10,7 +10,6 @@
 		0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */; };
 		0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010651391F0BF96500D9DFF8 /* User.storyboard */; };
 		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
-		013C5EE31EED1245007F057E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 013C5EE21EED1245007F057E /* GoogleService-Info.plist */; };
 		013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E21E8788C5003403FB /* StoreKit.framework */; };
 		013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E61E878902003403FB /* AudioToolbox.framework */; };
 		014DB4111EEC494E000E27FC /* JSQMessagesViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */; };
@@ -32,6 +31,7 @@
 		01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */; };
 		01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */; };
 		01E263C81E84655200C292B4 /* Settings-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E263C71E84655100C292B4 /* Settings-25.png */; };
+		01FD22801F11274C00D090CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01FD227F1F11274C00D090CD /* GoogleService-Info.plist */; };
 		01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */; };
 		85F9D6AC0807891F7C10EFF0 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F71BA70F9F312FA66D5D62D /* Pods_SpotMe.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +40,6 @@
 		0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		0106513A1F0BF96500D9DFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
 		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
-		013C5EE21EED1245007F057E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		013FF2E11E8788B9003403FB /* SpotMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotMe.entitlements; sourceTree = "<group>"; };
 		013FF2E21E8788C5003403FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		013FF2E61E878902003403FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -65,6 +64,7 @@
 		01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		01E263C71E84655100C292B4 /* Settings-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-25.png"; sourceTree = "<group>"; };
+		01FD227F1F11274C00D090CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		30C9A66A528FD980ADEC1783 /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
 		5F71BA70F9F312FA66D5D62D /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +154,7 @@
 				01E263C71E84655100C292B4 /* Settings-25.png */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
-				013C5EE21EED1245007F057E /* GoogleService-Info.plist */,
+				01FD227F1F11274C00D090CD /* GoogleService-Info.plist */,
 				01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */,
 			);
 			path = SpotMe;
@@ -260,10 +260,10 @@
 				01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */,
 				01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */,
 				01B78C031F0C59DB00D65457 /* Trainers.storyboard in Resources */,
-				013C5EE31EED1245007F057E /* GoogleService-Info.plist in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
 				01E263C81E84655200C292B4 /* Settings-25.png in Resources */,
 				0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */,
+				01FD22801F11274C00D090CD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -472,7 +472,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
