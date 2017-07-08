@@ -10,6 +10,22 @@ import UIKit
 import Parse
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var friends = [String]()
+    var posts = [String]()
+    var messages = [String]()
+    var refresher: UIRefreshControl!
+    var imageFiles = [PFFile]()
+    
+    
+    @IBOutlet var tableView: UITableView!
+
+    func refresh() {
+        friends.removeAll()
+        posts.removeAll()
+        
+        loadPosts()
+    }
+    
     @IBAction func logout(_ sender: Any) {
         PFUser.logOut()
         performSegue(withIdentifier: "logoutSegue", sender: self)
@@ -19,7 +35,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(HomeViewController.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
     }
+    
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -40,6 +61,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         pendingFriendRequestCheck()
+        refresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,15 +74,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return posts.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
         
-        cell.profileImage.image = UIImage(named: "person_icon.png")
-        cell.username.text = "Username"
-        cell.postText.text = "Message"
+        imageFiles[indexPath.row].getDataInBackground { (data, error) in
+            if let imageData = data {
+                if let downloadedImage = UIImage(data: imageData) {
+                    cell.profileImage.image = downloadedImage
+                }
+            }
+            
+        }
+        
+        cell.username.text = posts[indexPath.row]
+        cell.postText.text = messages[indexPath.row]
         
         return cell
     }
@@ -84,7 +114,44 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadPosts() {
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
+            query.findObjectsInBackground { (objects, error) in
+                if let users = objects {
+                    for object in users {
+                        if let user = object as? PFObject {
+                            if user != nil {
+                                self.friends.append(String(describing: (user["requestedFriend"])!))
+                                self.friends = self.friends.filter(){$0 != ""}
+                                self.refresher.endRefreshing()
+
+                            }
+                        }
+                    }
+                }
+            }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            let postsQuery = PFQuery(className: "Posts")
+            postsQuery.whereKey("user", containedIn: self.friends as [AnyObject])
+            postsQuery.findObjectsInBackground { (objects, error) in
+                if error == nil && objects != nil {
+                    if (objects?.count)! > 0 {
+                        for users in objects! {
+                            self.posts.append(String(describing: (users["user"])!))
+                            self.messages.append(String(describing: (users["postText"])!))
+                            self.imageFiles.append(users["profileImage"] as! PFFile)
+                            
+                            self.refresher.endRefreshing()
+                            
+                            self.tableView.reloadData()
+                        }
+                    } else {
+                        print(error)
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -486,6 +486,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="5XM-6n-LX2"/>
                     <connections>
+                        <outlet property="tableView" destination="lZt-Ww-D1g" id="EBS-uX-lBq"/>
                         <segue destination="5qy-NQ-kZe" kind="show" identifier="logoutSegue" id="X6s-oJ-YkK"/>
                     </connections>
                 </viewController>
