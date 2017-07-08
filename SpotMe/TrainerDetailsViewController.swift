@@ -28,7 +28,12 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     }
     
     @IBAction func uploadCertButton(_ sender: Any) {
-        
+        let imaePicker = UIImagePickerController()
+        imaePicker.allowsEditing = false
+        imaePicker.sourceType = UIImagePickerControllerSourceType.camera
+        imaePicker.cameraCaptureMode = .photo
+        imaePicker.modalPresentationStyle = .fullScreen
+        self.present(imaePicker, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

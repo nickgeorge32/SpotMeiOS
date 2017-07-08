@@ -55,7 +55,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             PFUser.current()?.saveInBackground(block: { (success, error) in
                 if error != nil {
                     var errorMessage = "Unable to save details"
-                    if let parseError = (error as! NSError).userInfo["error"] as? String {
+                    if let parseError = (error!as NSError).userInfo["error"] as? String {
                         errorMessage = parseError
                         self.displayAlert(title: "Error", message: errorMessage)
                     }

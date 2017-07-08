@@ -103,7 +103,7 @@ class ViewController: UIViewController {
                 performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
             } else {
                 let query = PFUser.query()
-                query?.whereKey("objectId", equalTo: PFUser.current()?.objectId)
+                query?.whereKey("objectId", equalTo: (PFUser.current()?.objectId!)!)
                 query?.findObjectsInBackground(block: { (objects, error) in
                     if let users = objects {
                         for object in users {
