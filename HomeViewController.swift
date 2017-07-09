@@ -22,6 +22,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func refresh() {
         friends.removeAll()
         posts.removeAll()
+        messages.removeAll()
+        imageFiles.removeAll()
         
         loadPosts()
     }

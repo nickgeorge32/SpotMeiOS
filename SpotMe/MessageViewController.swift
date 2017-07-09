@@ -32,7 +32,7 @@ class MessageViewController: JSQMessagesViewController {
     var user2 = ""
     var group1 = ""
     var group2 = ""
-    var selectedGroup = ""
+    var selectedGroup = "Test"
     
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
