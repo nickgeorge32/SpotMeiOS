@@ -65,6 +65,17 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+        
+        let showEventDetails = storyboard?.instantiateViewController(withIdentifier: "EventDetails") as! EventDetailsViewController
+        showEventDetails.eventTitleString = (currentCell.textLabel?.text)!
+        
+        navigationController?.pushViewController(showEventDetails, animated: true)
+    }
+    
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         let query = PFQuery(className: "FriendRequests")
