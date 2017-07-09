@@ -14,7 +14,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var dobField: UITextField!
     @IBOutlet var userWeightField: UITextField!
     
-    var isTrainer:Bool!
+    var isTrainer: Bool!
     
     @IBAction func updateProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
@@ -78,6 +78,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
             let detailsCont = segue.destination as! UserDetailsContViewController
             detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
             detailsCont.profileImage = userImage.image
+            detailsCont.isTrainer = isTrainer
             if dobField.text != "" && userWeightField.text != "" {
                 detailsCont.dob = dobField.text
                 detailsCont.userWeight = userWeightField.text
@@ -113,6 +114,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("userD \(isTrainer)")
         // Do any additional setup after loading the view.
         addDoneButtonOnKeyboard()
     }

@@ -11,15 +11,15 @@ import Parse
 
 class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            self.tabBarController?.selectedIndex = 2
-        }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
+//    func displayAlert(title: String, message: String) {
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//            UIAlertAction in
+//            self.tabBarController?.selectedIndex = 2
+//        }
+//        alertController.addAction(okAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
 
     override func viewWillAppear(_ animated: Bool) {
         let query = PFQuery(className: "Activities")
@@ -27,7 +27,7 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         query.findObjectsInBackground { (objects, error) in
             if error == nil && objects != nil {
                 if (objects?.count)! == 0 {
-                    self.displayAlert(title: "Coming Soon", message: "This feature is not yet available. Please look for this feature in upcoming updates!")
+                    
                 }
             }
         }

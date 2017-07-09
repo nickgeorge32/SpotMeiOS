@@ -111,6 +111,7 @@
                         <segue destination="hBr-42-rvG" kind="show" identifier="segueHomeFromLogin" id="T89-Nt-LCR"/>
                         <segue destination="BvN-eU-QKI" kind="show" identifier="accountTypeSegue" id="D6Z-mJ-WoO"/>
                         <segue destination="bNr-kb-bbW" kind="show" identifier="goToUserDetails" id="15h-kv-0e4"/>
+                        <segue destination="BKx-N7-7rb" kind="show" id="8gE-a6-mRx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -168,26 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJL-FT-MWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164" y="781.25937031484261"/>
-        </scene>
-        <!--Friends-->
-        <scene sceneID="yFF-lN-qRF">
-            <objects>
-                <navigationController storyboardIdentifier="UINavigationController-zCs-Ot-xLO" automaticallyAdjustsScrollViewInsets="NO" id="zCs-Ot-xLO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="6h5-1k-KKB"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pAS-wy-ppl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="NAW-9y-YSN" kind="relationship" relationship="rootViewController" id="VL2-eT-Tur"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x9Z-UH-duY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3032.8000000000002" y="1602.5487256371816"/>
+            <point key="canvasLocation" x="-164" y="824"/>
         </scene>
         <!--userDetails-->
         <scene sceneID="eeg-8e-M0z">
@@ -205,24 +187,6 @@
             </objects>
             <point key="canvasLocation" x="678" y="65"/>
         </scene>
-        <!--UITableViewController-zNS-vE-RQm-->
-        <scene sceneID="WKY-ec-pzu">
-            <objects>
-                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="UITableViewController-zNS-vE-RQm" id="NAW-9y-YSN" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="YSm-Z6-y3e"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SHu-Ca-lsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5122" y="1603"/>
-        </scene>
-        <!--userDetailsCont-->
-        <scene sceneID="bMw-Fi-Dj1">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="userDetailsCont" storyboardName="User" referencedIdentifier="userDetailsCont" id="L0m-Hv-WCG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jXj-jl-6sc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="902" y="1313"/>
-        </scene>
         <!--NearbyUserInfo-->
         <scene sceneID="e92-Xe-h6Q">
             <objects>
@@ -233,6 +197,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dmk-xm-jM7"/>
+        <segue reference="15h-kv-0e4"/>
+        <segue reference="8gE-a6-mRx"/>
     </inferredMetricsTieBreakers>
 </document>

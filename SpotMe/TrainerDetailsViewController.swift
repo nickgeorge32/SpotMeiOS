@@ -50,6 +50,7 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueHomeAsTrainer" {
+            print(isTrainer)
             
             let imageData = UIImagePNGRepresentation(profileImage.image!)
             PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
@@ -66,15 +67,4 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
             })
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

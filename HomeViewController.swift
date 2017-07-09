@@ -125,7 +125,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             if user != nil {
                                 self.friends.append(String(describing: (user["requestedFriend"])!))
                                 self.friends = self.friends.filter(){$0 != ""}
-                                self.refresher.endRefreshing()
 
                             }
                         }
@@ -149,7 +148,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             self.tableView.reloadData()
                         }
                     } else {
-                        print(error)
+                        print("error is \(error)")
                     }
                 }
             }

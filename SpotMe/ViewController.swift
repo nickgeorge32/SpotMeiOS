@@ -108,7 +108,7 @@ class ViewController: UIViewController {
                     if let users = objects {
                         for object in users {
                             if let user = object as? PFUser {
-                                self.isTrainer = object["isTrainer"] as! Bool
+                                self.isTrainer = user["isTrainer"] as! Bool
                             }
                         }
                     }
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
                 if isTrainer {
                     performSegue(withIdentifier: "trainerDetails", sender: nil)
                 } else {
-                    performSegue(withIdentifier: "goToUserDetails", sender: self)
+                    performSegue(withIdentifier: "goToUserDetails", sender: nil)
                 }
             }
         }

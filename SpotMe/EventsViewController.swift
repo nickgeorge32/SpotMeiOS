@@ -10,33 +10,39 @@ import UIKit
 import Parse
 
 class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var events = [String]()
+    var refresher: UIRefreshControl!
     
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            self.tabBarController?.selectedIndex = 2
-        }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+    @IBOutlet var tableView: UITableView!
+    
+    func refresh() {
+        events.removeAll()
+        
+        loadEvents()
     }
+    
+//    func displayAlert(title: String, message: String) {
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//            UIAlertAction in
+//            self.tabBarController?.selectedIndex = 2
+//        }
+//        alertController.addAction(okAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(EventsViewController.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let query = PFQuery(className: "Events")
-        query.whereKeyExists("Title")
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! == 0 {
-                    self.displayAlert(title: "Coming Soon", message: "This feature is not yet available. Please look for this feature in upcoming updates!")
-                }
-            }
-        }
+        refresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,12 +55,12 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return events.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = "Test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        cell.textLabel?.text = events[indexPath.row]
         
         return cell
     }
@@ -72,6 +78,21 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                 } else {
                     self.tabBarController?.tabBar.items?[4].badgeValue = nil
+                }
+            }
+        }
+    }
+    
+    func loadEvents() {
+        let eventsQuery = PFQuery(className: "Events")
+        eventsQuery.findObjectsInBackground { (objects, error) in
+            if let events = objects {
+                for object in events {
+                    if let event = object as? PFObject {
+                        self.events.append(String(describing: (event["Title"])!))
+                        self.refresher.endRefreshing()
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }

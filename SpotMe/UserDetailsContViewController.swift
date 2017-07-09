@@ -14,7 +14,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     var userGender:String!
     var dob:String!
     var userWeight:String!
-    
+    var isTrainer:Bool!
+
     
     @IBOutlet var userHeight: UITextField!
     @IBOutlet var weightGoalSegment: UISegmentedControl!
@@ -42,6 +43,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
             PFUser.current()?["gender"] = userGender
             PFUser.current()?["dob"] = dob
+            print(isTrainer)
+            PFUser.current()?["isTrainer"] = isTrainer
             PFUser.current()?["currentWeight"] = userWeight
             PFUser.current()?["userHeight"] = userHeight.text
             PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
@@ -103,6 +106,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("userDCVC \(isTrainer)")
         
         addDoneButtonOnKeyboard()
 

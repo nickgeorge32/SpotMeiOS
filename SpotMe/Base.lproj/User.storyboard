@@ -31,6 +31,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hf5-ZJ-ndd">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="Profile Details" id="TSR-w3-5aK">
                                         <barButtonItem key="rightBarButtonItem" title="Next" id="upd-6O-VKY">
@@ -201,6 +202,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7J9-bw-OC9">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="Profile Details" id="tm3-sU-9u9">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="gp7-AE-u1r">
@@ -426,6 +428,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uu8-10-ZWb">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="Home" id="A0h-EX-eO0">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="TG2-Hm-dEM">
@@ -528,7 +531,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ji3-z0-g9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5122" y="1603"/>
+            <point key="canvasLocation" x="4153" y="1590"/>
         </scene>
         <!--Activity-->
         <scene sceneID="xja-ht-AfL">
@@ -564,6 +567,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-Eb-XGo">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="Activity" id="Kde-sU-ikD">
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FxZ-D3-Aen"/>
@@ -613,6 +617,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eP8-BH-DYN">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="Events" id="cKT-hG-i2r">
                                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="i29-2U-9LR"/>
@@ -624,6 +629,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Events" id="4tq-Ve-oOQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="e40-B9-8Hg" id="1GP-ON-3Xh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oc3-22-IoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,6 +645,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.00067959104433646311" green="0.14863110535832452" blue="0.28434666450777202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="defaultIndex">
@@ -648,7 +657,7 @@
                         <segue destination="FZ8-86-1tK" kind="relationship" relationship="viewControllers" id="GwS-GV-ZwR"/>
                         <segue destination="Dc2-pM-kef" kind="relationship" relationship="viewControllers" id="xnK-aK-Fb8"/>
                         <segue destination="SWT-w5-Kg8" kind="relationship" relationship="viewControllers" id="PG8-tB-4fQ"/>
-                        <segue destination="QGK-vI-6ls" kind="relationship" relationship="viewControllers" id="JQS-Gq-Qq4"/>
+                        <segue destination="t9v-qv-nxC" kind="relationship" relationship="viewControllers" id="oO6-eo-KHn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2e-rM-SxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -682,13 +691,24 @@
             </objects>
             <point key="canvasLocation" x="3587" y="561"/>
         </scene>
-        <!--UINavigationController-zCs-Ot-xLO-->
-        <scene sceneID="SBw-vF-LSa">
+        <!--Friends-->
+        <scene sceneID="bvA-fF-Tj1">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UINavigationController-zCs-Ot-xLO" id="QGK-vI-6ls" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rbG-R0-kMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="UINavigationController-zCs-Ot-xLO" automaticallyAdjustsScrollViewInsets="NO" id="t9v-qv-nxC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" id="AT4-Sw-EZM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R19-FI-qno">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zNS-vE-RQm" kind="relationship" relationship="rootViewController" id="wZa-wD-FNF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1A-ju-FTo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3032.8000000000002" y="1602.5487256371816"/>
+            <point key="canvasLocation" x="3033" y="1590"/>
         </scene>
     </scenes>
     <resources>
