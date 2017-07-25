@@ -39,7 +39,7 @@ class EventDetailsViewController: UIViewController {
     
     func getEventDetails() {
         let eventQuery = PFQuery(className: "Events")
-        eventQuery.whereKey("Title", equalTo: eventTitleString)
+        eventQuery.whereKey("title", equalTo: eventTitleString)
         eventQuery.findObjectsInBackground { (objects, error) in
             if let events = objects {
                 for object in events {

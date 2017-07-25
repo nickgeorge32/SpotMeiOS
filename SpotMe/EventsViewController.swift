@@ -100,7 +100,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
             if let events = objects {
                 for object in events {
                     if let event = object as? PFObject {
-                        self.events.append(String(describing: (event["Title"])!))
+                        self.events.append(String(describing: (event["title"])!))
                         self.refresher.endRefreshing()
                         self.tableView.reloadData()
                     }

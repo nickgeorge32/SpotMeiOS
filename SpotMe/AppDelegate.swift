@@ -22,10 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         FirebaseApp.configure()
         
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
-            ParseMutableClientConfiguration.applicationId = "bfb05c79dcf2b7a59ab1f6b95cdcfeaebe2df1fd"
-            ParseMutableClientConfiguration.clientKey = "f6b0bf8832953260a89f04c63d7a312e9fac587b"
-            ParseMutableClientConfiguration.server = "http://ec2-52-14-126-168.us-east-2.compute.amazonaws.com/parse"
+            ParseMutableClientConfiguration.applicationId = "03a35b3018a1050c1ffad91c707f0f556c7aa246"
+            ParseMutableClientConfiguration.clientKey = "45b08eb48e686e3c87e65c760090e228f7a1d5b8"
+            ParseMutableClientConfiguration.server = "http://ec2-13-58-173-227.us-east-2.compute.amazonaws.com/parse"
         })
         
         Parse.initialize(with: parseConfiguration)
@@ -92,6 +94,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         return true
+    }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Complete")
+        completionHandler(UIBackgroundFetchResult.newData)
+        
+        getNewData()
+    }
+    
+    func getNewData() -> Void {
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        var messageRef: DatabaseReference = ref.child("messages")
+        var newMessageRefHandle: DatabaseHandle?
+        
+        newMessageRefHandle = messageRef.observe(.childAdded, with: { (snapshot) -> Void in
+            print("New Message")
+            var local:UILocalNotification = UILocalNotification()
+            local.alertAction = "Testing"
+            local.alertBody = "Count"
+            local.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
+            UIApplication.shared.scheduleLocalNotification(local)
+        })
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
