@@ -106,7 +106,7 @@ class ViewController: UIViewController {
                         self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).child("isTrainer").observeSingleEvent(of: .value, with: { (snapshotBot) in
                             self.isTrainer = snapshotBot.value as! Bool
                             if self.isTrainer {
-                                //if is trainer and is not missing data
+                                //if isTrainer and is not missing data
                                 if snapshotTop.hasChild("currentWeight") && snapshotTop.hasChild("desiredOutcome") && snapshotTop.hasChild("dob") && snapshotTop.hasChild("email") && snapshotTop.hasChild("gender") && snapshotTop.hasChild("goalWeight") && snapshotTop.hasChild("userHeight") && snapshotTop.hasChild("weeklyGoal") && snapshotTop.hasChild("userPhoto") && snapshotTop.hasChild("weightGoal") {
                                     self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
                                 } else {
@@ -119,6 +119,7 @@ class ViewController: UIViewController {
                                     self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
                                 } else {
                                     //is not trainer and is missing data
+                                    //comment
                                     self.performSegue(withIdentifier: "goToUserDetails", sender: nil)
                                 }
                             }
