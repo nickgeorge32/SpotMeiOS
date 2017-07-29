@@ -7,23 +7,29 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountTypeViewController: UIViewController {
     var isTrainer:Bool!
+    
+    var dbRef:DatabaseReference!
+
 
     @IBAction func trainerButton(_ sender: Any) {
         isTrainer = true
+        dbRef.database.reference().child("users").child((Auth.auth().currentUser?.uid)!).updateChildValues(["isTrainer":isTrainer])
         print("trainer button: \(isTrainer)")
     }
     @IBAction func joeButton(_ sender: Any) {
         isTrainer = false
+        dbRef.database.reference().child("users").child((Auth.auth().currentUser?.uid)!).updateChildValues(["isTrainer":isTrainer])
         print("joe button: \(isTrainer)")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dbRef = Database.database().reference()
     }
 
     override func didReceiveMemoryWarning() {

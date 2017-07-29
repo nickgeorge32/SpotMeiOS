@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var events = [String]()
@@ -78,34 +77,9 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
-        let query = PFQuery(className: "FriendRequests")
-        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! > 0 {
-                    for users in objects! {
-                        badgeValue = (objects?.count)!
-                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
-                    }
-                } else {
-                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
-                }
-            }
-        }
     }
     
     func loadEvents() {
-        let eventsQuery = PFQuery(className: "Events")
-        eventsQuery.findObjectsInBackground { (objects, error) in
-            if let events = objects {
-                for object in events {
-                    if let event = object as? PFObject {
-                        self.events.append(String(describing: (event["title"])!))
-                        self.refresher.endRefreshing()
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
+        
     }
 }

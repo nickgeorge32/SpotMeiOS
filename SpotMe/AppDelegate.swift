@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Parse
 import Firebase
 import UserNotifications
 
@@ -17,40 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
+    var token = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        Parse.enableLocalDatastore()
-        
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-        
-        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
-            ParseMutableClientConfiguration.applicationId = "03a35b3018a1050c1ffad91c707f0f556c7aa246"
-            ParseMutableClientConfiguration.clientKey = "45b08eb48e686e3c87e65c760090e228f7a1d5b8"
-            ParseMutableClientConfiguration.server = "http://ec2-13-58-173-227.us-east-2.compute.amazonaws.com/parse"
-        })
-        
-        Parse.initialize(with: parseConfiguration)
-        
-        // ****************************************************************************
-        // Uncomment and fill in with your Parse credentials:
-        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
-        //
-        // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
-        // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
-        // Uncomment the line inside ParseStartProject-Bridging-Header and the following line here:
-        // PFFacebookUtils.initializeFacebook()
-        // ****************************************************************************
-        
-        //PFUser.enableAutomaticUser()
-        
-        let defaultACL = PFACL();
-        
-        // If you would like all objects to be private by default, remove this line.
-        defaultACL.getPublicReadAccess = true
-        defaultACL.getPublicWriteAccess = true
-        
-        PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
+        window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UIViewController-Login") as! ViewController
         
         // [START set_messaging_delegate]
         UNUserNotificationCenter.current().delegate = self
@@ -63,11 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
                 application.registerForRemoteNotifications()
         
-        if let token = InstanceID.instanceID().token() {
+        if let instanceId = InstanceID.instanceID().token() {
+            token = instanceId
             print("Token: \(token)")
-            var auth = Auth.auth().currentUser?.email
-            var ref = Database.database().reference().child("users")
-            ref.child(auth).child("fcm-reg").setValue(token)
         }
         
         return true

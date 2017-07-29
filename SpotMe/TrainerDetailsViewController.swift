@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class TrainerDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
 
@@ -50,21 +49,7 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueHomeAsTrainer" {
-            print(isTrainer)
             
-            let imageData = UIImagePNGRepresentation(profileImage.image!)
-            PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
-            PFUser.current()?["gender"] = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
-            PFUser.current()?["isTrainer"] = isTrainer
-            PFUser.current()?["receiveEmails"] = emailsSwitch.isOn
-            
-            PFUser.current()?.saveInBackground(block: { (success, error) in
-                if error != nil {
-                    
-                } else {
-                    
-                }
-            })
         }
     }
 }

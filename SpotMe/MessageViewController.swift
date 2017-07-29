@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 import JSQMessagesViewController
 import Firebase
 import FirebaseDatabase
@@ -46,11 +45,9 @@ class MessageViewController: JSQMessagesViewController {
         
         ref = Database.database().reference()
         
-        senderId = PFUser.current()?.username
-        senderDisplayName = PFUser.current()?.username
+        //senderId = PFUser.current()?.username
+        //senderDisplayName = PFUser.current()?.username
                 
-        group1 = (PFUser.current()?.username)! + "_" + user2
-        group2 = user2 + "_" + (PFUser.current()?.username)!
         
         self.navigationController?.isNavigationBarHidden = false
         tabBarController?.tabBar.isHidden = true
