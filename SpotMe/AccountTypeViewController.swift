@@ -18,12 +18,10 @@ class AccountTypeViewController: UIViewController {
     @IBAction func trainerButton(_ sender: Any) {
         isTrainer = true
         dbRef.database.reference().child("users").child((Auth.auth().currentUser?.uid)!).updateChildValues(["isTrainer":isTrainer])
-        print("trainer button: \(isTrainer)")
     }
     @IBAction func joeButton(_ sender: Any) {
         isTrainer = false
         dbRef.database.reference().child("users").child((Auth.auth().currentUser?.uid)!).updateChildValues(["isTrainer":isTrainer])
-        print("joe button: \(isTrainer)")
     }
     
     override func viewDidLoad() {
@@ -38,7 +36,6 @@ class AccountTypeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("segue: \(isTrainer)")
         if segue.identifier == "trainerDetails" {
             let destination = segue.destination as! TrainerDetailsViewController
             isTrainer = true
