@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Firebase
 
 class ViewController: UIViewController {
     @IBOutlet var usernameField: UITextField!
@@ -99,7 +100,7 @@ class ViewController: UIViewController {
     
     func redirectUser() {
         if PFUser.current() != nil {
-            if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
+            if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil /*&& PFUser.current()?["weightGoal"] != nil*/ && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
                 performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
             } else {
                 let query = PFUser.query()
@@ -109,16 +110,21 @@ class ViewController: UIViewController {
                         for object in users {
                             if let user = object as? PFUser {
                                 self.isTrainer = user["isTrainer"] as! Bool
+                                if self.isTrainer {
+                                    self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                } else {
+                                    self.performSegue(withIdentifier: "goToUserDetails", sender: nil)
+                                }
                             }
                         }
                     }
                 })
                 
-                if isTrainer {
-                    performSegue(withIdentifier: "trainerDetails", sender: nil)
-                } else {
-                    performSegue(withIdentifier: "goToUserDetails", sender: nil)
-                }
+//                if isTrainer {
+//                    performSegue(withIdentifier: "trainerDetails", sender: nil)
+//                } else {
+//                    performSegue(withIdentifier: "goToUserDetails", sender: nil)
+//                }
             }
         }
     }

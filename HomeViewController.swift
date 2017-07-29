@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import FirebaseMessaging
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var friends = [String]()
@@ -68,11 +69,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         //pendingFriendRequestCheck()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAAmxg0AHY:APA91bEV7GykrT5Z59-WElvzB826NQzYMU21oUn0WFd7JZvE1mC-1wQ9i5J-YR2zYqwhmw-vCVUtGEgzsMENIsKEiUsJ2-xDo_wP_AxGjRK3mcVT7w6ePZf_hpp4eGyX8rZ7cjatrCCo"]
+            request.httpMethod = "POST"
+            request.httpBody = "{\"to\":\"eGreWn9lBfY:APA91bE_V18bqxfScAcvuYSFNtylpuS39WQmVljnHbhGRCzUBXuoigSBGTFglvPUps5CAE_BmKxuMwtUM8sJKECiyRSrkkxfSIYMWmUAfkUm9v9fmFTIWuSAKbul7MbyZ1AJsuHkPK9k\",\"notification\":{\"body\":\"THIS IS FROM HTTP!\"}}".data(using: .utf8)
+            
+            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                if error != nil {
+                    print(error!)
+                }
+                print(String(data: data!, encoding: .utf8)!)
+            }).resume()
+        }
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

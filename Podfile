@@ -7,13 +7,14 @@ target 'SpotMe' do
 pod 'Parse'
 pod 'Firebase/Storage'
 pod 'Firebase/Database'
-pod ‘Firebase/Core’
-pod ‘Firebase/Messaging’
-pod ‘Firebase/Performance’
-pod ‘Firebase/RemoteConfig’
-pod ‘Firebase/DynamicLinks’
-pod ‘Fabric’
-pod ‘Crashlytics’
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
+pod 'Firebase/Performance'
+pod 'Firebase/RemoteConfig'
+pod 'Firebase/DynamicLinks'
+pod 'Firebase/Auth'
+pod 'Fabric'
+pod 'Crashlytics'
 pod 'JSQMessagesViewController'
 
 end

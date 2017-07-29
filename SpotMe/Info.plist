@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2.3</string>
+	<string>0.2.4</string>
 	<key>CFBundleVersion</key>
-	<string>59</string>
+	<string>62</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Upload your certification.</string>
+	<string>Upload your images.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To share your location with others</string>
 	<key>NSPhotoLibraryUsageDescription</key>
