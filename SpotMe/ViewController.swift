@@ -21,11 +21,11 @@ class ViewController: UIViewController {
     var token = ""
     
     var dbRef:DatabaseReference!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dbRef = Database.database().reference()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,15 +33,15 @@ class ViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         token = appDelegate.token
     }
-
+    
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-//            UIAlertAction in self.redirectUser()
-//        }
-//        alertController.addAction(okAction)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                    UIAlertAction in self.redirectUser()
+                }
+                alertController.addAction(okAction)
+        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
                                 self.displayAlert(title: "Sign Up Error", message: error!.localizedDescription)
                             } else {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                                self.dbRef.child("users").child((user?.uid)!).setValue(["email":email])
+                                    self.dbRef.child("users").child((user?.uid)!).setValue(["email":email])
                                     self.dbRef.child("users").child((user?.uid)!).updateChildValues(["fcm-reg":self.token])
                                     self.activityIndicator.stopAnimating()
                                     UIApplication.shared.endIgnoringInteractionEvents()
@@ -73,8 +73,8 @@ class ViewController: UIViewController {
                             if error != nil {
                                 self .displayAlert(title: "Login Error", message: error!.localizedDescription)
                             } else {
-                                //self.redirectUser()
-                                self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                self.redirectUser()
+                                UIApplication.shared.endIgnoringInteractionEvents()
                             }
                         })
                     }
@@ -96,18 +96,37 @@ class ViewController: UIViewController {
     }
     
     func redirectUser() {
-       dbRef.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-        if snapshot.hasChild("isTrainer") {
-            self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).child("isTrainer").observeSingleEvent(of: .value, with: { (snapshot) in
-                self.isTrainer = snapshot.value as! Bool
-                if self.isTrainer {
-                    print("is trainer")
-                } else {
-                    print("not trainer")
-                }
-            })
+        //check if there is a user logged in
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                //if there is a user check whether is trainer and all fields are saved
+                self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshotTop) in
+                    if snapshotTop.hasChild("isTrainer") {
+                        //check if isTrainer
+                        self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).child("isTrainer").observeSingleEvent(of: .value, with: { (snapshotBot) in
+                            self.isTrainer = snapshotBot.value as! Bool
+                            if self.isTrainer {
+                                //if is trainer and is not missing data
+                                if snapshotTop.hasChild("currentWeight") && snapshotTop.hasChild("desiredOutcome") && snapshotTop.hasChild("dob") && snapshotTop.hasChild("email") && snapshotTop.hasChild("gender") && snapshotTop.hasChild("goalWeight") && snapshotTop.hasChild("userHeight") && snapshotTop.hasChild("weeklyGoal") && snapshotTop.hasChild("userPhoto") && snapshotTop.hasChild("weightGoal") {
+                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                } else {
+                                    //is trainer and is missing data
+                                    self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                }
+                            } else {
+                                //is not trainer and is not missing data
+                                if snapshotTop.hasChild("currentWeight") && snapshotTop.hasChild("desiredOutcome") && snapshotTop.hasChild("dob") && snapshotTop.hasChild("email") && snapshotTop.hasChild("gender") && snapshotTop.hasChild("goalWeight") && snapshotTop.hasChild("userHeight") && snapshotTop.hasChild("weeklyGoal") && snapshotTop.hasChild("userPhoto") && snapshotTop.hasChild("weightGoal") {
+                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                } else {
+                                    //is not trainer and is missing data
+                                    self.performSegue(withIdentifier: "goToUserDetails", sender: nil)
+                                }
+                            }
+                        })
+                    }
+                })
+            }
         }
-       })
     }
 }
 
