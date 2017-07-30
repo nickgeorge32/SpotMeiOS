@@ -15,21 +15,20 @@ class ViewController: UIViewController {
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var signUpOrLoginButton: UIButton!
     @IBOutlet var changeModeButton: UIButton!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var authMode = true
     var isTrainer:Bool!
-
+    var token = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        token = appDelegate.token
     }
     
     func displayAlert(title: String, message: String) {
@@ -42,48 +41,52 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signUpOrLogin(_ sender: Any) {
-        if usernameField.text != "" && passwordField.text != "" {
-        if authMode {
-            let user = PFUser()
-            user.username = usernameField.text?.components(separatedBy: "@")[0]
-            user.email = usernameField.text
-            user.password = passwordField.text
-            
-            user.signUpInBackground(block: { (success, error) in
-                if error != nil {
-                    var errorMessage = "Sign Up failed, please try again later"
-                    let error = error as NSError?
-                    if let parseError = error?.userInfo["error"] as? String {
-                        errorMessage = parseError
-                    }
-                    //display error
-                    self.displayAlert(title: "Sign Up Error", message: errorMessage)
-                } else {
-                    //Signed Up
-                    //redirect
-                    self.performSegue(withIdentifier: "accountTypeSegue", sender: self)
-                }
-            })
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        if usernameField.text == "" && passwordField.text == "" {
+            displayAlert(title: "Invalid Values", message: "Please ensure all fields are filled in properly")
         } else {
-            PFUser.logInWithUsername(inBackground: usernameField.text!.components(separatedBy: "@")[0], password: passwordField.text!, block: { (user, error) in
-                if error != nil {
-                    var errorMessage = "Sign Up failed, please try again later"
-                    let error = error as NSError?
-                    if let parseError = error?.userInfo["error"] as? String {
-                        errorMessage = parseError
+            if authMode {
+                let user = PFUser()
+                user.username = usernameField.text?.components(separatedBy: "@")[0]
+                user.email = usernameField.text
+                user.password = passwordField.text
+                
+                user.signUpInBackground(block: { (success, error) in
+                    if error != nil {
+                        var errorMessage = "Sign Up failed, please try again later"
+                        let error = error as NSError?
+                        if let parseError = error?.userInfo["error"] as? String {
+                            errorMessage = parseError
+                        }
+                        //display error
+                        self.displayAlert(title: "Sign Up Error", message: errorMessage)
+                    } else {
+                        //Signed Up
+                        //redirect
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        self.performSegue(withIdentifier: "accountTypeSegue", sender: self)
                     }
-                    //display error
-                    self.displayAlert(title: "Login Error", message: errorMessage)
-                } else {
-                    //Logged In
-                    self.redirectUser()
-                }
-            })
+                })
+            } else {
+                PFUser.logInWithUsername(inBackground: usernameField.text!.components(separatedBy: "@")[0], password: passwordField.text!, block: { (user, error) in
+                    if error != nil {
+                        var errorMessage = "Sign Up failed, please try again later"
+                        let error = error as NSError?
+                        if let parseError = error?.userInfo["error"] as? String {
+                            errorMessage = parseError
+                        }
+                        //display error
+                        self.displayAlert(title: "Login Error", message: errorMessage)
+                    } else {
+                        //Logged In
+                        self.redirectUser()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                })
+            }
         }
-        } else {
-            displayAlert(title: "Error in Form", message: "Please fill all fields")
-        }
-
     }
     
     @IBAction func changeMode(_ sender: Any) {
@@ -120,11 +123,11 @@ class ViewController: UIViewController {
                     }
                 })
                 
-//                if isTrainer {
-//                    performSegue(withIdentifier: "trainerDetails", sender: nil)
-//                } else {
-//                    performSegue(withIdentifier: "goToUserDetails", sender: nil)
-//                }
+                //                if isTrainer {
+                //                    performSegue(withIdentifier: "trainerDetails", sender: nil)
+                //                } else {
+                //                    performSegue(withIdentifier: "goToUserDetails", sender: nil)
+                //                }
             }
         }
     }

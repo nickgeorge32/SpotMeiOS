@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
+    var token = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -63,11 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
                 application.registerForRemoteNotifications()
         
-        if let token = InstanceID.instanceID().token() {
-            print("Token: \(token)")
-            var auth = Auth.auth().currentUser?.email
-            var ref = Database.database().reference().child("users")
-            ref.child(auth).child("fcm-reg").setValue(token)
+        if let instanceId = InstanceID.instanceID().token() {
+            token = instanceId
         }
         
         return true
