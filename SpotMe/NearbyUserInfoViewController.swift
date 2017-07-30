@@ -6,6 +6,7 @@
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
+//TODO: Get user info
 import UIKit
 
 class NearbyUserInfoViewController: UIViewController {
