@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Firebase
+import GeoFire
 
 class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
@@ -19,8 +21,12 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var userLabel: UILabel!
     
+    var dbRef:DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dbRef = Database.database().reference()
+        
         navigationController?.isNavigationBarHidden = true
         
         locationManager.delegate = self
@@ -31,11 +37,31 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     override func viewDidAppear(_ animated: Bool) {
         pendingFriendRequestCheck()
+        mapView.removeAnnotations(mapView.annotations)
         
-        if userLocation.latitude != 0 && userLocation.longitude != 0 {
-            
-        } else {
-            displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
+        let geoFire = GeoFire(firebaseRef: dbRef.child("userLocations"))
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { 
+            if self.userLocation.latitude != 0 && self.userLocation.longitude != 0 {
+                geoFire?.setLocation(CLLocation(latitude: self.userLocation.latitude, longitude: self.userLocation.longitude), forKey: Auth.auth().currentUser?.uid)
+            } else {
+                self.displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
+            }
+            let center = CLLocation(latitude: self.userLocation.latitude, longitude: self.userLocation.longitude)
+            var circleQuery = geoFire?.query(at: center, withRadius: 1.7)
+            var email = ""
+            var queryHandle = circleQuery?.observe(.keyEntered, with: { (key, location) in
+                if key != Auth.auth().currentUser?.uid {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+                    let name = key
+                    self.dbRef.child("users").child(name!).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let value = snapshot.value as? NSDictionary
+                        email = (value?["email"] as? String)!
+                        annotation.title = email
+                    })
+                    self.mapView.addAnnotation(annotation)
+                }
+            })
         }
     }
     

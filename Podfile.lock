@@ -65,6 +65,8 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GeoFire (2.0.0):
+    - Firebase/Database (~> 4.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -99,7 +101,12 @@ DEPENDENCIES:
   - Firebase/Performance
   - Firebase/RemoteConfig
   - Firebase/Storage
+  - GeoFire (from `/Users/nick/Documents/xCode/geofire-objc`)
   - JSQMessagesViewController
+
+EXTERNAL SOURCES:
+  GeoFire:
+    :path: "/Users/nick/Documents/xCode/geofire-objc"
 
 SPEC CHECKSUMS:
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
@@ -115,13 +122,14 @@ SPEC CHECKSUMS:
   FirebasePerformance: 36bdb0500213b459ae991766801d5dc5399ff231
   FirebaseRemoteConfig: 328244399f64226cfdfa32efee596bb010ef5665
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  GeoFire: 02f02683e09367c2eee073c6b09c794da19833ee
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  nanopb: 22bc080fa3955e2116b6ff3ee6c2cb3c15ab97cb
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
 
-PODFILE CHECKSUM: 3c4b8c3c58e1f2e3fca42bcf46e6b840ebce8ad2
+PODFILE CHECKSUM: 3bb9413ec2916e5f41e0a78d84230c0b2de61943
 
 COCOAPODS: 1.2.0

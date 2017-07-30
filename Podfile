@@ -15,5 +15,5 @@ pod 'Firebase/Auth'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'JSQMessagesViewController'
-
+pod 'GeoFire', :path => '/Users/nick/Documents/xCode/geofire-objc'
 end
