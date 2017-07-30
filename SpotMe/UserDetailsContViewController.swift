@@ -15,6 +15,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     var dob:String!
     var userWeight:String!
     var isTrainer:Bool!
+    var token = ""
 
     
     @IBOutlet var userHeight: UITextField!
@@ -37,13 +38,21 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        token = appDelegate.token
+        addDoneButtonOnKeyboard()
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueHome" {
             let imageData = UIImagePNGRepresentation(profileImage)
             PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
             PFUser.current()?["gender"] = userGender
             PFUser.current()?["dob"] = dob
-            print(isTrainer)
             PFUser.current()?["isTrainer"] = isTrainer
             PFUser.current()?["currentWeight"] = userWeight
             PFUser.current()?["userHeight"] = userHeight.text
@@ -102,20 +111,6 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             }
 
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("userDCVC \(isTrainer)")
-        
-        addDoneButtonOnKeyboard()
-
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func addDoneButtonOnKeyboard() {

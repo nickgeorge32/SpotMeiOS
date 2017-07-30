@@ -13,11 +13,9 @@ class AccountTypeViewController: UIViewController {
 
     @IBAction func trainerButton(_ sender: Any) {
         isTrainer = true
-        print("trainer button: \(isTrainer)")
     }
     @IBAction func joeButton(_ sender: Any) {
         isTrainer = false
-        print("joe button: \(isTrainer)")
     }
     
     override func viewDidLoad() {
@@ -25,14 +23,8 @@ class AccountTypeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("segue: \(isTrainer)")
         if segue.identifier == "trainerDetails" {
             let destination = segue.destination as! TrainerDetailsViewController
             isTrainer = true

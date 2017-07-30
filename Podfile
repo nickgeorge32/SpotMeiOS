@@ -1,3 +1,6 @@
+project 'SpotMe.xcodeproj'
+
+  # Pods for SpotMe
 platform :ios, ’10.0’
 
 target 'SpotMe' do

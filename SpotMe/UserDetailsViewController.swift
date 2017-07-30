@@ -114,7 +114,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("userD \(isTrainer)")
         // Do any additional setup after loading the view.
         addDoneButtonOnKeyboard()
     }

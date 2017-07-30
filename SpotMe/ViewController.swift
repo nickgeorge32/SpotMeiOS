@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     
     var authMode = true
     var isTrainer:Bool!
-    var token = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +26,15 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        token = appDelegate.token
     }
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in self.redirectUser()
-        }
-        alertController.addAction(okAction)
+        //let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+        //    UIAlertAction in self.redirectUser()
+        //}
+        //alertController.addAction(okAction)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -60,6 +58,8 @@ class ViewController: UIViewController {
                             errorMessage = parseError
                         }
                         //display error
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        self.activityIndicator.stopAnimating()
                         self.displayAlert(title: "Sign Up Error", message: errorMessage)
                     } else {
                         //Signed Up
@@ -72,16 +72,18 @@ class ViewController: UIViewController {
             } else {
                 PFUser.logInWithUsername(inBackground: usernameField.text!.components(separatedBy: "@")[0], password: passwordField.text!, block: { (user, error) in
                     if error != nil {
-                        var errorMessage = "Sign Up failed, please try again later"
+                        var errorMessage = "Login failed, please try again later"
                         let error = error as NSError?
                         if let parseError = error?.userInfo["error"] as? String {
                             errorMessage = parseError
                         }
                         //display error
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        self.activityIndicator.stopAnimating()
                         self.displayAlert(title: "Login Error", message: errorMessage)
                     } else {
                         //Logged In
-                        self.redirectUser()
+                        //self.redirectUser()
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 })
@@ -103,33 +105,32 @@ class ViewController: UIViewController {
     
     func redirectUser() {
         if PFUser.current() != nil {
-            if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil /*&& PFUser.current()?["weightGoal"] != nil*/ && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
-                performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
-            } else {
-                let query = PFUser.query()
-                query?.whereKey("objectId", equalTo: (PFUser.current()?.objectId!)!)
-                query?.findObjectsInBackground(block: { (objects, error) in
-                    if let users = objects {
-                        for object in users {
-                            if let user = object as? PFUser {
-                                self.isTrainer = user["isTrainer"] as! Bool
-                                if self.isTrainer {
+            let query = PFUser.query()
+            query?.whereKey("objectId", equalTo: (PFUser.current()?.objectId!)!)
+            query?.findObjectsInBackground(block: { (objects, error) in
+                if let users = objects {
+                    for object in users {
+                        if let user = object as? PFUser {
+                            self.isTrainer = user["isTrainer"] as! Bool
+                                                        
+                            if self.isTrainer {
+                                if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil {
+                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
+                                } else {
                                     self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                }
+ 
+                            } else {
+                                if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
+                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
                                 } else {
                                     self.performSegue(withIdentifier: "goToUserDetails", sender: nil)
                                 }
                             }
                         }
                     }
-                })
-                
-                //                if isTrainer {
-                //                    performSegue(withIdentifier: "trainerDetails", sender: nil)
-                //                } else {
-                //                    performSegue(withIdentifier: "goToUserDetails", sender: nil)
-                //                }
-            }
+                }
+            })
         }
     }
 }
-
