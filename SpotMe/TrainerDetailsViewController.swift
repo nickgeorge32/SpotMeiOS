@@ -6,6 +6,8 @@
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
+//TODO: add red X and Green Check once cert has been attached to upload
+
 import UIKit
 import Firebase
 

@@ -35,6 +35,10 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        loadProfile()
+    }
+    
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -145,6 +149,55 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     @IBAction func disclaimer(_ sender: Any) {
         displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
         
+    }
+    
+    func loadProfile() {
+        dbRef.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("userHeight") {
+                let value = snapshot.value as? NSDictionary
+                let height = value?["userHeight"] as? String
+                self.userHeight.text = height
+            }
+            if snapshot.hasChild("weightGoal") {
+                let value = snapshot.value as? NSDictionary
+                let weightGoal = value?["weightGoal"] as? String
+                if weightGoal == "Lose Weight" {
+                    self.weightGoalSegment.selectedSegmentIndex = 0
+                } else if weightGoal == "Maintain Weight" {
+                    self.weightGoalSegment.selectedSegmentIndex = 1
+                    self.weightGoalSegment.sendActions(for: .valueChanged)
+                } else if weightGoal == "Gain Weight" {
+                    self.weightGoalSegment.selectedSegmentIndex = 2
+                }
+            }
+            if snapshot.hasChild("goalWeight") {
+                let value = snapshot.value as? NSDictionary
+                let goalWeight = value?["goalWeight"] as? String
+                self.goalWeightField.text = goalWeight
+            }
+            if snapshot.hasChild("weeklyGoal") {
+                let value = snapshot.value as? NSDictionary
+                let weeklyGoal = value?["weeklyGoal"] as? String
+                if weeklyGoal == ".5 lbs per week" {
+                    self.weeklyGoalSegment.selectedSegmentIndex = 0
+                } else if weeklyGoal == "1 lb per week" {
+                    self.weeklyGoalSegment.selectedSegmentIndex = 1
+                }
+            }
+            if snapshot.hasChild("desiredOutcome") {
+                let value = snapshot.value as? NSDictionary
+                let desiredOutcome = value?["desiredOutcome"] as? String
+                if desiredOutcome == "Gain Muscle" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 0
+                } else if desiredOutcome == "Lose Fat" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 1
+                } else if desiredOutcome == "Endurance" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 2
+                } else if desiredOutcome == "Other" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 3
+                }
+            }
+        })
     }
     
 }

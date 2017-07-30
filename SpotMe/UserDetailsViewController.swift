@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     @IBOutlet var userImage: UIImageView!
@@ -16,6 +17,8 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     
     var isTrainer: Bool!
     
+    var dbRef:DatabaseReference!
+    
     @IBAction func updateProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -23,6 +26,18 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         imagePicker.allowsEditing = false
         
         self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dbRef = Database.database().reference()
+        
+        addDoneButtonOnKeyboard()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadProfile()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -111,16 +126,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         return true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        print("userD \(isTrainer)")
-        // Do any additional setup after loading the view.
-        addDoneButtonOnKeyboard()
-    }
-    
-    func addDoneButtonOnKeyboard()
-    {
+    func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
         doneToolbar.barStyle = UIBarStyle.default
         
@@ -138,14 +144,45 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         
     }
     
-    func doneButtonAction()
-    {
+    func doneButtonAction() {
         self.userWeightField.resignFirstResponder()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func loadProfile () {
+        dbRef.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            //TODO: Download image
+//            if snapshot.hasChild("userPhoto") {
+//                let path = (Auth.auth().currentUser?.uid)!
+//                let storageRef = Storage.storage().reference(withPath: "\(path)/images/profile.jpg")
+//                storageRef.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
+//                    if error != nil {
+//                        print(error?.localizedDescription)
+//                    } else {
+//                        self.userImage.image = UIImage(data: data!)
+//                    }
+//                })
+//            }
+            if snapshot.hasChild("gender") {
+                let value = snapshot.value as? NSDictionary
+                let gender = value?["gender"] as? String
+                if gender == "Male" {
+                    self.genderSegment.selectedSegmentIndex = 0
+                } else if gender == "Female" {
+                    self.genderSegment.selectedSegmentIndex = 1
+                } else if gender == "Prefer Not To Say" {
+                    self.genderSegment.selectedSegmentIndex = 2
+                }
+            }
+            if snapshot.hasChild("dob") {
+                let value = snapshot.value as? NSDictionary
+                let dob = value?["dob"] as? String
+                self.dobField.text = dob
+            }
+            if snapshot.hasChild("currentWeight") {
+                let value = snapshot.value as? NSDictionary
+                let currentWeight = value?["currentWeight"] as? String
+                self.userWeightField.text = currentWeight
+            }
+        })
     }
-
 }

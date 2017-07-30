@@ -116,7 +116,7 @@
                         <segue destination="hBr-42-rvG" kind="show" identifier="segueHomeFromLogin" id="T89-Nt-LCR"/>
                         <segue destination="BvN-eU-QKI" kind="show" identifier="accountTypeSegue" id="D6Z-mJ-WoO"/>
                         <segue destination="bNr-kb-bbW" kind="show" identifier="goToUserDetails" id="15h-kv-0e4"/>
-                        <segue destination="BKx-N7-7rb" kind="show" id="8gE-a6-mRx"/>
+                        <segue destination="BKx-N7-7rb" kind="show" identifier="trainerDetails" id="8gE-a6-mRx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

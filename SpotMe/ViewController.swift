@@ -41,7 +41,6 @@ class ViewController: UIViewController {
                     UIAlertAction in self.redirectUser()
                 }
                 alertController.addAction(okAction)
-        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -95,6 +94,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //TODO: download already saved data if any so user does not have to refill all fields
     func redirectUser() {
         //check if there is a user logged in
         Auth.auth().addStateDidChangeListener { (auth, user) in

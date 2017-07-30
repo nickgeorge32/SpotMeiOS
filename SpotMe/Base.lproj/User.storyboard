@@ -436,7 +436,11 @@
                                                 <action selector="logout:" destination="Dc2-pM-kef" id="z7u-kQ-8CC"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="Settings-25.png" id="Ipi-Iw-kLJ"/>
+                                        <barButtonItem key="rightBarButtonItem" image="Settings-25.png" id="Ipi-Iw-kLJ">
+                                            <connections>
+                                                <segue destination="aff-R2-AEU" kind="show" id="jhJ-LF-KGb"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -496,6 +500,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r28-BX-EF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3032.8000000000002" y="122.78860569715144"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="pfi-dd-08O">
+            <objects>
+                <viewController id="aff-R2-AEU" customClass="SettingsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="78s-KC-vXa"/>
+                        <viewControllerLayoutGuide type="bottom" id="U5i-bk-XSF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yxp-f2-XAT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KNi-O9-ghV">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Settings" id="1rz-LO-lJ9">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="4Wq-Pg-24b">
+                                            <connections>
+                                                <segue destination="Dc2-pM-kef" kind="show" id="Q7W-Qa-73P"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpc-KC-NJB">
+                                <rect key="frame" x="132" y="318" width="111" height="30"/>
+                                <state key="normal" title="Update Settings"/>
+                                <connections>
+                                    <action selector="updateSettings:" destination="aff-R2-AEU" eventType="touchUpInside" id="Nr0-fU-m9B"/>
+                                    <segue destination="oMc-3O-LcU" kind="show" identifier="updateSettings" id="e5F-mn-nJj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gpc-KC-NJB" firstAttribute="centerX" secondItem="Yxp-f2-XAT" secondAttribute="centerX" id="6Di-AB-xGa"/>
+                            <constraint firstItem="gpc-KC-NJB" firstAttribute="centerY" secondItem="Yxp-f2-XAT" secondAttribute="centerY" id="qZI-BD-tyb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="SKA-3j-Z5R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="omr-gb-fQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4057" y="123"/>
         </scene>
         <!--Friends-->
         <scene sceneID="jF0-fG-Jfs">
@@ -815,6 +866,8 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="e5F-mn-nJj"/>
+        <segue reference="Q7W-Qa-73P"/>
         <segue reference="Lwr-sd-at0"/>
     </inferredMetricsTieBreakers>
 </document>

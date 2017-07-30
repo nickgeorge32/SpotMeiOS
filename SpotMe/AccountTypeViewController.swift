@@ -6,6 +6,8 @@
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
+//TODO: add images for Joe and Trainer
+
 import UIKit
 import Firebase
 

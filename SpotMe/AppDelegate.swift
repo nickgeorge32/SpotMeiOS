@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if let instanceId = InstanceID.instanceID().token() {
             token = instanceId
-            print("Token: \(token)")
         }
         
         return true
