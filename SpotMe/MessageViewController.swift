@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import Parse
 import JSQMessagesViewController
+import Firebase
 import FirebaseDatabase
 
 class MessageViewController: JSQMessagesViewController {
     
-    var ref: DatabaseReference! = Database.database().reference()
+    var ref: DatabaseReference!
     private lazy var userIsTypingRef: DatabaseReference = self.ref!.child("typingIndicator").child(self.senderId) // 1
     private var localTyping = false // 2
     var isTyping: Bool {
@@ -31,7 +31,7 @@ class MessageViewController: JSQMessagesViewController {
     var user2 = ""
     var group1 = ""
     var group2 = ""
-    var selectedGroup = ""
+    var selectedGroup = "Test"
     
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -43,11 +43,11 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        senderId = PFUser.current()?.username
-        senderDisplayName = PFUser.current()?.username
+        ref = Database.database().reference()
         
-        group1 = (PFUser.current()?.username)! + "_" + user2
-        group2 = user2 + "_" + (PFUser.current()?.username)!
+        //senderId = PFUser.current()?.username
+        //senderDisplayName = PFUser.current()?.username
+                
         
         self.navigationController?.isNavigationBarHidden = false
         tabBarController?.tabBar.isHidden = true

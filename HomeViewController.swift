@@ -7,83 +7,88 @@
 //
 
 import UIKit
-import Parse
+import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var tableView: UITableView!
+    
+    var friends = [String]()
+    var posts = [String]()
+    var messages = [String]()
+    var refresher: UIRefreshControl!
+    
+    var dbRef:DatabaseReference!
+
+    func refresh() {
+        friends.removeAll()
+        posts.removeAll()
+        messages.removeAll()
+        
+        loadPosts()
+    }
+    
     @IBAction func logout(_ sender: Any) {
-        PFUser.logOut()
+        try! Auth.auth().signOut()
+        dbRef.removeAllObservers()
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dbRef = Database.database().reference()
 
         // Do any additional setup after loading the view.
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(HomeViewController.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
     }
+    
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
             self.performSegue(withIdentifier: "logoutSegue", sender: self)
-            PFUser.logOut()
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        PFSession.getCurrentSessionInBackground { (session, error) in
-            if error != nil {
-                self.displayAlert(title: "Invalid Session", message: "You have been logged out, please log back in")
-            }
-        }
         
         pendingFriendRequestCheck()
+        refresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //pendingFriendRequestCheck()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return posts.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
         
-        cell.profileImage.image = UIImage(named: "person_icon.png")
-        cell.username.text = "Username"
-        cell.postText.text = "Message"
+        cell.username.text = posts[indexPath.row]
+        cell.postText.text = messages[indexPath.row]
         
         return cell
     }
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
-        let query = PFQuery(className: "FriendRequests")
-        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! > 0 {
-                    for users in objects! {
-                        badgeValue = (objects?.count)!
-                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
-                    }
-                } else {
-                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
-                }
-            }
-        }
     }
     
     func loadPosts() {
+
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        
+        }
         
     }
 

@@ -8,7 +8,8 @@
 
 import UIKit
 import MapKit
-import Parse
+import Firebase
+import GeoFire
 
 class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
@@ -16,81 +17,63 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var nearbyUsers = [String]()
     var nearbyUserLocations = [CLLocationCoordinate2D]()
     var nearUser: String? = ""
-
+    
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var userLabel: UILabel!
     
+    var dbRef:DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dbRef = Database.database().reference()
+        
         navigationController?.isNavigationBarHidden = true
-
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         pendingFriendRequestCheck()
+        mapView.removeAnnotations(mapView.annotations)
         
-        if userLocation.latitude != 0 && userLocation.longitude != 0 {
-            PFUser.current()?["userLocation"] = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
-            
-            PFUser.current()?.saveInBackground(block: { (success, error) in
-                if error != nil {
-                    var errorMessage = "Unable to save location"
-                    if let parseError = (error! as NSError).userInfo["error"] as? String {
-                        errorMessage = parseError
-                        self.displayAlert(title: "Error", message: errorMessage)
-                    }
+        let geoFire = GeoFire(firebaseRef: dbRef.child("userLocations"))
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { 
+            if self.userLocation.latitude != 0 && self.userLocation.longitude != 0 {
+                geoFire?.setLocation(CLLocation(latitude: self.userLocation.latitude, longitude: self.userLocation.longitude), forKey: Auth.auth().currentUser?.uid)
+            } else {
+                self.displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
+            }
+            let center = CLLocation(latitude: self.userLocation.latitude, longitude: self.userLocation.longitude)
+            var circleQuery = geoFire?.query(at: center, withRadius: 1.7)
+            var email = ""
+            var queryHandle = circleQuery?.observe(.keyEntered, with: { (key, location) in
+                if key != Auth.auth().currentUser?.uid {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+                    let name = key
+                    self.dbRef.child("users").child(name!).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let value = snapshot.value as? NSDictionary
+                        email = (value?["email"] as? String)!
+                        annotation.title = email
+                    })
+                    self.mapView.addAnnotation(annotation)
                 }
             })
-        } else {
-            if (PFUser.current()?["userLocation"] as AnyObject).latitude != nil && (PFUser.current()?["userLocation"] as AnyObject).longitude != nil {
-                displayAlert(title: "Location Error", message: "Unable to get location at this time, using last saved location")
-                userLocation.latitude = (PFUser.current()?["userLocation"] as AnyObject).latitude
-                userLocation.longitude = (PFUser.current()?["userLocation"] as AnyObject).longitude
-            } else {
-                displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
-            }
         }
-        
-        let query = PFUser.query()
-        query?.whereKey("username", notEqualTo: (PFUser.current()?.username!)!)
-        query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude), withinKilometers: 10)
-        query?.findObjectsInBackground(block: { (objects, error) in
-            if let users = objects {
-                self.nearbyUsers.removeAll()
-                self.nearbyUserLocations.removeAll()
-                self.mapView.removeAnnotations(self.mapView.annotations)
-                
-                for object in users {
-                    if let user = object as? PFUser {
-                        self.nearbyUsers.append(user.username!)
-                        self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude)
-                        annotation.title = user.username
-                        self.mapView.addAnnotation(annotation)
-                    }
-                }
-            }
-        })
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = manager.location?.coordinate {
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-
+            
             self.mapView.setRegion(region, animated: true)
             
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func displayAlert(title: String, message: String) {
@@ -113,11 +96,11 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         return view
     }
-        
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation {
             nearUser = annotation.title!
-
+            
             let myVC = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
             myVC.passedUsername = nearUser!
             mapView.deselectAnnotation(view.annotation, animated: true)
@@ -127,18 +110,5 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
-        let query = PFQuery(className: "FriendRequests")
-        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! > 0 {
-                    for users in objects! {
-                        badgeValue = (objects?.count)!
-                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
-                    }
-                } else {
-                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
-                }
-            }
-        }
-    }}
+    }
+}

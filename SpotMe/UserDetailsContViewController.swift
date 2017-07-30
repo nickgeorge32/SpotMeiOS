@@ -7,21 +7,43 @@
 //
 
 import UIKit
-import Parse
+import Firebase
 
 class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
-    var profileImage:UIImage!
-    var userGender:String!
-    var dob:String!
-    var userWeight:String!
-    
-    
     @IBOutlet var userHeight: UITextField!
     @IBOutlet var weightGoalSegment: UISegmentedControl!
     @IBOutlet var goalWeightField: UITextField!
     @IBOutlet var weeklyGoalSegment: UISegmentedControl!
     @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
     @IBOutlet var emailSwitch: UISwitch!
+    
+    var profileImage:UIImage!
+    var userGender:String!
+    var dob:String!
+    var userWeight:String!
+    var isTrainer:Bool!
+    
+    let storage = Storage.storage().reference()
+    var dbRef:DatabaseReference!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dbRef = Database.database().reference()
+        
+        addDoneButtonOnKeyboard()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadProfile()
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func weightGoal(_ sender: Any) {
         if weightGoalSegment.selectedSegmentIndex == 0 {
@@ -39,30 +61,19 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueHome" {
             let imageData = UIImagePNGRepresentation(profileImage)
-            PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
-            PFUser.current()?["gender"] = userGender
-            PFUser.current()?["dob"] = dob
-            PFUser.current()?["currentWeight"] = userWeight
-            PFUser.current()?["userHeight"] = userHeight.text
-            PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
-            PFUser.current()?["goalWeight"] = goalWeightField.text
-            if weightGoalSegment.selectedSegmentIndex != 1 {
-                PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
-            }
-            PFUser.current()?["desiredOutcome"] = desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)
-            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
-            
-            PFUser.current()?.saveInBackground(block: { (success, error) in
-                if error != nil {
-                    var errorMessage = "Unable to save details"
-                    if let parseError = (error as! NSError).userInfo["error"] as? String {
-                        errorMessage = parseError
-                        self.displayAlert(title: "Error", message: errorMessage)
-                    }
+            let profileImgRef = storage.child((Auth.auth().currentUser?.uid)!).child("images/profile.jpg")
+            let uploadTask = profileImgRef.putData(imageData!, metadata: nil, completion: { (metadata, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
                 } else {
-                    self.displayAlert(title: "Success", message: "Profile Saved!")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                    self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).updateChildValues(["userPhoto":downloadURL])
                 }
             })
+            if weightGoalSegment.selectedSegmentIndex != 1 {
+                dbRef.child("users").child((Auth.auth().currentUser?.uid)!).updateChildValues(["gender":userGender, "dob":dob, "currentWeight":userWeight, "userHeight":userHeight.text, "weightGoal":weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight":goalWeightField.text, "desiredOutcome":desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails":emailSwitch.isOn, "weeklyGoal":weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)])
+            }
         }
     }
     
@@ -97,20 +108,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
                 }
                 return true
             }
-
+            
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        addDoneButtonOnKeyboard()
-
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func addDoneButtonOnKeyboard() {
@@ -149,12 +148,56 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func disclaimer(_ sender: Any) {
         displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
-
+        
     }
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+    
+    func loadProfile() {
+        dbRef.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("userHeight") {
+                let value = snapshot.value as? NSDictionary
+                let height = value?["userHeight"] as? String
+                self.userHeight.text = height
+            }
+            if snapshot.hasChild("weightGoal") {
+                let value = snapshot.value as? NSDictionary
+                let weightGoal = value?["weightGoal"] as? String
+                if weightGoal == "Lose Weight" {
+                    self.weightGoalSegment.selectedSegmentIndex = 0
+                } else if weightGoal == "Maintain Weight" {
+                    self.weightGoalSegment.selectedSegmentIndex = 1
+                    self.weightGoalSegment.sendActions(for: .valueChanged)
+                } else if weightGoal == "Gain Weight" {
+                    self.weightGoalSegment.selectedSegmentIndex = 2
+                }
+            }
+            if snapshot.hasChild("goalWeight") {
+                let value = snapshot.value as? NSDictionary
+                let goalWeight = value?["goalWeight"] as? String
+                self.goalWeightField.text = goalWeight
+            }
+            if snapshot.hasChild("weeklyGoal") {
+                let value = snapshot.value as? NSDictionary
+                let weeklyGoal = value?["weeklyGoal"] as? String
+                if weeklyGoal == ".5 lbs per week" {
+                    self.weeklyGoalSegment.selectedSegmentIndex = 0
+                } else if weeklyGoal == "1 lb per week" {
+                    self.weeklyGoalSegment.selectedSegmentIndex = 1
+                }
+            }
+            if snapshot.hasChild("desiredOutcome") {
+                let value = snapshot.value as? NSDictionary
+                let desiredOutcome = value?["desiredOutcome"] as? String
+                if desiredOutcome == "Gain Muscle" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 0
+                } else if desiredOutcome == "Lose Fat" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 1
+                } else if desiredOutcome == "Endurance" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 2
+                } else if desiredOutcome == "Other" {
+                    self.desiredOutcomeSegment.selectedSegmentIndex = 3
+                }
+            }
+        })
     }
-
+    
 }

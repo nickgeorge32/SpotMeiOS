@@ -8,167 +8,37 @@
 
 import UIKit
 import CoreData
-import Parse
 import Firebase
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
+    var token = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Parse.enableLocalDatastore()
         FirebaseApp.configure()
+        window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UIViewController-Login") as! ViewController
         
-        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
-            ParseMutableClientConfiguration.applicationId = "bfb05c79dcf2b7a59ab1f6b95cdcfeaebe2df1fd"
-            ParseMutableClientConfiguration.clientKey = "f6b0bf8832953260a89f04c63d7a312e9fac587b"
-            ParseMutableClientConfiguration.server = "http://ec2-52-14-126-168.us-east-2.compute.amazonaws.com/parse"
-        })
-        
-        Parse.initialize(with: parseConfiguration)
-        
-        // ****************************************************************************
-        // Uncomment and fill in with your Parse credentials:
-        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
-        //
-        // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
-        // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
-        // Uncomment the line inside ParseStartProject-Bridging-Header and the following line here:
-        // PFFacebookUtils.initializeFacebook()
-        // ****************************************************************************
-        
-        //PFUser.enableAutomaticUser()
-        
-        let defaultACL = PFACL();
-        
-        // If you would like all objects to be private by default, remove this line.
-        defaultACL.getPublicReadAccess = true
-        defaultACL.getPublicWriteAccess = true
-        
-        PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
-        
-        if application.applicationState != UIApplicationState.background {
-            // Track an app open here if we launch with a push, unless
-            // "content_available" was used to trigger a background push (introduced in iOS 7).
-            // In that case, we skip tracking here to avoid double counting the app-open.
-            /*
-             let preBackgroundPush = !application.responds(to: #selector(getter: UIApplication.backgroundRefreshStatus))
-             let oldPushHandlerOnly = !self.responds(to: #selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
-             var noPushPayload = false;
-             if let options = launchOptions {
-             noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
-             }
-             if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-             PFAnalytics.trackAppOpened(launchOptions: launchOptions)
-             }
-             */
-        }
-        
-//        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-//        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-//        
-//        application.registerUserNotificationSettings(pushNotificationSettings)
-//        application.registerForRemoteNotifications()
-        
-        Messaging.messaging().delegate = self as? MessagingDelegate
-        
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        // [START set_messaging_delegate]
+        UNUserNotificationCenter.current().delegate = self
+   
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
                 completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
         
-        application.registerForRemoteNotifications()
+                application.registerForRemoteNotifications()
+        
+        if let instanceId = InstanceID.instanceID().token() {
+            token = instanceId
+        }
         
         return true
     }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("registered")
-        var token = ""
-        for i in 0..<deviceToken.count {
-            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
-        }
-        print(token)
-        PFUser.current()?["deviceToken"] = token
-        PFUser.current()?.saveInBackground()
-        
-        Messaging.messaging().apnsToken = deviceToken
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print(error)
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
-    }
-    
-    
-    
-    //--------------------------------------
-    // MARK: Push Notifications
-    //--------------------------------------
-//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        let installation = PFInstallation.current()
-//        installation?.setDeviceTokenFrom(deviceToken)
-//        installation?.saveInBackground()
-//        PFPush.subscribeToChannel(inBackground: "") { (success, error) in
-//            if success {
-//                print("SpotMe successfully subscribed to push notifications")
-//            } else {
-//                print("SpotMe failed to subscbribe to push notification")
-//            }
-//        }
-//        
-//    }
-    
-//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-//        if error.code == 3010 {
-//            print("Push notifications are not supported in the iOS Simulator.\n")
-//        } else {
-//            print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
-//        }
-//    }
-//    
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-//        PFPush.handle(userInfo)
-//        if application.applicationState == UIApplicationState.inactive {
-//            PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
-//        }
-//    }
-    
-    ///////////////////////////////////////////////////////////
-    // Uncomment this method if you want to use Push Notifications with Background App Refresh
-    ///////////////////////////////////////////////////////////
-    // func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-    //     if application.applicationState == UIApplicationState.Inactive {
-    //         PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-    //     }
-    // }
-    
-    //--------------------------------------
-    // MARK: Facebook SDK Integration
-    //--------------------------------------
-    
-    ///////////////////////////////////////////////////////////
-    // Uncomment this method if you are using Facebook
-    ///////////////////////////////////////////////////////////
-    // func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    //     return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication, session:PFFacebookUtils.session())
-    // }
-}
 
 func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -239,58 +109,4 @@ func saveContext () {
     }
 }
 
-// [START ios_10_message_handling]
-@available(iOS 10, *)
-extension AppDelegate : UNUserNotificationCenterDelegate {
-    
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-        
-        // Change this to your preferred presentation option
-        completionHandler([])
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-        
-        completionHandler()
-    }
-}
-// [END ios_10_message_handling]
-
-extension AppDelegate : MessagingDelegate {
-    // [START refresh_token]
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-    }
-    // [END refresh_token]
-    // [START ios_10_data_message]
-    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("Received data message: \(remoteMessage.appData)")
-}
-// [END ios_10_data_message]
 }
