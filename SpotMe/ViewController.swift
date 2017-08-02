@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        //let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-        //    UIAlertAction in self.redirectUser()
-        //}
-        //alertController.addAction(okAction)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in self.redirectUser()
+        }
+        alertController.addAction(okAction)
+        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
                         self.displayAlert(title: "Login Error", message: errorMessage)
                     } else {
                         //Logged In
-                        //self.redirectUser()
+                        self.redirectUser()
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 })
@@ -112,17 +112,12 @@ class ViewController: UIViewController {
                     for object in users {
                         if let user = object as? PFUser {
                             self.isTrainer = user["isTrainer"] as! Bool
-                                                        
+                            
                             if self.isTrainer {
-                                if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil {
-                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
-                                } else {
-                                    self.performSegue(withIdentifier: "trainerDetails", sender: nil)
-                                }
- 
+
                             } else {
-                                if PFUser.current()?["photo"] != nil && PFUser.current()?["gender"] != nil && PFUser.current()?["dob"] != nil && PFUser.current()?["currentWeight"] != nil && PFUser.current()?["userHeight"] != nil && PFUser.current()?["weightGoal"] != nil && PFUser.current()?["weeklyGoal"] != nil && PFUser.current()?["desiredOutcome"] != nil {
-                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: self)
+                                if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["currentWeight"] != nil && user["weightGoal"] != nil && user["userHeight"] != nil && user["weeklyGoal"] != nil && user["desiredOutcome"] != nil {
+                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
                                 } else {
                                     self.performSegue(withIdentifier: "goToUserDetails", sender: nil)
                                 }
