@@ -618,7 +618,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="bAw-dU-bXl">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="i29-2U-9LR"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="i29-2U-9LR">
+                            <connections>
+                                <action selector="addEvent:" destination="apd-Qg-Xvn" id="Wr8-oJ-Xqz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="lLe-Xx-R1B"/>
                     </navigationItem>
                     <connections>
@@ -747,6 +751,7 @@
         <!--Near Me-->
         <scene sceneID="6lC-wW-dgA">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqX-Gm-qwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FZ8-86-1tK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Near Me" id="bap-o8-12T"/>
                     <toolbarItems/>
@@ -759,14 +764,13 @@
                         <segue destination="dIo-zm-QBn" kind="relationship" relationship="rootViewController" id="k0z-Ik-JoW"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mqX-Gm-qwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3032.8000000000002" y="-609.44527736131943"/>
         </scene>
         <!--Settings-->
         <scene sceneID="w6X-6R-Xog">
             <objects>
-                <tableViewController id="Igk-FT-xK1" customClass="SettingsTableViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Settings" id="Igk-FT-xK1" customClass="SettingsTableViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Mwy-Ss-uek">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -803,6 +807,7 @@
         <!--Friends-->
         <scene sceneID="bvA-fF-Tj1">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1A-ju-FTo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="UINavigationController-zCs-Ot-xLO" automaticallyAdjustsScrollViewInsets="NO" id="t9v-qv-nxC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" id="AT4-Sw-EZM"/>
                     <toolbarItems/>
@@ -815,13 +820,13 @@
                         <segue destination="zNS-vE-RQm" kind="relationship" relationship="rootViewController" id="wZa-wD-FNF"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b1A-ju-FTo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3033" y="1590"/>
         </scene>
         <!--Events-->
         <scene sceneID="dh4-So-gNd">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0c9-a3-Qxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BUM-OA-zd5" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" id="4tq-Ve-oOQ"/>
                     <toolbarItems/>
@@ -834,13 +839,13 @@
                         <segue destination="apd-Qg-Xvn" kind="relationship" relationship="rootViewController" id="NY1-7O-g6e"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0c9-a3-Qxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3032.8000000000002" y="-1343.4782608695652"/>
         </scene>
         <!--Home-->
         <scene sceneID="uOH-X7-xdI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PdO-Kp-VLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T8c-S1-vo0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="5XM-6n-LX2"/>
                     <toolbarItems/>
@@ -853,7 +858,6 @@
                         <segue destination="Dc2-pM-kef" kind="relationship" relationship="rootViewController" id="0rM-nh-DoT"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PdO-Kp-VLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3032.8000000000002" y="122.78860569715144"/>
         </scene>
@@ -863,6 +867,6 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lwr-sd-at0"/>
+        <segue reference="Xfh-TR-vWA"/>
     </inferredMetricsTieBreakers>
 </document>

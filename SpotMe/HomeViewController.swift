@@ -80,7 +80,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.displayAlert(title: "Error", message: errorMessage)
                 }
             } else {
-                self.displayAlert(title: "Success", message: "Profile Saved!")
+                //self.displayAlert(title: "Success", message: "Profile Saved!")
             }
         })
         

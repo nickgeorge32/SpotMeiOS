@@ -13,6 +13,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.isHidden = false
     }
 
     // MARK: - Table view data source

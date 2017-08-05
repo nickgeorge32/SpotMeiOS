@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in self.redirectUser()
+            UIAlertAction in self.checkServerStatus()// self.redirectUser()
         }
         alertController.addAction(okAction)
         //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -83,7 +83,8 @@ class ViewController: UIViewController {
                         self.displayAlert(title: "Login Error", message: errorMessage)
                     } else {
                         //Logged In
-                        self.redirectUser()
+                        //self.redirectUser()
+                        self.checkServerStatus()
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 })
@@ -126,6 +127,17 @@ class ViewController: UIViewController {
                     }
                 }
             })
+        }
+    }
+    
+    func checkServerStatus() {
+        PFConfig.getInBackground { (config, error) in
+            let serverStatus = config?["serverStatus"] as? Bool
+            if serverStatus! {
+                self.redirectUser()
+            } else {
+                self.displayAlert(title: "Server Status", message: "We apolgize the servers are currently being worked on at this time to bring you the best experience possible!")
+            }
         }
     }
 }

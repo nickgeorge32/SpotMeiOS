@@ -230,7 +230,7 @@ class MessageViewController: JSQMessagesViewController {
                 
                 request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAAmxg0AHY:APA91bEV7GykrT5Z59-WElvzB826NQzYMU21oUn0WFd7JZvE1mC-1wQ9i5J-YR2zYqwhmw-vCVUtGEgzsMENIsKEiUsJ2-xDo_wP_AxGjRK3mcVT7w6ePZf_hpp4eGyX8rZ7cjatrCCo"]
                 request.httpMethod = "POST"
-                request.httpBody = "{\"to\": \"\(self.recipientFCM)\",\"notification\":{\"body\":\"You have a new message from \(self.user2)!\"}}".data(using: .utf8)
+                request.httpBody = "{\"to\": \"\(self.recipientFCM)\",\"notification\":{\"body\":\"You have a new message from \(PFUser.current()?["username"])!\"}}".data(using: .utf8)
                 
                 URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
                     if error != nil {
