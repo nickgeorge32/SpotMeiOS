@@ -32,6 +32,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func logout(_ sender: Any) {
         PFUser.logOut()
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
 
@@ -126,6 +128,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    //TODO: Add like and comment
     func loadPosts() {
             let query = PFQuery(className: "FriendRequests")
             query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
