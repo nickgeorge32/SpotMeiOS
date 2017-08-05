@@ -66,7 +66,7 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         query.findObjectsInBackground { (objects, error) in
             if error == nil && objects != nil {
                 if (objects?.count)! > 0 {
-                    for users in objects! {
+                    for _ in objects! {
                         badgeValue = (objects?.count)!
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                     }
