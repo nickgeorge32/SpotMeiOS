@@ -16,7 +16,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     var userWeight:String!
     var isTrainer:Bool!
     var token = ""
-
+    
     
     @IBOutlet var userHeight: UITextField!
     @IBOutlet var weightGoalSegment: UISegmentedControl!
@@ -79,38 +79,43 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if weightGoalSegment.selectedSegmentIndex == 0 {
-            if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
-                displayAlert(title: "Error in form", message: "All fields must be filled")
-                return false
-            } else {
-                if Int(goalWeightField.text!)! > Int(userWeight)! {
-                    displayAlert(title: "Error in selection", message: "Because you chose to lose weight, your goal weight should be less than your current weight")
-                    return false
-                }
-                return true
-            }
-            
-        } else if weightGoalSegment.selectedSegmentIndex == 1 {
-            if (userHeight.text?.isEmpty)! {
-                displayAlert(title: "Error in form", message: "All fields must be filled")
-                return false
-            } else {
-                return true
-            }
+        if identifier == "back" {
+            return true
         } else {
-            if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
-                displayAlert(title: "Error in form", message: "All fields must be filled")
-                return false
-            } else {
-                if Int(goalWeightField.text!)! < Int(userWeight)! {
-                    displayAlert(title: "Error in Selection", message: "Because you chose to gain weight, your goal weight should be more than your current weight")
+            if weightGoalSegment.selectedSegmentIndex == 0 {
+                if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
+                    displayAlert(title: "Error in form", message: "All fields must be filled")
                     return false
+                } else {
+                    if Int(goalWeightField.text!)! > Int(userWeight)! {
+                        displayAlert(title: "Error in selection", message: "Because you chose to lose weight, your goal weight should be less than your current weight")
+                        return false
+                    }
+                    return true
                 }
-                return true
+                
+            } else if weightGoalSegment.selectedSegmentIndex == 1 {
+                if (userHeight.text?.isEmpty)! {
+                    displayAlert(title: "Error in form", message: "All fields must be filled")
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
+                    displayAlert(title: "Error in form", message: "All fields must be filled")
+                    return false
+                } else {
+                    if Int(goalWeightField.text!)! < Int(userWeight)! {
+                        displayAlert(title: "Error in Selection", message: "Because you chose to gain weight, your goal weight should be more than your current weight")
+                        return false
+                    }
+                    return true
+                }
+                
             }
-
         }
+        
     }
     
     func addDoneButtonOnKeyboard() {
@@ -149,12 +154,12 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func disclaimer(_ sender: Any) {
         displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
-
+        
     }
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-
+    
 }

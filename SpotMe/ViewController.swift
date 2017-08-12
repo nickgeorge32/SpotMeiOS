@@ -115,7 +115,25 @@ class ViewController: UIViewController {
                             self.isTrainer = user["isTrainer"] as! Bool
                             
                             if self.isTrainer {
-
+                                if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["userHeight"] != nil {
+                                    let query = PFQuery(className: "Trainers")
+                                    query.whereKey("username", equalTo: (PFUser.current()?["username"])!)
+                                    query.findObjectsInBackground(block: { (objects, error) in
+                                        if let trainers = objects {
+                                            for object in trainers {
+                                                if let trainer = object as? PFObject {
+                                                    if trainer["trainerCert"] != nil && trainer["specialty"] != nil {
+                                                        self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                                    } else {
+                                                        self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                }
                             } else {
                                 if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["currentWeight"] != nil && user["weightGoal"] != nil && user["userHeight"] != nil && user["weeklyGoal"] != nil && user["desiredOutcome"] != nil {
                                     self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)

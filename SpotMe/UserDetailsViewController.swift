@@ -64,8 +64,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         dobField.text = dateFormatter.string(from: sender.date)
     }
     
-    func doneButton(sender:UIButton)
-    {
+    func doneButton(sender:UIButton) {
         dobField.resignFirstResponder() // To resign the inputView on clicking done.
     }
     
@@ -77,7 +76,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         if segue.identifier == "moreDetails" {
             let detailsCont = segue.destination as! UserDetailsContViewController
             detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
-            detailsCont.profileImage = userImage.image
+            detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(userImage.image!, 0.1)!)
             detailsCont.isTrainer = isTrainer
             if dobField.text != "" && userWeightField.text != "" {
                 detailsCont.dob = dobField.text
@@ -118,8 +117,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         addDoneButtonOnKeyboard()
     }
     
-    func addDoneButtonOnKeyboard()
-    {
+    func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
         doneToolbar.barStyle = UIBarStyle.default
         
@@ -137,14 +135,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         
     }
     
-    func doneButtonAction()
-    {
+    func doneButtonAction() {
         self.userWeightField.resignFirstResponder()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
