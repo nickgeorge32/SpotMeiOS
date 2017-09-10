@@ -10,6 +10,7 @@
 		0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */; };
 		0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010651391F0BF96500D9DFF8 /* User.storyboard */; };
 		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
+		011E0B371F656BBF009799DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E0B361F656BBF009799DA /* PostViewController.swift */; };
 		0121907D1F353CD2001E7799 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121907C1F353CD2001E7799 /* SettingsTableViewController.swift */; };
 		013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E21E8788C5003403FB /* StoreKit.framework */; };
 		013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E61E878902003403FB /* AudioToolbox.framework */; };
@@ -42,6 +43,7 @@
 		0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		0106513A1F0BF96500D9DFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
 		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
+		011E0B361F656BBF009799DA /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0121907C1F353CD2001E7799 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		013FF2E11E8788B9003403FB /* SpotMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotMe.entitlements; sourceTree = "<group>"; };
 		013FF2E21E8788C5003403FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -113,6 +115,7 @@
 				014DB4121EEC4A43000E27FC /* MessageViewController.swift */,
 				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
 				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
+				011E0B361F656BBF009799DA /* PostViewController.swift */,
 				0121907C1F353CD2001E7799 /* SettingsTableViewController.swift */,
 				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
 				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
@@ -354,6 +357,7 @@
 				014DB4131EEC4A43000E27FC /* MessageViewController.swift in Sources */,
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
 				015B2A351F2E787B001C186E /* HomeViewController.swift in Sources */,
+				011E0B371F656BBF009799DA /* PostViewController.swift in Sources */,
 				01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */,
 				01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
