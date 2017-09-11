@@ -71,21 +71,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        PFUser.current()?["fcmReg"] = token
-        PFUser.current()?.saveInBackground(block: { (success, error) in
-            if error != nil {
-                var errorMessage = "Unable to save details"
-                if let parseError = (error!as NSError).userInfo["error"] as? String {
-                    errorMessage = parseError
-                    self.displayAlert(title: "Error", message: errorMessage)
+        if token.isEmpty {
+            
+        } else {
+            PFUser.current()?["fcmReg"] = token
+            PFUser.current()?.saveInBackground(block: { (success, error) in
+                if error != nil {
+                    var errorMessage = "Unable to save details"
+                    if let parseError = (error!as NSError).userInfo["error"] as? String {
+                        errorMessage = parseError
+                        self.displayAlert(title: "Error", message: errorMessage)
+                    }
+                } else {
+                    self.displayAlert(title: "Success", message: "Profile Saved!")
                 }
-            } else {
-                //self.displayAlert(title: "Success", message: "Profile Saved!")
-            }
-        })
+            })
+        }
         
         //pendingFriendRequestCheck()
-        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,7 +120,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.findObjectsInBackground { (objects, error) in
             if error == nil && objects != nil {
                 if (objects?.count)! > 0 {
-                    for users in objects! {
+                    for _ in objects! {
                         badgeValue = (objects?.count)!
                         self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
                     }
@@ -161,12 +164,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             self.messages.append(String(describing: (users["postText"])!))
                             self.imageFiles.append(users["profileImage"] as! PFFile)
                             
+                            var user = users["username"] as! PFObject
+                            var trainer = user["gender"] as! String
+                            print(trainer)
+                            
                             self.refresher.endRefreshing()
                             
                             self.tableView.reloadData()
                         }
                     } else {
-                        print("error is \(error)")
+                        print("error is \(String(describing: error))")
                     }
                 }
             }

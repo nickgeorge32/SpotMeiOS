@@ -20,6 +20,8 @@ class PostViewController: UIViewController, UITextViewDelegate {
         posts["username"] = pointer
         posts.saveInBackground()
         
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     override func viewDidLoad() {

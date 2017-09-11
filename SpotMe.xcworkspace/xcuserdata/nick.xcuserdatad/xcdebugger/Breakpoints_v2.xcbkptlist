@@ -9,13 +9,77 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpotMe/FriendsTableViewController.swift"
-            timestampString = "523593209.672918"
+            filePath = "SpotMe/ViewController.swift"
+            timestampString = "523390733.089983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "tableView(_:commit:forRowAt:)"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "redirectUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotMe.ViewController.(redirectUser () -&gt; ()).(closure #1)"
+                  moduleName = "SpotMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nick/Documents/xCode/SpotMe/SpotMe/ViewController.swift"
+                  timestampString = "523385987.187997"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "2411">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotMe.ViewController.(redirectUser () -&gt; ()).(closure #1)"
+                  moduleName = "SpotMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nick/Documents/xCode/SpotMe/SpotMe/ViewController.swift"
+                  timestampString = "523385987.198382"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "3570">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpotMe/HomeViewController.swift"
+            timestampString = "523421907.505537"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpotMe/HomeViewController.swift"
+            timestampString = "523421988.822128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "loadPosts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
