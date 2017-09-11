@@ -33,6 +33,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         friendCheck()
     }
     
+    //TODO: change queries to reflect pointers
+    
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
