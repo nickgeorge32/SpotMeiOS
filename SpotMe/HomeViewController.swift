@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import FirebaseMessaging
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     var friends = [String]()
     var posts = [String]()
     var messages = [String]()
@@ -32,6 +32,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func logout(_ sender: Any) {
         PFUser.logOut()
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
 
@@ -129,6 +131,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    //TODO: Add like and comment
     func loadPosts() {
             let query = PFQuery(className: "FriendRequests")
             query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
@@ -147,8 +150,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            let postsQuery = PFQuery(className: "Posts")
-            postsQuery.whereKey("user", containedIn: self.friends as [AnyObject])
+            let myPostsQuery = PFQuery(className: "Posts")
+            myPostsQuery.whereKey("user", equalTo: "nickgeorge32")
+            let othersPostsQuery = PFQuery(className: "Posts")
+            othersPostsQuery.whereKey("user", containedIn: self.friends as [AnyObject])
+            let postsQuery = PFQuery.orQuery(withSubqueries: [myPostsQuery, othersPostsQuery])
+            postsQuery.includeKey("username")
             postsQuery.findObjectsInBackground { (objects, error) in
                 if error == nil && objects != nil {
                     if (objects?.count)! > 0 {
@@ -167,6 +174,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "postSegue" {
+            let popoverViewController = segue.destination as! UIViewController
+            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+            popoverViewController.popoverPresentationController!.delegate = self
+
+        }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        // return UIModalPresentationStyle.FullScreen
+        return UIModalPresentationStyle.none
     }
 
 }

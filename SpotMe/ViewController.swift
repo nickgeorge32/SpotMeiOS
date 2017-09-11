@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in self.redirectUser()
+            UIAlertAction in self.checkServerStatus()// self.redirectUser()
         }
         alertController.addAction(okAction)
         //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -83,7 +83,8 @@ class ViewController: UIViewController {
                         self.displayAlert(title: "Login Error", message: errorMessage)
                     } else {
                         //Logged In
-                        self.redirectUser()
+                        //self.redirectUser()
+                        self.checkServerStatus()
                         UIApplication.shared.endIgnoringInteractionEvents()
                     }
                 })
@@ -114,7 +115,25 @@ class ViewController: UIViewController {
                             self.isTrainer = user["isTrainer"] as! Bool
                             
                             if self.isTrainer {
-
+                                if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["userHeight"] != nil {
+                                    let query = PFQuery(className: "Trainers")
+                                    query.whereKey("username", equalTo: (PFUser.current()?["username"])!)
+                                    query.findObjectsInBackground(block: { (objects, error) in
+                                        if let trainers = objects {
+                                            for object in trainers {
+                                                if let trainer = object as? PFObject {
+                                                    if trainer["trainerCert"] != nil && trainer["specialty"] != nil {
+                                                        self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                                    } else {
+                                                        self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                }
                             } else {
                                 if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["currentWeight"] != nil && user["weightGoal"] != nil && user["userHeight"] != nil && user["weeklyGoal"] != nil && user["desiredOutcome"] != nil {
                                     self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
@@ -126,6 +145,17 @@ class ViewController: UIViewController {
                     }
                 }
             })
+        }
+    }
+    
+    func checkServerStatus() {
+        PFConfig.getInBackground { (config, error) in
+            let serverStatus = config?["serverStatus"] as? Bool
+            if serverStatus! {
+                self.redirectUser()
+            } else {
+                self.displayAlert(title: "Server Status", message: "We apolgize the servers are currently being worked on at this time to bring you the best experience possible!")
+            }
         }
     }
 }

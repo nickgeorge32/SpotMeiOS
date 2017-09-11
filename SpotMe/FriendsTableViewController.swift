@@ -147,9 +147,24 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: (PFUser.current()?["username"])!)
+            query.whereKey("requestedFriend", equalTo: (tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+            query.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteEventually()
+                    self.friendsArray.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            })
+            let query2 = PFQuery(className: "FriendRequests")
+            query2.whereKey("requestingUser", equalTo: (tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+            query2.whereKey("requestedFriend", equalTo: (PFUser.current()?["username"])!)
+            query2.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteEventually()
+                }
+            })
+        }
     }
 }
