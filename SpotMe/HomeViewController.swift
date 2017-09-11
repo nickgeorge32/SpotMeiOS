@@ -164,6 +164,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             self.messages.append(String(describing: (users["postText"])!))
                             self.imageFiles.append(users["profileImage"] as! PFFile)
                             
+                            var user = users["username"] as! PFObject
+                            var trainer = user["gender"] as! String
+                            print(trainer)
+                            
                             self.refresher.endRefreshing()
                             
                             self.tableView.reloadData()

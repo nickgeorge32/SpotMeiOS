@@ -21,6 +21,8 @@ class PostViewController: UIViewController, UITextViewDelegate {
         posts["username"] = pointer
         posts.saveInBackground()
         
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     override func viewDidLoad() {
@@ -30,7 +32,6 @@ class PostViewController: UIViewController, UITextViewDelegate {
         postText.layer.borderWidth = 1
         postText.text = "Enter Post"
         postText.textColor = UIColor.lightGray
-        //postText.selectedTextRange = postText.textRange(from: postText.beginningOfDocument, to: postText.beginningOfDocument)
         
     }
     
