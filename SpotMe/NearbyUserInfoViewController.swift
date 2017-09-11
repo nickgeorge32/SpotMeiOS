@@ -25,6 +25,8 @@ class NearbyUserInfoViewController: UIViewController {
     var activeRequest = false
     var isFriend = false
     
+    //TODO: change queries to reflect pointers
+    
     func requestActive() {
         
         let query = PFQuery(className: "FriendRequests")
