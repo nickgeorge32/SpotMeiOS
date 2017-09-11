@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Parse
 
 class PostViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var postText: UITextView!
     
     @IBAction func postButton(_ sender: Any) {
+        let pointer = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.current()?.objectId)
+        
+        let posts = PFObject(className: "Posts")
+        posts["postText"] = postText.text
+        posts["username"] = pointer
+        posts.saveInBackground()
         
     }
     
@@ -20,6 +27,18 @@ class PostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         self.postText.delegate = self
+        postText.layer.borderWidth = 1
+        postText.text = "Enter Post"
+        postText.textColor = UIColor.lightGray
+        //postText.selectedTextRange = postText.textRange(from: postText.beginningOfDocument, to: postText.beginningOfDocument)
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
 
     func textViewDidChange(textView: UITextView) {
@@ -39,6 +58,13 @@ class PostViewController: UIViewController, UITextViewDelegate {
         }
         self.postText.frame = newFrame
         
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Enter Post"
+            textView.textColor = UIColor.lightGray
+        }
     }
     
 }

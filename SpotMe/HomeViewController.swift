@@ -147,8 +147,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            let postsQuery = PFQuery(className: "Posts")
-            postsQuery.whereKey("user", containedIn: self.friends as [AnyObject])
+            let myPostsQuery = PFQuery(className: "Posts")
+            myPostsQuery.whereKey("user", equalTo: "nickgeorge32")
+            let othersPostsQuery = PFQuery(className: "Posts")
+            othersPostsQuery.whereKey("user", containedIn: self.friends as [AnyObject])
+            let postsQuery = PFQuery.orQuery(withSubqueries: [myPostsQuery, othersPostsQuery])
+            postsQuery.includeKey("username")
             postsQuery.findObjectsInBackground { (objects, error) in
                 if error == nil && objects != nil {
                     if (objects?.count)! > 0 {
