@@ -133,40 +133,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //TODO: Add like and comment
     func loadPosts() {
-            let query = PFQuery(className: "FriendRequests")
-            query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
-            query.findObjectsInBackground { (objects, error) in
-                if let users = objects {
-                    for object in users {
-                        if let user = object as? PFObject {
-                            if user != nil {
-                                self.friends.append(String(describing: (user["requestedFriend"])!))
-                                self.friends = self.friends.filter(){$0 != ""}
-
+        let query = PFQuery(className: "FriendRequests")
+        query.includeKey("requestingUser")
+        query.includeKey("requestedFriend")
+        
+        query.findObjectsInBackground { (objects, error) in
+            if(error == nil) {
+                if let friend = objects as? [PFObject] {
+                    for something in friend {
+                        if let requestingPointer:PFObject = something["requestingUser"] as? PFObject {
+                            if requestingPointer["username"] as! String == PFUser.current()?.username {
+                                    self.friends.append(String(describing: ((something["requestedFriend"] as! PFUser).username)!))
                             }
                         }
                     }
+                } else {
+                    print(error)
                 }
             }
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            let myPostsQuery = PFQuery(className: "Posts")
-            myPostsQuery.whereKey("user", equalTo: "nickgeorge32")
-            let othersPostsQuery = PFQuery(className: "Posts")
-            othersPostsQuery.whereKey("user", containedIn: self.friends as [AnyObject])
-            let postsQuery = PFQuery.orQuery(withSubqueries: [myPostsQuery, othersPostsQuery])
+            let postsQuery = PFQuery(className: "Posts")
             postsQuery.includeKey("username")
+            
             postsQuery.findObjectsInBackground { (objects, error) in
                 if error == nil && objects != nil {
                     if (objects?.count)! > 0 {
                         for users in objects! {
-                            self.posts.append(String(describing: (users["user"])!))
-                            self.messages.append(String(describing: (users["postText"])!))
-                            self.imageFiles.append(users["profileImage"] as! PFFile)
-                            
-                            var user = users["username"] as! PFObject
-                            var trainer = user["gender"] as! String
-                            print(trainer)
+                            if let pointer: PFObject = users["username"] as? PFObject {
+                                if pointer["username"] as! String == PFUser.current()?.username || self.friends.contains(pointer["username"] as! String)   {
+                                    self.posts.append(String(describing: ((users["username"] as! PFUser).username)!))
+                                    self.messages.append(String(describing: (users["postText"])!))
+                                    self.imageFiles.append(pointer["photo"] as! PFFile)
+                                }
+                            }
                             
                             self.refresher.endRefreshing()
                             
