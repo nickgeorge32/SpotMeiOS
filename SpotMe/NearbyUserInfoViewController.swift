@@ -19,13 +19,11 @@ class NearbyUserInfoViewController: UIViewController {
     @IBOutlet var rejectUserButton: UIButton!
     
     var passedUsername = ""
+    var passedId = ""
     var buttonText = "Add Friend"
     
     var activeRequest = false
     var isFriend = false
-    
-    //TODO: dasf
-    //FIXME: kffdsajf
     
     func requestActive() {
         

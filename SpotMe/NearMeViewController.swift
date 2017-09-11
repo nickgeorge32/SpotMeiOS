@@ -15,7 +15,8 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var nearbyUsers = [String]()
     var nearbyUserLocations = [CLLocationCoordinate2D]()
-    var nearUser: String? = ""
+    var nearUserId: String? = ""
+    var nearUsername: String? = ""
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var userLabel: UILabel!
@@ -87,11 +88,6 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -116,10 +112,22 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation {
-            nearUser = annotation.title!
+            let query = PFUser.query()
+            query?.whereKey("username", equalTo: annotation.title!)
+            query?.findObjectsInBackground(block: { (objects, error) in
+                if let users = objects {
+                    for object in users {
+                        if let user = object as? PFUser {
+                            self.nearUserId = user.objectId
+                            self.nearUsername = user.username
+                        }
+                    }
+                }
+            })
 
             let myVC = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
-            myVC.passedUsername = nearUser!
+            myVC.passedId = nearUserId!
+            myVC.passedUsername = nearUsername!
             mapView.deselectAnnotation(view.annotation, animated: true)
             navigationController?.pushViewController(myVC, animated: true)
         }
