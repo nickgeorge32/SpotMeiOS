@@ -46,8 +46,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view.
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(HomeViewController.refresh), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name:NSNotification.Name(rawValue: "NotificationID"), object: nil)
         
     }
     

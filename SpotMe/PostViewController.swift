@@ -21,8 +21,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
         posts.saveInBackground()
         
         self.dismiss(animated: true) {
-            let homeVC = HomeViewController()
-            homeVC.refresh()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationID"), object: nil)
         }
         
     }
