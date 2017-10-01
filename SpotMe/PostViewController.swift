@@ -20,7 +20,10 @@ class PostViewController: UIViewController, UITextViewDelegate {
         posts["username"] = pointer
         posts.saveInBackground()
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            let homeVC = HomeViewController()
+            homeVC.refresh()
+        }
         
     }
     

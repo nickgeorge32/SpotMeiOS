@@ -139,16 +139,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         query.findObjectsInBackground { (objects, error) in
             if(error == nil) {
-                if let friend = objects as? [PFObject] {
+                if let friend = objects {
                     for something in friend {
                         if let requestingPointer:PFObject = something["requestingUser"] as? PFObject {
-                            if requestingPointer["username"] as! String == PFUser.current()?.username {
+                            if requestingPointer["username"] as? String == PFUser.current()?.username {
                                     self.friends.append(String(describing: ((something["requestedFriend"] as! PFUser).username)!))
                             }
                         }
                     }
                 } else {
-                    print(error)
+                    print(error!)
                 }
             }
         }
@@ -162,7 +162,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if (objects?.count)! > 0 {
                         for users in objects! {
                             if let pointer: PFObject = users["username"] as? PFObject {
-                                if pointer["username"] as! String == PFUser.current()?.username || self.friends.contains(pointer["username"] as! String)   {
+                                if pointer["username"] as? String == PFUser.current()?.username || self.friends.contains(pointer["username"] as! String)   {
                                     self.posts.append(String(describing: ((users["username"] as! PFUser).username)!))
                                     self.messages.append(String(describing: (users["postText"])!))
                                     self.imageFiles.append(pointer["photo"] as! PFFile)
@@ -183,7 +183,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "postSegue" {
-            let popoverViewController = segue.destination as! UIViewController
+            let popoverViewController = segue.destination
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
             popoverViewController.popoverPresentationController!.delegate = self
 
