@@ -50,19 +50,11 @@ Copyright 2017 Google
 
 Copyright 2017 Google
 
-## FirebaseAuth
-
-Copyright 2017 Google
-
 ## FirebaseCore
 
 Copyright 2017 Google
 
 ## FirebaseDatabase
-
-Copyright 2017 Google
-
-## FirebaseDynamicLinks
 
 Copyright 2017 Google
 
@@ -75,14 +67,6 @@ Copyright 2017 Google
 Copyright 2017 Google
 
 ## FirebasePerformance
-
-Copyright 2017 Google
-
-## FirebaseRemoteConfig
-
-Copyright 2017 Google
-
-## FirebaseStorage
 
 Copyright 2017 Google
 
