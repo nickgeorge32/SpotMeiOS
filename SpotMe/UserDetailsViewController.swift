@@ -57,14 +57,14 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         datePickerValueChanged(sender: datePickerView) // Set the date on start.
     }
     
-    func datePickerValueChanged(sender:UIDatePicker) {
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none
         dobField.text = dateFormatter.string(from: sender.date)
     }
     
-    func doneButton(sender:UIButton) {
+    @objc func doneButton(sender:UIButton) {
         dobField.resignFirstResponder() // To resign the inputView on clicking done.
     }
     
@@ -135,7 +135,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         
     }
     
-    func doneButtonAction() {
+    @objc func doneButtonAction() {
         self.userWeightField.resignFirstResponder()
     }
 }

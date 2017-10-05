@@ -67,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let instanceId = InstanceID.instanceID().token() {
             token = instanceId
         }
-        
         return true
     }
     

@@ -111,7 +111,7 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
         
     }
     
-    func doneButtonAction() {
+    @objc func doneButtonAction() {
         self.userHeight.resignFirstResponder()
     }
     

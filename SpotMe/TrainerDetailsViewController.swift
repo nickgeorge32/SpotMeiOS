@@ -56,7 +56,7 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
         datePickerValueChanged(sender: datePickerView)
     }
     
-    func datePickerValueChanged(sender:UIDatePicker) {
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none
@@ -98,7 +98,7 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     }
 
     
-    func doneButton(sender:UIButton) {
+    @objc func doneButton(sender:UIButton) {
         dobField.resignFirstResponder() // To resign the inputView on clicking done.
     }
     

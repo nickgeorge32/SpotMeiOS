@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet var tableView: UITableView!
 
-    func refresh() {
+    @objc func refresh() {
         friends.removeAll()
         posts.removeAll()
         messages.removeAll()
@@ -50,6 +50,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.addSubview(refresher)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name:NSNotification.Name(rawValue: "NotificationID"), object: nil)
+        
+        self.tabBarController?.customizableViewControllers = nil
         
     }
     
@@ -84,13 +86,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         errorMessage = parseError
                         self.displayAlert(title: "Error", message: errorMessage)
                     }
-                } else {
-                    self.displayAlert(title: "Success", message: "Profile Saved!")
                 }
             })
         }
-        
-        //pendingFriendRequestCheck()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,27 +115,39 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
+        
         let query = PFQuery(className: "FriendRequests")
-        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
+        query.includeKey("requestingUser")
+        query.includeKey("pendingFriendRequest")
+        
         query.findObjectsInBackground { (objects, error) in
             if error == nil && objects != nil {
                 if (objects?.count)! > 0 {
-                    for _ in objects! {
-                        badgeValue = (objects?.count)!
-                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
+                    if let users = objects {
+                        for object in users {
+                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+                                    badgeValue += 1
+                                                                        
+                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+                                    
+                                }
+                            }
+                        }
                     }
                 } else {
-                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
+                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
                 }
             }
         }
+        
     }
     
     //TODO: Add like and comment
     func loadPosts() {
-        let query = PFQuery(className: "FriendRequests")
+        let query = PFQuery(className: "Friends")
         query.includeKey("requestingUser")
-        query.includeKey("requestedFriend")
+        query.includeKey("friend")
         
         query.findObjectsInBackground { (objects, error) in
             if(error == nil) {
@@ -145,7 +155,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     for something in friend {
                         if let requestingPointer:PFObject = something["requestingUser"] as? PFObject {
                             if requestingPointer["username"] as? String == PFUser.current()?.username {
-                                    self.friends.append(String(describing: ((something["requestedFriend"] as! PFUser).username)!))
+                                    self.friends.append(String(describing: ((something["friend"] as! PFUser).username)!))
                             }
                         }
                     }
@@ -193,7 +203,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        // return UIModalPresentationStyle.FullScreen
         return UIModalPresentationStyle.none
     }
 

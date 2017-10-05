@@ -137,7 +137,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func doneButtonAction() {
+    @objc func doneButtonAction() {
         self.userHeight.resignFirstResponder()
         self.goalWeightField.resignFirstResponder()
     }

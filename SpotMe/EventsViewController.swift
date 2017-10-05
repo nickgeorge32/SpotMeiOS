@@ -15,7 +15,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var tableView: UITableView!
     
-    func refresh() {
+    @objc func refresh() {
         events.removeAll()
         
         loadEvents()
@@ -80,20 +80,32 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func pendingFriendRequestCheck() {
         var badgeValue = 0
+        
         let query = PFQuery(className: "FriendRequests")
-        query.whereKey("pendingRequestUser", equalTo: (PFUser.current()?.username!)!)
+        query.includeKey("requestingUser")
+        query.includeKey("pendingFriendRequest")
+        
         query.findObjectsInBackground { (objects, error) in
             if error == nil && objects != nil {
                 if (objects?.count)! > 0 {
-                    for users in objects! {
-                        badgeValue = (objects?.count)!
-                        self.tabBarController?.tabBar.items?[4].badgeValue = String(badgeValue)
+                    if let users = objects {
+                        for object in users {
+                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+                                    badgeValue += 1
+                                    
+                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+                                    
+                                }
+                            }
+                        }
                     }
                 } else {
-                    self.tabBarController?.tabBar.items?[4].badgeValue = nil
+                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
                 }
             }
         }
+        
     }
     
     func loadEvents() {

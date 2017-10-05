@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Parse
 import Firebase
+import Parse
 
 class ViewController: UIViewController {
     @IBOutlet var usernameField: UITextField!
