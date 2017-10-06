@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		010489F71F2D2A3F007F207A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010489F61F2D2A3F007F207A /* SettingsTableViewController.swift */; };
 		010489F91F2D2E7D007F207A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010489F81F2D2E7D007F207A /* AdSupport.framework */; };
 		0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */; };
 		0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010651391F0BF96500D9DFF8 /* User.storyboard */; };
@@ -41,7 +40,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		010489F61F2D2A3F007F207A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		010489F81F2D2E7D007F207A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		0106513A1F0BF96500D9DFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				014DB4121EEC4A43000E27FC /* MessageViewController.swift */,
 				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
 				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
-				010489F61F2D2A3F007F207A /* SettingsTableViewController.swift */,
 				0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */,
 				0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */,
 			);
@@ -376,7 +373,6 @@
 				01099C281F873CB0001C7583 /* TrainerDetailsContViewController.swift in Sources */,
 				01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */,
 				01BD88FE1F12997500E21F21 /* EventDetailsViewController.swift in Sources */,
-				010489F71F2D2A3F007F207A /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
