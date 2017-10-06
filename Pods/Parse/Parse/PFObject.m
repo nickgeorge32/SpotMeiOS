@@ -310,7 +310,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 // @param error  The reason why it can't be serialized.
 + (BOOL)canBeSerializedAsValue:(id)value
                    afterSaving:(NSMutableArray *)saved
-                         error:(NSError * __autoreleasing *)error {
+                         error:(NSError **)error {
     if ([value isKindOfClass:[PFObject class]]) {
         PFObject *object = (PFObject *)value;
         if (!object.objectId && ![saved containsObject:object]) {
@@ -776,9 +776,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                                    defaultClassName:defaultClassName
                                        completeData:(selectedKeys == nil)
                                             decoder:[PFDecoder objectDecoder]];
-    if (selectedKeys) {
-        [result->_availableKeys addObjectsFromArray:selectedKeys];
-    }
+    [result->_availableKeys addObjectsFromArray:selectedKeys];
     return result;
 }
 
@@ -795,7 +793,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                completeData:(BOOL)completeData
                     decoder:(PFDecoder *)decoder {
     NSString *objectId = nil;
-    NSString *className = defaultClassName;
+    NSString *className = nil;
     if (dictionary != nil) {
         objectId = dictionary[@"objectId"];
         className = dictionary[@"className"] ?: defaultClassName;
@@ -966,7 +964,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 }
 
                 PFOperationSet *localOperationSet = [self unsavedChanges];
-                if (localOperationSet.updatedAt != nil && remoteOperationSet.updatedAt != nil &&
+                if (localOperationSet.updatedAt != nil &&
                     [localOperationSet.updatedAt compare:remoteOperationSet.updatedAt] != NSOrderedAscending) {
                     [localOperationSet mergeOperationSet:remoteOperationSet];
                 } else {
@@ -1098,7 +1096,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                         }
                         return task;
                     } @finally {
-                       
+                        [[Parse _currentManager].eventuallyQueue _notifyTestHelperObjectUpdated];
                     }
                 }];
                 return [BFTask taskWithResult:saveTask];
@@ -1306,9 +1304,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 state.updatedAt = state.createdAt;
             }
         }];
-        if (result.allKeys) {
-            [_availableKeys addObjectsFromArray:result.allKeys];
-        }
+        [_availableKeys addObjectsFromArray:result.allKeys];
 
         dirty = NO;
     }

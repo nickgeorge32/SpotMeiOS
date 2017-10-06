@@ -71,4 +71,4 @@
 
 @end
 
-extern void forceLoadCategory_BFTask_Private(void);
+extern void forceLoadCategory_BFTask_Private();

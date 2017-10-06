@@ -113,9 +113,6 @@ static NSDataWritingOptions _PFFileManagerDefaultDataWritingOptions() {
 }
 
 + (BFTask *)moveItemAsyncAtPath:(NSString *)fromPath toPath:(NSString *)toPath {
-    if (toPath == nil) {
-        return [BFTask taskWithError:[NSError errorWithDomain:@"destination path is nil" code:-1 userInfo:nil]];
-    }
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         NSError *error = nil;
         [[NSFileManager defaultManager] moveItemAtPath:fromPath toPath:toPath error:&error];

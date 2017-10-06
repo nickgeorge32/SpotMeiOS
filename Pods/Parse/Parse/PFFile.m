@@ -410,7 +410,7 @@
 #pragma mark - Staging
 ///--------------------------------------
 
-- (BOOL)_stageWithData:(NSData *)data error:(NSError * __autoreleasing *)error {
+- (BOOL)_stageWithData:(NSData *)data error:(NSError **)error {
     __block BOOL result = NO;
     [self _performDataAccessBlock:^{
         _stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncWithData:data
@@ -423,7 +423,7 @@
     return result;
 }
 
-- (BOOL)_stageWithPath:(NSString *)path error:(NSError * __autoreleasing *)error {
+- (BOOL)_stageWithPath:(NSString *)path error:(NSError **)error {
     __block BOOL result = NO;
     [self _performDataAccessBlock:^{
         _stagedFilePath = [[[[self class] fileController].fileStagingController stageFileAsyncAtPath:path

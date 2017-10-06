@@ -94,9 +94,7 @@ static inline NSString *stringByCapitalizingFirstCharacter(NSString *string) {
         propertySetter = [NSString stringWithFormat:@"set%@:", stringByCapitalizingFirstCharacter(_name)];
     }
 
-    if (propertySetter != nil) {
-        _setterSelector = NSSelectorFromString(propertySetter);
-    }
+    _setterSelector = NSSelectorFromString(propertySetter);
 
     if (_associationType == PFPropertyInfoAssociationTypeDefault) {
         BOOL isCopy = safeStringWithPropertyAttributeValue(objcProperty, "C") != nil;
