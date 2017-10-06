@@ -51,14 +51,15 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                         for object in users {
                             if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
                                 if requestedPointer["username"] as? String == PFUser.current()?.username {
-                                    badgeValue += 1
-                                    
-                                    self.pendingRequestsArray.append(String(describing: ((object["requestingUser"] as! PFUser).username)!) + " (Pending)")
-                                    self.isFriend.append(false)
-                                    
-                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
-                                    
-                                    self.refresher.endRefreshing()
+                                badgeValue += 1
+                                
+                                self.pendingRequestsArray.append(String(describing: ((object["requestingUser"] as! PFUser).username)!) + " (Pending)")
+                                self.isFriend.append(false)
+                                
+                                self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+                                
+                                self.refresher.endRefreshing()
+
                                 }
                             }
                         }
@@ -110,7 +111,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         refresher.addTarget(self, action: #selector(FriendsTableViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
     }
-    
+
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -148,7 +149,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         navigationController?.pushViewController(showRequestingUserInfo, animated: true)
-        
+
     }
     
     // Override to support editing the table view.

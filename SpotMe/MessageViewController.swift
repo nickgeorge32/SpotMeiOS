@@ -225,7 +225,8 @@ class MessageViewController: JSQMessagesViewController {
             }
         })
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { 
+
             if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
                 var request = URLRequest(url: url)
                 

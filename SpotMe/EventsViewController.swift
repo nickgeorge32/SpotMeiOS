@@ -33,7 +33,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         alertController.addAction(contactAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +54,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func addEvent(_ sender: Any) {
         displayAlert(title: "Coming Soon", message: "We currently do not support adding events via the app at this time. We are working diligently to make this available to all. If you would like to submit your event to us by email, we will add it to the app within 24hrs.")
     }
+
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

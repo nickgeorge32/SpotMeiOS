@@ -17,7 +17,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var nearbyUserLocations = [CLLocationCoordinate2D]()
     var nearUserId: String? = ""
     var nearUsername: String? = ""
-    
+
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var userLabel: UILabel!
     
@@ -124,7 +124,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                     }
                 }
             })
-            
+
             let myVC = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
             myVC.passedId = nearUserId!
             myVC.passedUsername = nearUsername!
@@ -149,7 +149,8 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                                 if requestedPointer["username"] as? String == PFUser.current()?.username {
                                     badgeValue += 1
                                     
-                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)                                    
+
                                 }
                             }
                         }
@@ -161,4 +162,3 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
     }
 }
-

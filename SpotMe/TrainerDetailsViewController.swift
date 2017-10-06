@@ -64,12 +64,12 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     }
     
     @IBAction func disclaimer(_ sender: Any) {
-        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+          displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         print("trainer: \(isTrainer)")
     }
     
@@ -96,7 +96,6 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
         
         return true
     }
-    
     
     @objc func doneButton(sender:UIButton) {
         dobField.resignFirstResponder() // To resign the inputView on clicking done.
