@@ -10,7 +10,7 @@ import UIKit
 
 class AccountTypeViewController: UIViewController {
     var isTrainer:Bool!
-
+    
     @IBAction func trainerButton(_ sender: Any) {
         isTrainer = true
     }
@@ -20,7 +20,7 @@ class AccountTypeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -36,3 +36,4 @@ class AccountTypeViewController: UIViewController {
         }
     }
 }
+

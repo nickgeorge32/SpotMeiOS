@@ -39,7 +39,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         var badgeValue = 0
         
         pendingRequestsArray.removeAll()
-
+        
         let query = PFQuery(className: "FriendRequests")
         query.includeKey("requestingUser")
         query.includeKey("pendingFriendRequest")
@@ -59,6 +59,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                                 self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
                                 
                                 self.refresher.endRefreshing()
+
                                 }
                             }
                         }
@@ -71,7 +72,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                 self.tableView.reloadData()
             }
         }
-
+        
     }
     
     func friendCheck() {
@@ -94,14 +95,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         refresh()
         
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,21 +113,21 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return friendsArray.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         cell.textLabel?.text = friendsArray[indexPath.row]
         
         return cell
@@ -176,3 +177,4 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
 }
+

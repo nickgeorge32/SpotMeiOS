@@ -11,16 +11,16 @@ import Parse
 
 class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-//    func displayAlert(title: String, message: String) {
-//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-//            UIAlertAction in
-//            self.tabBarController?.selectedIndex = 2
-//        }
-//        alertController.addAction(okAction)
-//        self.present(alertController, animated: true, completion: nil)
-//    }
-
+    //    func displayAlert(title: String, message: String) {
+    //        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    //        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+    //            UIAlertAction in
+    //            self.tabBarController?.selectedIndex = 2
+    //        }
+    //        alertController.addAction(okAction)
+    //        self.present(alertController, animated: true, completion: nil)
+    //    }
+    
     override func viewWillAppear(_ animated: Bool) {
         let query = PFQuery(className: "Activities")
         query.whereKeyExists("username")
@@ -32,17 +32,17 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         pendingFriendRequestCheck()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,5 +88,5 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
-
+    
 }

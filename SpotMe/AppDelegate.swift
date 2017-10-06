@@ -14,7 +14,7 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     var token = ""
@@ -55,14 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // [START set_messaging_delegate]
         UNUserNotificationCenter.current().delegate = self
-   
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
         
-                application.registerForRemoteNotifications()
         
         if let instanceId = InstanceID.instanceID().token() {
             token = instanceId
@@ -140,8 +133,9 @@ func saveContext () {
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+
         }
     }
+    
 }
 
-}

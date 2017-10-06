@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010489F91F2D2E7D007F207A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010489F81F2D2E7D007F207A /* AdSupport.framework */; };
 		0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */; };
 		0106513B1F0BF96500D9DFF8 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010651391F0BF96500D9DFF8 /* User.storyboard */; };
 		01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010489F81F2D2E7D007F207A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		0106513A1F0BF96500D9DFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/User.storyboard; sourceTree = "<group>"; };
 		01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010489F91F2D2E7D007F207A /* AdSupport.framework in Frameworks */,
 				014DB4111EEC494E000E27FC /* JSQMessagesViewController.framework in Frameworks */,
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
@@ -175,6 +178,7 @@
 		22F8628B1AD9E23619C8ED68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				010489F81F2D2E7D007F207A /* AdSupport.framework */,
 				014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */,
 				013FF2E61E878902003403FB /* AudioToolbox.framework */,
 				013FF2E21E8788C5003403FB /* StoreKit.framework */,

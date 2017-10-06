@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBOutlet var tableView: UITableView!
-
+    
     func refresh() {
         friends.removeAll()
         posts.removeAll()
@@ -33,10 +33,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         PFUser.logOut()
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -126,21 +126,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadPosts() {
-            let query = PFQuery(className: "FriendRequests")
-            query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
-            query.findObjectsInBackground { (objects, error) in
-                if let users = objects {
-                    for object in users {
-                        if let user = object as? PFObject {
-                            if user != nil {
-                                self.friends.append(String(describing: (user["requestedFriend"])!))
-                                self.friends = self.friends.filter(){$0 != ""}
-
-                            }
+        let query = PFQuery(className: "FriendRequests")
+        query.whereKey("requestingUser", equalTo: (PFUser.current()?.username!)!)
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFObject {
+                        if user != nil {
+                            self.friends.append(String(describing: (user["requestedFriend"])!))
+                            self.friends = self.friends.filter(){$0 != ""}
+                            
                         }
                     }
                 }
             }
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             let postsQuery = PFQuery(className: "Posts")
@@ -164,5 +164,5 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-
+    
 }

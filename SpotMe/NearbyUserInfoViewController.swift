@@ -97,7 +97,7 @@ class NearbyUserInfoViewController: UIViewController {
         }
         _ = navigationController?.popToRootViewController(animated: true)
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,13 +152,13 @@ class NearbyUserInfoViewController: UIViewController {
                 
             }
         })
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -169,5 +169,6 @@ class NearbyUserInfoViewController: UIViewController {
             messageController.user2 = passedUsername
         }
     }
-
+    
 }
+

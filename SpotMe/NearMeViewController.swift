@@ -24,13 +24,13 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         pendingFriendRequestCheck()
         
@@ -83,7 +83,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         if let location = manager.location?.coordinate {
             userLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-
+            
             self.mapView.setRegion(region, animated: true)
             
         }
@@ -109,7 +109,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         return view
     }
-        
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation {
             let query = PFUser.query()
@@ -150,6 +150,7 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                                     badgeValue += 1
                                     
                                     self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)                                    
+
                                 }
                             }
                         }
