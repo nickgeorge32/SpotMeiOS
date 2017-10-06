@@ -25,7 +25,7 @@ class NearbyUserInfoViewController: UIViewController {
     var activeRequest = false
     var isFriend = false
     
-    //TODO: change queries to pointers
+    //TODO: change queries to reflect pointers
     
     func requestActive() {
         
