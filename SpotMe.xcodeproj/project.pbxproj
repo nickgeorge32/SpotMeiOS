@@ -76,8 +76,6 @@
 		01F4F8B41F361F3300FFAC20 /* TrainerDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerDetailsContViewController.swift; sourceTree = "<group>"; };
 		01FD227F1F11274C00D090CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		03382A2C11A9B565624B90AB /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
-		6BCAEFF1ECE00D684C35BA28 /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
 		99C14CBB32250BAE175123E1 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 				01B8EEED1E7CF9BA00A1D2D0 /* SpotMe */,
 				01B8EEEC1E7CF9BA00A1D2D0 /* Products */,
 				22F8628B1AD9E23619C8ED68 /* Frameworks */,
-				25AE1EBD87FF179A642AC5C3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,15 +182,6 @@
 				99C14CBB32250BAE175123E1 /* Pods_SpotMe.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		25AE1EBD87FF179A642AC5C3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6BCAEFF1ECE00D684C35BA28 /* Pods-SpotMe.debug.xcconfig */,
-				03382A2C11A9B565624B90AB /* Pods-SpotMe.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,7 +488,6 @@
 		};
 		01B8EF011E7CF9BA00A1D2D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BCAEFF1ECE00D684C35BA28 /* Pods-SpotMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
@@ -525,7 +512,6 @@
 		};
 		01B8EF021E7CF9BA00A1D2D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03382A2C11A9B565624B90AB /* Pods-SpotMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
