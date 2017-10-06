@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import Parse
 
 class ViewController: UIViewController {
     @IBOutlet var usernameField: UITextField!
@@ -18,66 +18,75 @@ class ViewController: UIViewController {
     
     var authMode = true
     var isTrainer:Bool!
-    var token = ""
-    
-    var dbRef:DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dbRef = Database.database().reference()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        token = appDelegate.token
     }
-    
     
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-                    UIAlertAction in self.redirectUser()
-                }
-                alertController.addAction(okAction)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in self.checkServerStatus()// self.redirectUser()
+        }
+        alertController.addAction(okAction)
+        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func signUpOrLogin(_ sender: Any) {
-        self.activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
         if usernameField.text == "" && passwordField.text == "" {
             displayAlert(title: "Invalid Values", message: "Please ensure all fields are filled in properly")
-            UIApplication.shared.endIgnoringInteractionEvents()
         } else {
-            if let email = usernameField.text {
-                if let password = passwordField.text {
-                    if authMode {
-                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                            if error != nil {
-                                self.displayAlert(title: "Sign Up Error", message: error!.localizedDescription)
-                            } else {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                                    self.dbRef.child("users").child((user?.uid)!).setValue(["email":email])
-                                    self.dbRef.child("users").child((user?.uid)!).updateChildValues(["fcm-reg":self.token])
-                                    self.activityIndicator.stopAnimating()
-                                    UIApplication.shared.endIgnoringInteractionEvents()
-                                    self.performSegue(withIdentifier: "accountTypeSegue", sender: nil)
-                                }
-                            }
-                        })
+            if authMode {
+                let user = PFUser()
+                user.username = usernameField.text?.components(separatedBy: "@")[0]
+                user.email = usernameField.text
+                user.password = passwordField.text
+                
+                user.signUpInBackground(block: { (success, error) in
+                    if error != nil {
+                        var errorMessage = "Sign Up failed, please try again later"
+                        let error = error as NSError?
+                        if let parseError = error?.userInfo["error"] as? String {
+                            errorMessage = parseError
+                        }
+                        //display error
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        self.activityIndicator.stopAnimating()
+                        self.displayAlert(title: "Sign Up Error", message: errorMessage)
                     } else {
-                        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-                            if error != nil {
-                                self .displayAlert(title: "Login Error", message: error!.localizedDescription)
-                            } else {
-                                self.redirectUser()
-                                UIApplication.shared.endIgnoringInteractionEvents()
-                            }
-                        })
+                        //Signed Up
+                        //redirect
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        self.performSegue(withIdentifier: "accountTypeSegue", sender: self)
                     }
-                }
+                })
+            } else {
+                PFUser.logInWithUsername(inBackground: usernameField.text!.components(separatedBy: "@")[0], password: passwordField.text!, block: { (user, error) in
+                    if error != nil {
+                        var errorMessage = "Login failed, please try again later"
+                        let error = error as NSError?
+                        if let parseError = error?.userInfo["error"] as? String {
+                            errorMessage = parseError
+                        }
+                        //display error
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        self.activityIndicator.stopAnimating()
+                        self.displayAlert(title: "Login Error", message: errorMessage)
+                    } else {
+                        //Logged In
+                        //self.redirectUser()
+                        self.checkServerStatus()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                })
             }
         }
     }
@@ -85,49 +94,67 @@ class ViewController: UIViewController {
     @IBAction func changeMode(_ sender: Any) {
         if authMode {
             authMode = false
-            signUpOrLoginButton.setTitle("Login", for: .normal)
-            changeModeButton.setTitle("Sign Up", for: .normal)
+            signUpOrLoginButton.setTitle("Login", for: [])
+            changeModeButton.setTitle("Sign Up", for: [])
         } else {
             authMode = true
-            signUpOrLoginButton.setTitle("Sign Up", for: .normal)
-            changeModeButton.setTitle("Login", for: .normal)
+            signUpOrLoginButton.setTitle("Sign Up", for: [])
+            changeModeButton.setTitle("Login", for: [])
         }
     }
     
-    //TODO: download already saved data if any so user does not have to refill all fields
     func redirectUser() {
-        //check if there is a user logged in
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                //if there is a user check whether is trainer and all fields are saved
-                self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshotTop) in
-                    if snapshotTop.hasChild("isTrainer") {
-                        //check if isTrainer
-                        self.dbRef.child("users").child((Auth.auth().currentUser?.uid)!).child("isTrainer").observeSingleEvent(of: .value, with: { (snapshotBot) in
-                            self.isTrainer = snapshotBot.value as! Bool
+        if PFUser.current() != nil {
+            let query = PFUser.query()
+            query?.whereKey("objectId", equalTo: (PFUser.current()?.objectId!)!)
+            query?.findObjectsInBackground(block: { (objects, error) in
+                if let users = objects {
+                    for object in users {
+                        if let user = object as? PFUser {
+                            self.isTrainer = user["isTrainer"] as! Bool
+                            
                             if self.isTrainer {
-                                //if isTrainer and is not missing data
-                                if snapshotTop.hasChild("currentWeight") && snapshotTop.hasChild("desiredOutcome") && snapshotTop.hasChild("dob") && snapshotTop.hasChild("email") && snapshotTop.hasChild("gender") && snapshotTop.hasChild("goalWeight") && snapshotTop.hasChild("userHeight") && snapshotTop.hasChild("weeklyGoal") && snapshotTop.hasChild("userPhoto") && snapshotTop.hasChild("weightGoal") {
-                                    self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["userHeight"] != nil {
+                                    let query = PFQuery(className: "Trainers")
+                                    query.whereKey("username", equalTo: (PFUser.current()?["username"])!)
+                                    query.findObjectsInBackground(block: { (objects, error) in
+                                        if let trainers = objects {
+                                            for object in trainers {
+                                                if let trainer = object as? PFObject {
+                                                    if trainer["trainerCert"] != nil && trainer["specialty"] != nil {
+                                                        self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
+                                                    } else {
+                                                        self.performSegue(withIdentifier: "trainerDetails", sender: nil)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
                                 } else {
-                                    //is trainer and is missing data
                                     self.performSegue(withIdentifier: "trainerDetails", sender: nil)
                                 }
                             } else {
-                                //is not trainer and is not missing data
-                                if snapshotTop.hasChild("currentWeight") && snapshotTop.hasChild("desiredOutcome") && snapshotTop.hasChild("dob") && snapshotTop.hasChild("email") && snapshotTop.hasChild("gender") && snapshotTop.hasChild("goalWeight") && snapshotTop.hasChild("userHeight") && snapshotTop.hasChild("weeklyGoal") && snapshotTop.hasChild("userPhoto") && snapshotTop.hasChild("weightGoal") {
+                                if user["photo"] != nil && user["gender"] != nil && user["dob"] != nil && user["currentWeight"] != nil && user["weightGoal"] != nil && user["userHeight"] != nil && user["weeklyGoal"] != nil && user["desiredOutcome"] != nil {
                                     self.performSegue(withIdentifier: "segueHomeFromLogin", sender: nil)
                                 } else {
-                                    //is not trainer and is missing data
-                                    //comment
                                     self.performSegue(withIdentifier: "goToUserDetails", sender: nil)
                                 }
                             }
-                        })
+                        }
                     }
-                })
+                }
+            })
+        }
+    }
+    
+    func checkServerStatus() {
+        PFConfig.getInBackground { (config, error) in
+            let serverStatus = config?["serverStatus"] as? Bool
+            if serverStatus! {
+                self.redirectUser()
+            } else {
+                self.displayAlert(title: "Server Status", message: "We apolgize the servers are currently being worked on at this time to bring you the best experience possible!")
             }
         }
     }
 }
-

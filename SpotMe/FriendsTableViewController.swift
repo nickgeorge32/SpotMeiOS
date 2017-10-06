@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import Parse
 
-class FriendsTableViewController: UITableViewController {
+class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     var pendingRequestsArray = [String]()
     var friendsArray = [String]()
     var refresher: UIRefreshControl!
     var isFriend = [Bool]()
     var pendingRequest = false
     
-    func refresh() {
+    @IBAction func searchBar(_ sender: Any) {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.keyboardType = UIKeyboardType.asciiCapable
+        searchController.searchBar.delegate = self
+        present(searchController, animated: true, completion: nil)
+    }
+    @objc func refresh() {
         friendsArray.removeAll()
         isFriend.removeAll()
         pendingRequestsArray.removeAll()
@@ -25,25 +33,75 @@ class FriendsTableViewController: UITableViewController {
         friendCheck()
     }
     
+    //TODO: change queries to reflect pointers
+    
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
         pendingRequestsArray.removeAll()
-
+        
+        let query = PFQuery(className: "FriendRequests")
+        query.includeKey("requestingUser")
+        query.includeKey("pendingFriendRequest")
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil && objects != nil {
+                if (objects?.count)! > 0 {
+                    if let users = objects {
+                        for object in users {
+                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+                                    badgeValue += 1
+                                    
+                                    self.pendingRequestsArray.append(String(describing: ((object["requestingUser"] as! PFUser).username)!) + " (Pending)")
+                                    self.isFriend.append(false)
+                                    
+                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+                                    
+                                    self.refresher.endRefreshing()
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
+                    self.refresher.endRefreshing()
+                }
+                self.friendsArray.append(contentsOf: self.pendingRequestsArray)
+                self.tableView.reloadData()
+            }
+        }
         
     }
     
     func friendCheck() {
-        
+        let query = PFQuery(className: "Friends")
+        query.includeKey("requestingUser")
+        query.includeKey("friend")
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let requestingPointer: PFObject = object["requestingUser"] as? PFObject{
+                        if requestingPointer["username"] as? String == PFUser.current()?.username {
+                            
+                            self.friendsArray.append(String(describing: ((object["friend"] as! PFUser).username)!))
+                            self.isFriend.append(true)
+                            self.friendsArray = self.friendsArray.filter(){$0 != ""}
+                        }
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         refresh()
         
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,28 +110,23 @@ class FriendsTableViewController: UITableViewController {
         refresher.addTarget(self, action: #selector(FriendsTableViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return friendsArray.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         cell.textLabel?.text = friendsArray[indexPath.row]
         
         return cell
@@ -95,16 +148,32 @@ class FriendsTableViewController: UITableViewController {
         }
         
         navigationController?.pushViewController(showRequestingUserInfo, animated: true)
-
+        
     }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let query = PFQuery(className: "FriendRequests")
+            query.whereKey("requestingUser", equalTo: (PFUser.current()?["username"])!)
+            query.whereKey("requestedFriend", equalTo: (tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+            query.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteEventually()
+                    self.friendsArray.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            })
+            let query2 = PFQuery(className: "FriendRequests")
+            query2.whereKey("requestingUser", equalTo: (tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+            query2.whereKey("requestedFriend", equalTo: (PFUser.current()?["username"])!)
+            query2.findObjectsInBackground(block: { (objects, error) in
+                for object in objects! {
+                    object.deleteEventually()
+                }
+            })
+        }
     }
 }
+

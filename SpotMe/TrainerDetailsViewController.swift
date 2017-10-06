@@ -6,26 +6,17 @@
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
-//TODO: add red X and Green Check once cert has been attached to upload
-
 import UIKit
-import Firebase
+import Parse
 
 class TrainerDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+    
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
-    @IBOutlet var specialtySegment: UISegmentedControl!
-    @IBOutlet var emailsSwitch: UISwitch!
+    @IBOutlet weak var dobField: UITextField!
+    @IBOutlet weak var userWeightField: UITextField!
     
     var isTrainer:Bool!
-    
-    var dbRef:DatabaseReference!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dbRef = Database.database().reference()
-        
-    }
     
     @IBAction func uploadProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
@@ -36,18 +27,85 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func uploadCertButton(_ sender: Any) {
-        let imaePicker = UIImagePickerController()
-        imaePicker.allowsEditing = false
-        imaePicker.sourceType = UIImagePickerControllerSourceType.camera
-        imaePicker.cameraCaptureMode = .photo
-        imaePicker.modalPresentationStyle = .fullScreen
-        self.present(imaePicker, animated: true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImage.image = image
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func setDOB(_ sender: UITextField) {
+        let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
+        let datePickerView: UIDatePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: 0, height: 0))
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        inputView.addSubview(datePickerView)
+        
+        let doneButton = UIButton(frame: CGRect(x: (self.view.frame.size.width/2) - 50, y: 0, width: 100, height: 50))
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitle("Done", for: .highlighted)
+        doneButton.setTitleColor(UIColor.black, for: .normal)
+        doneButton.setTitleColor(UIColor.gray, for: .highlighted)
+        
+        inputView.addSubview(doneButton)
+        
+        doneButton.addTarget(self, action: #selector(TrainerDetailsViewController.doneButton(sender:)), for: UIControlEvents.touchUpInside)
+        
+        sender.inputView = inputView
+        datePickerView.addTarget(self, action: #selector(TrainerDetailsViewController.datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
+        
+        datePickerValueChanged(sender: datePickerView)
+    }
+    
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dobField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    @IBAction func disclaimer(_ sender: Any) {
+        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("trainer: \(isTrainer)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueHomeAsTrainer" {
-            
+        if segue.identifier == "moreTrainerDetails" {
+            let detailsCont = segue.destination as! TrainerDetailsContViewController
+            detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
+            //detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(profileImage.image!, 0.1)!)
+            detailsCont.profileImage = profileImage.image
+            detailsCont.isTrainer = isTrainer
+            if dobField.text != "" && userWeightField.text != "" {
+                detailsCont.dob = dobField.text
+                detailsCont.userWeight = userWeightField.text
+            }
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    
+    @objc func doneButton(sender:UIButton) {
+        dobField.resignFirstResponder() // To resign the inputView on clicking done.
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
+

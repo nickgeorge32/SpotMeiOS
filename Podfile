@@ -4,6 +4,7 @@ target 'SpotMe' do
   use_frameworks!
 
   # Pods for SpotMe
+pod 'Parse'
 pod 'Firebase/Storage'
 pod 'Firebase/Database'
 pod 'Firebase/Core'
@@ -15,5 +16,4 @@ pod 'Firebase/Auth'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'JSQMessagesViewController'
-pod 'GeoFire', :path => '/Users/nick/Documents/xCode/geofire-objc'
 end

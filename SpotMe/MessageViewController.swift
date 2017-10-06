@@ -6,7 +6,10 @@
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
+//FIXME: Will show typing indicator regardless of who is typing
+
 import UIKit
+import Parse
 import JSQMessagesViewController
 import Firebase
 import FirebaseDatabase
@@ -29,6 +32,7 @@ class MessageViewController: JSQMessagesViewController {
     private lazy var usersTypingQuery: DatabaseQuery = self.ref!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
     var user2 = ""
+    var recipientFCM = ""
     var group1 = ""
     var group2 = ""
     var selectedGroup = "Test"
@@ -45,9 +49,11 @@ class MessageViewController: JSQMessagesViewController {
         
         ref = Database.database().reference()
         
-        //senderId = PFUser.current()?.username
-        //senderDisplayName = PFUser.current()?.username
-                
+        senderId = PFUser.current()?.username
+        senderDisplayName = PFUser.current()?.username
+        
+        group1 = (PFUser.current()?.username)! + "_" + user2
+        group2 = user2 + "_" + (PFUser.current()?.username)!
         
         self.navigationController?.isNavigationBarHidden = false
         tabBarController?.tabBar.isHidden = true
@@ -71,7 +77,7 @@ class MessageViewController: JSQMessagesViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
@@ -90,6 +96,8 @@ class MessageViewController: JSQMessagesViewController {
         
         finishSendingMessage() // 5
         isTyping = false
+        
+        sendFCM()
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -141,7 +149,7 @@ class MessageViewController: JSQMessagesViewController {
         }
     }
     
-    private func observeMessages() {        
+    private func observeMessages() {
         let messageQuery = messageRef.child(selectedGroup)//.queryLimited(toLast:25)
         
         // 2. We can use the observe method to listen for new
@@ -200,6 +208,40 @@ class MessageViewController: JSQMessagesViewController {
                 self.selectedGroup = self.group1
             }
         })
-
+        
+    }
+    
+    func sendFCM() {
+        let query = PFUser.query()
+        query?.whereKey("username", equalTo: user2)
+        query?.findObjectsInBackground(block: { (objects, error) in
+            if let users = objects {
+                for object in users {
+                    if let user = object as? PFUser {
+                        self.recipientFCM = user["fcmReg"] as! String
+                        print(self.recipientFCM)
+                    }
+                }
+            }
+        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+                var request = URLRequest(url: url)
+                
+                
+                request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAAmxg0AHY:APA91bEV7GykrT5Z59-WElvzB826NQzYMU21oUn0WFd7JZvE1mC-1wQ9i5J-YR2zYqwhmw-vCVUtGEgzsMENIsKEiUsJ2-xDo_wP_AxGjRK3mcVT7w6ePZf_hpp4eGyX8rZ7cjatrCCo"]
+                request.httpMethod = "POST"
+                request.httpBody = "{\"to\": \"\(self.recipientFCM)\",\"notification\":{\"body\":\"You have a new message from \(String(describing: (PFUser.current()?["username"])!))!\"}}".data(using: .utf8)
+                
+                URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                    if error != nil {
+                        print(error!)
+                    }
+                    print(String(data: data!, encoding: .utf8)!)
+                }).resume()
+            }
+        }
     }
 }
+
