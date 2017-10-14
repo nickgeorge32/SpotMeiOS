@@ -8,10 +8,22 @@ target 'SpotMe' do
   use_frameworks!
 
   # Pods for SpotMe
+  pod 'Firebase/Core'
+  pod 'Firebase/AdMob'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Database'
+  pod 'Firebase/Invites'
+  pod 'FirebaseUI', '~> 4.0'
+  pod 'Firebase/DynamicLinks'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Performance'
+  pod 'Firebase/Firestore'
+  
+  pod 'Parse'
+  pod 'JSQMessagesViewController'
+  pod 'MessageKit'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
-pod 'Parse'
-pod 'Firebase/Core'
-pod 'Firebase/Messaging'
-pod 'Firebase/Database'
-pod 'JSQMessagesViewController'
 end

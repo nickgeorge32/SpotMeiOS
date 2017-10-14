@@ -32,9 +32,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         friendCheck()
     }
-    
-    //TODO: change queries to reflect pointers
-    
+        
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
@@ -153,6 +151,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     // Override to support editing the table view.
+    
+    //FIXME: change to reflect pointers
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source

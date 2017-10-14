@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Parse
 import Firebase
+import FirebaseAuthUI
 import UserNotifications
 
 @UIApplicationMain
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        let authUI = FUIAuth.defaultAuthUI()
+        authUI?.delegate = self
         Parse.enableLocalDatastore()
         
         UIApplication.shared.applicationIconBadgeNumber = 0

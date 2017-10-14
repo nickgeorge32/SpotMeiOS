@@ -151,11 +151,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         query.findObjectsInBackground { (objects, error) in
             if(error == nil) {
-                if let friend = objects {
-                    for something in friend {
-                        if let requestingPointer:PFObject = something["requestingUser"] as? PFObject {
+                if let object = objects {
+                    for friend in object {
+                        if let requestingPointer:PFObject = friend["requestingUser"] as? PFObject {
                             if requestingPointer["username"] as? String == PFUser.current()?.username {
-                                    self.friends.append(String(describing: ((something["friend"] as! PFUser).username)!))
+                                    self.friends.append(String(describing: ((friend["friend"] as! PFUser).username)!))
                             }
                         }
                     }
