@@ -8,9 +8,9 @@
 
 import UIKit
 import CoreData
-import Parse
 import Firebase
 import FirebaseAuthUI
+import TwitterKit
 import UserNotifications
 
 @UIApplicationMain
@@ -22,39 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        let authUI = FUIAuth.defaultAuthUI()
-        authUI?.delegate = self
-        Parse.enableLocalDatastore()
+        Twitter.sharedInstance().start(withConsumerKey: "ooTFMdEnxO1f9k0tlYZDt9u4S", consumerSecret: "EWrwMWhjidU84QpRtlAJGSh84WtcUhHTByMlNVx1B6jTnheSJr")
         
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        
-        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
-            ParseMutableClientConfiguration.applicationId = "03a35b3018a1050c1ffad91c707f0f556c7aa246"
-            ParseMutableClientConfiguration.clientKey = "45b08eb48e686e3c87e65c760090e228f7a1d5b8"
-            ParseMutableClientConfiguration.server = "http://ec2-13-58-173-227.us-east-2.compute.amazonaws.com/parse"
-        })
-        
-        Parse.initialize(with: parseConfiguration)
-        
-        // ****************************************************************************
-        // Uncomment and fill in with your Parse credentials:
-        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
-        //
-        // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
-        // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
-        // Uncomment the line inside ParseStartProject-Bridging-Header and the following line here:
-        // PFFacebookUtils.initializeFacebook()
-        // ****************************************************************************
-        
-        //PFUser.enableAutomaticUser()
-        
-        let defaultACL = PFACL();
-        
-        // If you would like all objects to be private by default, remove this line.
-        defaultACL.getPublicReadAccess = true
-        defaultACL.getPublicWriteAccess = true
-        
-        PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
+        //UIApplication.shared.applicationIconBadgeNumber = 0
         
         // [START set_messaging_delegate]
         UNUserNotificationCenter.current().delegate = self
@@ -69,6 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         token = fcmToken
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
     }
 
 func applicationWillResignActive(_ application: UIApplication) {

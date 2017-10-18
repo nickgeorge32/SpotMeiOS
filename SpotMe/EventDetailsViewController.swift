@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class EventDetailsViewController: UIViewController {
     @IBOutlet var eventImage: UIImageView!
@@ -29,7 +28,7 @@ class EventDetailsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getEventDetails()
+        //getEventDetails()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,28 +37,28 @@ class EventDetailsViewController: UIViewController {
     }
     
     func getEventDetails() {
-        let eventQuery = PFQuery(className: "Events")
-        eventQuery.whereKey("title", equalTo: eventTitleString)
-        eventQuery.findObjectsInBackground { (objects, error) in
-            if let events = objects {
-                for object in events {
-                    if let event = object as? PFObject {
-                        var lastActive = object["eventDate"]
-                        if lastActive != nil {
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
-                            let date = dateFormatter.string(from: (lastActive as! NSDate) as Date)
-                            print(date)
-                            self.eventDate.text = date
-                        }
-                        
-                        //self.eventDate.text = object["eventDate"] as! NSDate?
-                        self.eventFee.text = object["eventFee"] as! String?
-                        self.eventLocation.text = event["eventLocation"] as! String?
-                    }
-                }
-            }
-        }
+//        let eventQuery = PFQuery(className: "Events")
+//        eventQuery.whereKey("title", equalTo: eventTitleString)
+//        eventQuery.findObjectsInBackground { (objects, error) in
+//            if let events = objects {
+//                for object in events {
+//                    if let event = object as? PFObject {
+//                        var lastActive = object["eventDate"]
+//                        if lastActive != nil {
+//                            let dateFormatter = DateFormatter()
+//                            dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
+//                            let date = dateFormatter.string(from: (lastActive as! NSDate) as Date)
+//                            print(date)
+//                            self.eventDate.text = date
+//                        }
+//                        
+//                        //self.eventDate.text = object["eventDate"] as! NSDate?
+//                        self.eventFee.text = object["eventFee"] as! String?
+//                        self.eventLocation.text = event["eventLocation"] as! String?
+//                    }
+//                }
+//            }
+//        }
         
     }
 }

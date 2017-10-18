@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import Parse
 
 class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
@@ -32,51 +31,51 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        pendingFriendRequestCheck()
+        //pendingFriendRequestCheck()
         
-        if userLocation.latitude != 0 && userLocation.longitude != 0 {
-            PFUser.current()?["userLocation"] = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
-            
-            PFUser.current()?.saveInBackground(block: { (success, error) in
-                if error != nil {
-                    var errorMessage = "Unable to save location"
-                    if let parseError = (error! as NSError).userInfo["error"] as? String {
-                        errorMessage = parseError
-                        self.displayAlert(title: "Error", message: errorMessage)
-                    }
-                }
-            })
-        } else {
-            if (PFUser.current()?["userLocation"] as AnyObject).latitude != nil && (PFUser.current()?["userLocation"] as AnyObject).longitude != nil {
-                displayAlert(title: "Location Error", message: "Unable to get location at this time, using last saved location")
-                userLocation.latitude = (PFUser.current()?["userLocation"] as AnyObject).latitude
-                userLocation.longitude = (PFUser.current()?["userLocation"] as AnyObject).longitude
-            } else {
-                displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
-            }
-        }
-        
-        let query = PFUser.query()
-        query?.whereKey("username", notEqualTo: (PFUser.current()?.username!)!)
-        query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude), withinKilometers: 10)
-        query?.findObjectsInBackground(block: { (objects, error) in
-            if let users = objects {
-                self.nearbyUsers.removeAll()
-                self.nearbyUserLocations.removeAll()
-                self.mapView.removeAnnotations(self.mapView.annotations)
-                
-                for object in users {
-                    if let user = object as? PFUser {
-                        self.nearbyUsers.append(user.username!)
-                        self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude)
-                        annotation.title = user.username
-                        self.mapView.addAnnotation(annotation)
-                    }
-                }
-            }
-        })
+//        if userLocation.latitude != 0 && userLocation.longitude != 0 {
+//            PFUser.current()?["userLocation"] = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
+//
+//            PFUser.current()?.saveInBackground(block: { (success, error) in
+//                if error != nil {
+//                    var errorMessage = "Unable to save location"
+//                    if let parseError = (error! as NSError).userInfo["error"] as? String {
+//                        errorMessage = parseError
+//                        self.displayAlert(title: "Error", message: errorMessage)
+//                    }
+//                }
+//            })
+//        } else {
+//            if (PFUser.current()?["userLocation"] as AnyObject).latitude != nil && (PFUser.current()?["userLocation"] as AnyObject).longitude != nil {
+//                displayAlert(title: "Location Error", message: "Unable to get location at this time, using last saved location")
+//                userLocation.latitude = (PFUser.current()?["userLocation"] as AnyObject).latitude
+//                userLocation.longitude = (PFUser.current()?["userLocation"] as AnyObject).longitude
+//            } else {
+//                displayAlert(title: "Location Error", message: "Unable to get location at this time, please try again")
+//            }
+//        }
+//
+//        let query = PFUser.query()
+//        query?.whereKey("username", notEqualTo: (PFUser.current()?.username!)!)
+//        query?.whereKey("userLocation", nearGeoPoint: PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude), withinKilometers: 10)
+//        query?.findObjectsInBackground(block: { (objects, error) in
+//            if let users = objects {
+//                self.nearbyUsers.removeAll()
+//                self.nearbyUserLocations.removeAll()
+//                self.mapView.removeAnnotations(self.mapView.annotations)
+//
+//                for object in users {
+//                    if let user = object as? PFUser {
+//                        self.nearbyUsers.append(user.username!)
+//                        self.nearbyUserLocations.append(CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude))
+//                        let annotation = MKPointAnnotation()
+//                        annotation.coordinate = CLLocationCoordinate2D(latitude: (object["userLocation"] as AnyObject).latitude, longitude: (object["userLocation"] as AnyObject).longitude)
+//                        annotation.title = user.username
+//                        self.mapView.addAnnotation(annotation)
+//                    }
+//                }
+//            }
+//        })
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -112,18 +111,18 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation {
-            let query = PFUser.query()
-            query?.whereKey("username", equalTo: annotation.title!)
-            query?.findObjectsInBackground(block: { (objects, error) in
-                if let users = objects {
-                    for object in users {
-                        if let user = object as? PFUser {
-                            self.nearUserId = user.objectId
-                            self.nearUsername = user.username
-                        }
-                    }
-                }
-            })
+//            let query = PFUser.query()
+//            query?.whereKey("username", equalTo: annotation.title!)
+//            query?.findObjectsInBackground(block: { (objects, error) in
+//                if let users = objects {
+//                    for object in users {
+//                        if let user = object as? PFUser {
+//                            self.nearUserId = user.objectId
+//                            self.nearUsername = user.username
+//                        }
+//                    }
+//                }
+//            })
 
             let myVC = storyboard?.instantiateViewController(withIdentifier: "NearbyUserInfo") as! NearbyUserInfoViewController
             myVC.passedId = nearUserId!
@@ -136,29 +135,29 @@ class NearMeViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
-        let query = PFQuery(className: "FriendRequests")
-        query.includeKey("requestingUser")
-        query.includeKey("pendingFriendRequest")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! > 0 {
-                    if let users = objects {
-                        for object in users {
-                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
-                                if requestedPointer["username"] as? String == PFUser.current()?.username {
-                                    badgeValue += 1
-                                    
-                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)                                    
-
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
-                }
-            }
-        }
+//        let query = PFQuery(className: "FriendRequests")
+//        query.includeKey("requestingUser")
+//        query.includeKey("pendingFriendRequest")
+//        
+//        query.findObjectsInBackground { (objects, error) in
+//            if error == nil && objects != nil {
+//                if (objects?.count)! > 0 {
+//                    if let users = objects {
+//                        for object in users {
+//                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+//                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+//                                    badgeValue += 1
+//                                    
+//                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)                                    
+//
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
+//                }
+//            }
+//        }
     }
 }

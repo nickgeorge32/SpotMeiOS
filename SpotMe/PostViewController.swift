@@ -6,19 +6,18 @@
 //
 
 import UIKit
-import Parse
 
 class PostViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var postText: UITextView!
     
     @IBAction func postButton(_ sender: Any) {
-        let pointer = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.current()?.objectId)
-        
-        let posts = PFObject(className: "Posts")
-        posts["postText"] = postText.text
-        posts["username"] = pointer
-        posts.saveInBackground()
+//        let pointer = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.current()?.objectId)
+//        
+//        let posts = PFObject(className: "Posts")
+//        posts["postText"] = postText.text
+//        posts["username"] = pointer
+//        posts.saveInBackground()
         
         self.dismiss(animated: true) {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationID"), object: nil)

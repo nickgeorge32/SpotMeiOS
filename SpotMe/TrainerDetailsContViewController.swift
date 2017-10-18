@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var profileImage:UIImage!
@@ -62,34 +61,33 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueHome" {
-            //let imageData = UIImagePNGRepresentation(profileImage)
             let imageData = UIImageJPEGRepresentation(profileImage, 0.1)
             let certData = UIImageJPEGRepresentation(certImage.image!, 0.1)
-            let trainer = PFObject(className: "Trainers")
-            trainer["specialty"] = specialtySegment.titleForSegment(at: specialtySegment.selectedSegmentIndex)
-            trainer["trainerCert"] = PFFile(name: "trainerCert.jpg", data: certData!)
-            trainer["username"] = PFUser.current()?["username"]
-            trainer.saveInBackground()
-            
-            PFUser.current()?["photo"] = PFFile(name: "profile.jpg", data: imageData!)
-            PFUser.current()?["gender"] = userGender
-            PFUser.current()?["dob"] = dob
-            PFUser.current()?["isTrainer"] = isTrainer
-            PFUser.current()?["currentWeight"] = userWeight
-            PFUser.current()?["userHeight"] = userHeight.text
-            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
-            
-            PFUser.current()?.saveInBackground(block: { (success, error) in
-                if error != nil {
-                    var errorMessage = "Unable to save details"
-                    if let parseError = (error!as NSError).userInfo["error"] as? String {
-                        errorMessage = parseError
-                        self.displayAlert(title: "Error", message: errorMessage)
-                    }
-                } else {
-                    self.displayAlert(title: "Success", message: "Profile Saved!")
-                }
-            })
+//            let trainer = PFObject(className: "Trainers")
+//            trainer["specialty"] = specialtySegment.titleForSegment(at: specialtySegment.selectedSegmentIndex)
+//            trainer["trainerCert"] = PFFile(name: "trainerCert.jpg", data: certData!)
+//            trainer["username"] = PFUser.current()?["username"]
+//            trainer.saveInBackground()
+//            
+//            PFUser.current()?["photo"] = PFFile(name: "profile.jpg", data: imageData!)
+//            PFUser.current()?["gender"] = userGender
+//            PFUser.current()?["dob"] = dob
+//            PFUser.current()?["isTrainer"] = isTrainer
+//            PFUser.current()?["currentWeight"] = userWeight
+//            PFUser.current()?["userHeight"] = userHeight.text
+//            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
+//            
+//            PFUser.current()?.saveInBackground(block: { (success, error) in
+//                if error != nil {
+//                    var errorMessage = "Unable to save details"
+//                    if let parseError = (error!as NSError).userInfo["error"] as? String {
+//                        errorMessage = parseError
+//                        self.displayAlert(title: "Error", message: errorMessage)
+//                    }
+//                } else {
+//                    self.displayAlert(title: "Success", message: "Profile Saved!")
+//                }
+//            })
         }
     }
     

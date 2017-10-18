@@ -14,7 +14,6 @@
 		0121907D1F353CD2001E7799 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121907C1F353CD2001E7799 /* SettingsTableViewController.swift */; };
 		013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E21E8788C5003403FB /* StoreKit.framework */; };
 		013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FF2E61E878902003403FB /* AudioToolbox.framework */; };
-		014DB4111EEC494E000E27FC /* JSQMessagesViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */; };
 		014DB4131EEC4A43000E27FC /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DB4121EEC4A43000E27FC /* MessageViewController.swift */; };
 		015B2A331F2E7868001C186E /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B2A321F2E7868001C186E /* EventDetailsViewController.swift */; };
 		015B2A351F2E787B001C186E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B2A341F2E787B001C186E /* HomeViewController.swift */; };
@@ -87,7 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				014DB4111EEC494E000E27FC /* JSQMessagesViewController.framework in Frameworks */,
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
 				BD9AF0E71B7E17FCD4334161 /* Pods_SpotMe.framework in Frameworks */,
@@ -511,7 +509,6 @@
 				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQMessagesViewController",
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = SpotMe/Info.plist;
@@ -536,7 +533,6 @@
 				DEVELOPMENT_TEAM = 2XPA6ZBE84;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQMessagesViewController",
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = SpotMe/Info.plist;

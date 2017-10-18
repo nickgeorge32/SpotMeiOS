@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class TrainerDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
@@ -70,14 +69,12 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("trainer: \(isTrainer)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreTrainerDetails" {
             let detailsCont = segue.destination as! TrainerDetailsContViewController
             detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
-            //detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(profileImage.image!, 0.1)!)
             detailsCont.profileImage = profileImage.image
             detailsCont.isTrainer = isTrainer
             if dobField.text != "" && userWeightField.text != "" {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,15 +21,15 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     //    }
     
     override func viewWillAppear(_ animated: Bool) {
-        let query = PFQuery(className: "Activities")
-        query.whereKeyExists("username")
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! == 0 {
-                    
-                }
-            }
-        }
+//        let query = PFQuery(className: "Activities")
+//        query.whereKeyExists("username")
+//        query.findObjectsInBackground { (objects, error) in
+//            if error == nil && objects != nil {
+//                if (objects?.count)! == 0 {
+//
+//                }
+//            }
+//        }
     }
     
     override func viewDidLoad() {
@@ -40,7 +39,7 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        pendingFriendRequestCheck()
+        //pendingFriendRequestCheck()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,30 +61,30 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
-        let query = PFQuery(className: "FriendRequests")
-        query.includeKey("requestingUser")
-        query.includeKey("pendingFriendRequest")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! > 0 {
-                    if let users = objects {
-                        for object in users {
-                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
-                                if requestedPointer["username"] as? String == PFUser.current()?.username {
-                                    badgeValue += 1
-                                    
-                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
-                                    
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
-                }
-            }
-        }
+//        let query = PFQuery(className: "FriendRequests")
+//        query.includeKey("requestingUser")
+//        query.includeKey("pendingFriendRequest")
+//        
+//        query.findObjectsInBackground { (objects, error) in
+//            if error == nil && objects != nil {
+//                if (objects?.count)! > 0 {
+//                    if let users = objects {
+//                        for object in users {
+//                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+//                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+//                                    badgeValue += 1
+//                                    
+//                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+//                                    
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
+//                }
+//            }
+//        }
         
     }
     

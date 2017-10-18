@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountTypeViewController: UIViewController {
     var isTrainer:Bool!

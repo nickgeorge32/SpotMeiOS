@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var events = [String]()
@@ -18,7 +17,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @objc func refresh() {
         events.removeAll()
         
-        loadEvents()
+        //loadEvents()
     }
     
     func displayAlert(title: String, message: String) {
@@ -49,8 +48,9 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        pendingFriendRequestCheck()
+        //pendingFriendRequestCheck()
     }
+    
     @IBAction func addEvent(_ sender: Any) {
         displayAlert(title: "Coming Soon", message: "We currently do not support adding events via the app at this time. We are working diligently to make this available to all. If you would like to submit your event to us by email, we will add it to the app within 24hrs.")
     }
@@ -82,46 +82,46 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
-        let query = PFQuery(className: "FriendRequests")
-        query.includeKey("requestingUser")
-        query.includeKey("pendingFriendRequest")
-        
-        query.findObjectsInBackground { (objects, error) in
-            if error == nil && objects != nil {
-                if (objects?.count)! > 0 {
-                    if let users = objects {
-                        for object in users {
-                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
-                                if requestedPointer["username"] as? String == PFUser.current()?.username {
-                                    badgeValue += 1
-                                    
-                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
-                                    
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
-                }
-            }
-        }
-        
-    }
-    
-    func loadEvents() {
-        let eventsQuery = PFQuery(className: "Events")
-        eventsQuery.findObjectsInBackground { (objects, error) in
-            if let events = objects {
-                for object in events {
-                    if let event = object as? PFObject {
-                        self.events.append(String(describing: (event["title"])!))
-                        self.refresher.endRefreshing()
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
+//        let query = PFQuery(className: "FriendRequests")
+//        query.includeKey("requestingUser")
+//        query.includeKey("pendingFriendRequest")
+//        
+//        query.findObjectsInBackground { (objects, error) in
+//            if error == nil && objects != nil {
+//                if (objects?.count)! > 0 {
+//                    if let users = objects {
+//                        for object in users {
+//                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+//                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+//                                    badgeValue += 1
+//                                    
+//                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+//                                    
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
+//                }
+//            }
+//        }
+//        
+//    }
+//    
+//    func loadEvents() {
+//        let eventsQuery = PFQuery(className: "Events")
+//        eventsQuery.findObjectsInBackground { (objects, error) in
+//            if let events = objects {
+//                for object in events {
+//                    if let event = object as? PFObject {
+//                        self.events.append(String(describing: (event["title"])!))
+//                        self.refresher.endRefreshing()
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            }
+//        }
     }
 }
 

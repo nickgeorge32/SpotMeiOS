@@ -20,10 +20,11 @@ target 'SpotMe' do
   pod 'Firebase/Performance'
   pod 'Firebase/Firestore'
   
-  pod 'Parse'
-  pod 'JSQMessagesViewController'
-  pod 'MessageKit'
+  pod 'GoogleSignIn'
   pod 'Fabric'
   pod 'Crashlytics'
-
+  
+  #pod 'Parse'
+  #pod 'JSQMessagesViewController'
+  pod 'MessageKit'
 end
