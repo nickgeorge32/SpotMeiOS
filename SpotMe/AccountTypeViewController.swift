@@ -10,31 +10,19 @@ import UIKit
 import Firebase
 
 class AccountTypeViewController: UIViewController {
-    var isTrainer:Bool!
+    var user: User?
+    var ref: DocumentReference!
     
     @IBAction func trainerButton(_ sender: Any) {
-        isTrainer = true
+    
     }
+    
     @IBAction func joeButton(_ sender: Any) {
-        isTrainer = false
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "trainerDetails" {
-            let destination = segue.destination as! TrainerDetailsViewController
-            isTrainer = true
-            destination.isTrainer = isTrainer
-        } else if segue.identifier == "goToUserDetails" {
-            let destinaion = segue.destination as! UserDetailsViewController
-            isTrainer = false
-            destinaion.isTrainer = isTrainer
-        }
     }
 }
 

@@ -16,6 +16,8 @@ class ViewController: UIViewController, FUIAuthDelegate {
     fileprivate(set) var auth:Auth?
     fileprivate(set) var authUI: FUIAuth? //only set internally but get externally
     fileprivate(set) var authStateListenerHandle: AuthStateDidChangeListenerHandle?
+    var user: User?
+    var ref: DocumentReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +27,6 @@ class ViewController: UIViewController, FUIAuthDelegate {
         self.authUI?.delegate = self
         self.authUI?.providers = [FUIGoogleAuth(), FUITwitterAuth()]
         
-        
-        self.authStateListenerHandle = self.auth?.addStateDidChangeListener { (auth, user) in
-            guard user != nil else {
-                //self.authButton(self)
-                self.performSegue(withIdentifier: "homeSegue", sender: nil)
-                return
-            }
-        }
     }
     
     @IBAction func authButton(_ sender: Any) {
@@ -44,7 +38,7 @@ class ViewController: UIViewController, FUIAuthDelegate {
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if user != nil {
-            performSegue(withIdentifier: "accountTypeSegue", sender: nil)
+            loadProfile()
         }
         
         guard let authError = error else { return }
@@ -71,9 +65,45 @@ class ViewController: UIViewController, FUIAuthDelegate {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
+            self.authStateListenerHandle = self.auth?.addStateDidChangeListener { (auth, user) in
+                if let activeUser = user {
+                    if self.user != activeUser {
+                        self.user = activeUser
+                        self.loadProfile()
+                    }
+                } else {
+                    self.authButton(self)
+                }
+            }
+            
         }
         alertController.addAction(okAction)
-        //alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func loadProfile() {
+        ref = Firestore.firestore().collection("users").document((user?.email)!)
+        ref.getDocument(completion: { (userDoc, error) in
+            if let document = userDoc {
+                if document.exists {
+                    print("Document data: \(document.data())")
+                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
+                } else {
+                    print("Document does not exist")
+                    self.ref = Firestore.firestore().collection("trainers").document((self.user?.email)!)
+                    self.ref.getDocument(completion: { (trainerDoc, error) in
+                        if let document = trainerDoc {
+                            if document.exists {
+                                print("Document data: \(document.data())")
+                                self.performSegue(withIdentifier: "homeSegue", sender: nil)
+                            } else {
+                                print("Document does not exist")
+                                self.performSegue(withIdentifier: "accountTypeSegue", sender: nil)
+                            }
+                        }
+                    })
+                }
+            }
+        })
     }
 }

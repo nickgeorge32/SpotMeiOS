@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseMessaging
+import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     var friends = [String]()
@@ -31,6 +32,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func logout(_ sender: Any) {
         navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = true
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("error signing out")
+        }
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
 
