@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
+    //MARK: Outlets and Variables
+    @IBOutlet var userHeight: UITextField!
+    @IBOutlet var weightGoalSegment: UISegmentedControl!
+    @IBOutlet var goalWeightField: UITextField!
+    @IBOutlet var weeklyGoalSegment: UISegmentedControl!
+    @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
+    @IBOutlet var emailSwitch: UISwitch!
+    
+    var username: String!
     var profileImage:UIImage!
     var userGender:String!
     var dob:String!
@@ -16,13 +26,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     var isTrainer:Bool!
     var token = ""
     
-    
-    @IBOutlet var userHeight: UITextField!
-    @IBOutlet var weightGoalSegment: UISegmentedControl!
-    @IBOutlet var goalWeightField: UITextField!
-    @IBOutlet var weeklyGoalSegment: UISegmentedControl!
-    @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
-    @IBOutlet var emailSwitch: UISwitch!
+    let storage = Storage.storage()
     
     @IBAction func weightGoal(_ sender: Any) {
         if weightGoalSegment.selectedSegmentIndex == 0 {
@@ -37,19 +41,30 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func disclaimer(_ sender: Any) {
+        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+        
+    }
+    
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         token = appDelegate.token
-        //addDoneButtonOnKeyboard()
+        addDoneButtonOnKeyboard()
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let imageRef = storage.reference().child("userImages/\(username!)/profileImg.jpg")
+        let ref = Firestore.firestore().collection("users").document(username)
         if segue.identifier == "segueHome" {
-//            let imageData = UIImagePNGRepresentation(profileImage)
-//            PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
+            let imageData = UIImagePNGRepresentation(profileImage)
+            let uploadTask = imageRef.putData(imageData!, metadata: nil)
+            ref.setData(["username" : username, "gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight" : goalWeightField.text, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails" : emailSwitch.isOn])
+            
 //            PFUser.current()?["gender"] = userGender
 //            PFUser.current()?["dob"] = dob
 //            PFUser.current()?["isTrainer"] = isTrainer
@@ -117,6 +132,14 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //MARK: Dislpay Alert
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Misc
     func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
         doneToolbar.barStyle = UIBarStyle.default
@@ -150,16 +173,5 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
-    
-    @IBAction func disclaimer(_ sender: Any) {
-        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
-        
-    }
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }
 

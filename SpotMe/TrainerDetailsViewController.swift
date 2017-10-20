@@ -9,14 +9,38 @@
 import UIKit
 
 class TrainerDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
-    
+    //MARK: Outlets and Variables
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet weak var dobField: UITextField!
     @IBOutlet weak var userWeightField: UITextField!
     
+    @IBAction func disclaimer(_ sender: Any) {
+        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+    }
+    
     var isTrainer:Bool!
     
+    //MARK: Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moreTrainerDetails" {
+            let detailsCont = segue.destination as! TrainerDetailsContViewController
+            detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
+            detailsCont.profileImage = profileImage.image
+            detailsCont.isTrainer = isTrainer
+            if dobField.text != "" && userWeightField.text != "" {
+                detailsCont.dob = dobField.text
+                detailsCont.userWeight = userWeightField.text
+            }
+        }
+    }
+    
+    //MARK: Image
     @IBAction func uploadProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -33,6 +57,7 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
         self.dismiss(animated: true, completion: nil)
     }
     
+    //MARK: DOB
     @IBAction func setDOB(_ sender: UITextField) {
         let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
         let datePickerView: UIDatePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: 0, height: 0))
@@ -62,28 +87,14 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
         dobField.text = dateFormatter.string(from: sender.date)
     }
     
-    @IBAction func disclaimer(_ sender: Any) {
-          displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+    //MARK: Display Alert
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "moreTrainerDetails" {
-            let detailsCont = segue.destination as! TrainerDetailsContViewController
-            detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
-            detailsCont.profileImage = profileImage.image
-            detailsCont.isTrainer = isTrainer
-            if dobField.text != "" && userWeightField.text != "" {
-                detailsCont.dob = dobField.text
-                detailsCont.userWeight = userWeightField.text
-            }
-        }
-    }
-    
+    //MARK: Misc
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -96,12 +107,6 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     
     @objc func doneButton(sender:UIButton) {
         dobField.resignFirstResponder() // To resign the inputView on clicking done.
-    }
-    
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 

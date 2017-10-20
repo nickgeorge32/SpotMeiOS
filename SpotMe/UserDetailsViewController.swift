@@ -9,12 +9,54 @@
 import UIKit
 
 class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+    //MARK: Outlets and Variables
     @IBOutlet var userImage: UIImageView!
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet var dobField: UITextField!
     @IBOutlet var userWeightField: UITextField!
     
     var isTrainer: Bool!
+    
+    //MARK: Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addDoneButtonOnKeyboard()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moreDetails" {
+            let detailsCont = segue.destination as! UserDetailsContViewController
+            //TODO: Add checking if username exists
+            detailsCont.username = usernameField.text
+            detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
+            detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(userImage.image!, 0.1)!)
+            detailsCont.isTrainer = isTrainer
+            if dobField.text != "" && userWeightField.text != "" {
+                detailsCont.dob = dobField.text
+                detailsCont.userWeight = userWeightField.text
+            }
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (dobField.text?.isEmpty)! || (userWeightField.text?.isEmpty)! {
+            displayAlert(title: "Error in form", message: "All fields must be filled")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //MARK: Image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            userImage.image = image
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func updateProfileImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
@@ -25,14 +67,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            userImage.image = image
-        }
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+    //MARK: DOB
     @IBAction func setDOB(_ sender: UITextField) {
         let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
         
@@ -68,30 +103,9 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         dobField.resignFirstResponder() // To resign the inputView on clicking done.
     }
     
+    //MARK: Misc
     @IBAction func disclaimer(_ sender: Any) {
         displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "moreDetails" {
-            let detailsCont = segue.destination as! UserDetailsContViewController
-            detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
-            detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(userImage.image!, 0.1)!)
-            detailsCont.isTrainer = isTrainer
-            if dobField.text != "" && userWeightField.text != "" {
-                detailsCont.dob = dobField.text
-                detailsCont.userWeight = userWeightField.text
-            }
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if (dobField.text?.isEmpty)! || (userWeightField.text?.isEmpty)! {
-            displayAlert(title: "Error in form", message: "All fields must be filled")
-            return false
-        } else {
-            return true
-        }
     }
     
     func displayAlert(title: String, message: String) {
@@ -108,13 +122,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
         textField.resignFirstResponder()
         
         return true
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        addDoneButtonOnKeyboard()
     }
     
     func addDoneButtonOnKeyboard() {

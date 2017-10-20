@@ -9,6 +9,7 @@
 import UIKit
 
 class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //MARK: Outlets and Variables
     var profileImage:UIImage!
     var userGender:String!
     var dob:String!
@@ -21,29 +22,16 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
     @IBOutlet weak var specialtySegment: UISegmentedControl!
     @IBOutlet weak var emailSwitch: UISwitch!
     
+    @IBAction func disclaimer(_ sender: Any) {
+        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+        
+    }
+    
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addDoneButtonOnKeyboard()
-    }
-    
-    @IBAction func uploadCertButton(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-        imagePicker.cameraCaptureMode = .photo
-        imagePicker.modalPresentationStyle = .fullScreen
-        self.present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            certImage.image = image
-        }
-        self.dismiss(animated: true) { 
-            self.check.alpha = 1.0
-        }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -63,34 +51,62 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
         if segue.identifier == "segueHome" {
             let imageData = UIImageJPEGRepresentation(profileImage, 0.1)
             let certData = UIImageJPEGRepresentation(certImage.image!, 0.1)
-//            let trainer = PFObject(className: "Trainers")
-//            trainer["specialty"] = specialtySegment.titleForSegment(at: specialtySegment.selectedSegmentIndex)
-//            trainer["trainerCert"] = PFFile(name: "trainerCert.jpg", data: certData!)
-//            trainer["username"] = PFUser.current()?["username"]
-//            trainer.saveInBackground()
-//            
-//            PFUser.current()?["photo"] = PFFile(name: "profile.jpg", data: imageData!)
-//            PFUser.current()?["gender"] = userGender
-//            PFUser.current()?["dob"] = dob
-//            PFUser.current()?["isTrainer"] = isTrainer
-//            PFUser.current()?["currentWeight"] = userWeight
-//            PFUser.current()?["userHeight"] = userHeight.text
-//            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
-//            
-//            PFUser.current()?.saveInBackground(block: { (success, error) in
-//                if error != nil {
-//                    var errorMessage = "Unable to save details"
-//                    if let parseError = (error!as NSError).userInfo["error"] as? String {
-//                        errorMessage = parseError
-//                        self.displayAlert(title: "Error", message: errorMessage)
-//                    }
-//                } else {
-//                    self.displayAlert(title: "Success", message: "Profile Saved!")
-//                }
-//            })
+            //            let trainer = PFObject(className: "Trainers")
+            //            trainer["specialty"] = specialtySegment.titleForSegment(at: specialtySegment.selectedSegmentIndex)
+            //            trainer["trainerCert"] = PFFile(name: "trainerCert.jpg", data: certData!)
+            //            trainer["username"] = PFUser.current()?["username"]
+            //            trainer.saveInBackground()
+            //
+            //            PFUser.current()?["photo"] = PFFile(name: "profile.jpg", data: imageData!)
+            //            PFUser.current()?["gender"] = userGender
+            //            PFUser.current()?["dob"] = dob
+            //            PFUser.current()?["isTrainer"] = isTrainer
+            //            PFUser.current()?["currentWeight"] = userWeight
+            //            PFUser.current()?["userHeight"] = userHeight.text
+            //            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
+            //
+            //            PFUser.current()?.saveInBackground(block: { (success, error) in
+            //                if error != nil {
+            //                    var errorMessage = "Unable to save details"
+            //                    if let parseError = (error!as NSError).userInfo["error"] as? String {
+            //                        errorMessage = parseError
+            //                        self.displayAlert(title: "Error", message: errorMessage)
+            //                    }
+            //                } else {
+            //                    self.displayAlert(title: "Success", message: "Profile Saved!")
+            //                }
+            //            })
         }
     }
     
+    //MARK: Certy Upload
+    @IBAction func uploadCertButton(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        imagePicker.cameraCaptureMode = .photo
+        imagePicker.modalPresentationStyle = .fullScreen
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            certImage.image = image
+        }
+        self.dismiss(animated: true) { 
+            self.check.alpha = 1.0
+        }
+    }
+    
+    //MARK: Display Alert
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Misc
     func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0,y: 0,width: 320,height: 50))
         doneToolbar.barStyle = UIBarStyle.default
@@ -122,16 +138,4 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
         
         return true
     }
-    
-    @IBAction func disclaimer(_ sender: Any) {
-        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
-        
-    }
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    
 }

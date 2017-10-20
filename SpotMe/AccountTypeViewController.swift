@@ -7,20 +7,18 @@
 //
 
 import UIKit
-import Firebase
 
 class AccountTypeViewController: UIViewController {
-    var user: User?
-    var ref: DocumentReference!
-    
+    //MARK: Outlets and Variables
     @IBAction func trainerButton(_ sender: Any) {
-    
+        performSegue(withIdentifier: "trainerDetailsSegue", sender: nil)
     }
     
     @IBAction func joeButton(_ sender: Any) {
-    
+        performSegue(withIdentifier: "userDetailsSegue", sender: nil)
     }
     
+    //MARK: LIfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }

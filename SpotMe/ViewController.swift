@@ -13,12 +13,20 @@ import FirebaseGoogleAuthUI
 import FirebaseTwitterAuthUI
 
 class ViewController: UIViewController, FUIAuthDelegate {
+    //MARK: Outlets and Variables
     fileprivate(set) var auth:Auth?
     fileprivate(set) var authUI: FUIAuth? //only set internally but get externally
     fileprivate(set) var authStateListenerHandle: AuthStateDidChangeListenerHandle?
     var user: User?
     var ref: DocumentReference!
     
+    @IBAction func authButton(_ sender: Any) {
+        // Present the default login view controller provided by authUI
+        let authViewController = authUI?.authViewController();
+        self.present(authViewController!, animated: true, completion: nil)
+    }
+    
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,12 +37,9 @@ class ViewController: UIViewController, FUIAuthDelegate {
         
     }
     
-    @IBAction func authButton(_ sender: Any) {
-        // Present the default login view controller provided by authUI
-        let authViewController = authUI?.authViewController();
-        self.present(authViewController!, animated: true, completion: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
     }
-    
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if user != nil {
@@ -56,31 +61,7 @@ class ViewController: UIViewController, FUIAuthDelegate {
         }
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
-    }
-    
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            self.authStateListenerHandle = self.auth?.addStateDidChangeListener { (auth, user) in
-                if let activeUser = user {
-                    if self.user != activeUser {
-                        self.user = activeUser
-                        self.loadProfile()
-                    }
-                } else {
-                    self.authButton(self)
-                }
-            }
-            
-        }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
+    //MARK: Load Profile
     func loadProfile() {
         ref = Firestore.firestore().collection("users").document((user?.email)!)
         ref.getDocument(completion: { (userDoc, error) in
@@ -105,5 +86,26 @@ class ViewController: UIViewController, FUIAuthDelegate {
                 }
             }
         })
+    }
+    
+    //MARK: Display Alert
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            self.authStateListenerHandle = self.auth?.addStateDidChangeListener { (auth, user) in
+                if let activeUser = user {
+                    if self.user != activeUser {
+                        self.user = activeUser
+                        self.loadProfile()
+                    }
+                } else {
+                    self.authButton(self)
+                }
+            }
+            
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

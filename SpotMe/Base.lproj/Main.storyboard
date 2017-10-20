@@ -96,7 +96,6 @@
                                 <state key="normal" title="Trainer"/>
                                 <connections>
                                     <action selector="trainerButton:" destination="BvN-eU-QKI" eventType="touchUpInside" id="nIV-hc-Qei"/>
-                                    <segue destination="BKx-N7-7rb" kind="show" identifier="trainerDetails" id="E4U-1f-q56"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrM-gY-OSZ">
@@ -105,12 +104,15 @@
                                 <state key="normal" title="Joe"/>
                                 <connections>
                                     <action selector="joeButton:" destination="BvN-eU-QKI" eventType="touchUpInside" id="RtF-lD-8j5"/>
-                                    <segue destination="bNr-kb-bbW" kind="show" identifier="goToUserDetails" id="dmk-xm-jM7"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="BKx-N7-7rb" kind="show" identifier="trainerDetailsSegue" id="K0D-9J-JMu"/>
+                        <segue destination="bNr-kb-bbW" kind="show" identifier="userDetailsSegue" id="fEg-pg-dn8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJL-FT-MWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,7 +124,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="userDetails" storyboardName="User" referencedIdentifier="userDetails" id="bNr-kb-bbW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8b-zJ-mMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="512"/>
+            <point key="canvasLocation" x="430" y="781"/>
         </scene>
         <!--UITabBarController-Base-->
         <scene sceneID="hQE-nV-sCI">
