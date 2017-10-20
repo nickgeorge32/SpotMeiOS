@@ -11,15 +11,16 @@ import UIKit
 class TrainerDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     //MARK: Outlets and Variables
     @IBOutlet var profileImage: UIImageView!
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet weak var dobField: UITextField!
     @IBOutlet weak var userWeightField: UITextField!
     
+    var isTrainer:Bool!
+    
     @IBAction func disclaimer(_ sender: Any) {
         displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
     }
-    
-    var isTrainer:Bool!
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class TrainerDetailsViewController: UIViewController, UINavigationControllerDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreTrainerDetails" {
             let detailsCont = segue.destination as! TrainerDetailsContViewController
+            detailsCont.username = usernameField.text
             detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
             detailsCont.profileImage = profileImage.image
             detailsCont.isTrainer = isTrainer

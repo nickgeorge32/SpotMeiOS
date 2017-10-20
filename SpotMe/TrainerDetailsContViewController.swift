@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Outlets and Variables
@@ -15,6 +16,9 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
     var dob:String!
     var userWeight:String!
     var isTrainer:Bool!
+    var username: String!
+    
+    let storage = Storage.storage()
 
     @IBOutlet weak var certImage: UIImageView!
     @IBOutlet weak var check: UIImageView!
@@ -48,38 +52,19 @@ class TrainerDetailsContViewController: UIViewController, UITextFieldDelegate, U
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let imageRef = storage.reference().child("trainerImages/\(username!)/profileImg.jpg")
+        let certImgRef = storage.reference().child("trainerCerts/\(username!)/certImg.jpg")
+        let ref = Firestore.firestore().collection("trainers").document(username)
         if segue.identifier == "segueHome" {
             let imageData = UIImageJPEGRepresentation(profileImage, 0.1)
             let certData = UIImageJPEGRepresentation(certImage.image!, 0.1)
-            //            let trainer = PFObject(className: "Trainers")
-            //            trainer["specialty"] = specialtySegment.titleForSegment(at: specialtySegment.selectedSegmentIndex)
-            //            trainer["trainerCert"] = PFFile(name: "trainerCert.jpg", data: certData!)
-            //            trainer["username"] = PFUser.current()?["username"]
-            //            trainer.saveInBackground()
-            //
-            //            PFUser.current()?["photo"] = PFFile(name: "profile.jpg", data: imageData!)
-            //            PFUser.current()?["gender"] = userGender
-            //            PFUser.current()?["dob"] = dob
-            //            PFUser.current()?["isTrainer"] = isTrainer
-            //            PFUser.current()?["currentWeight"] = userWeight
-            //            PFUser.current()?["userHeight"] = userHeight.text
-            //            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
-            //
-            //            PFUser.current()?.saveInBackground(block: { (success, error) in
-            //                if error != nil {
-            //                    var errorMessage = "Unable to save details"
-            //                    if let parseError = (error!as NSError).userInfo["error"] as? String {
-            //                        errorMessage = parseError
-            //                        self.displayAlert(title: "Error", message: errorMessage)
-            //                    }
-            //                } else {
-            //                    self.displayAlert(title: "Success", message: "Profile Saved!")
-            //                }
-            //            })
+            let uploadProfileImgUploadTask = imageRef.putData(imageData!, metadata: nil)
+            let certImgUploadTask = certImgRef.putData(certData!, metadata: nil)
+            ref.setData(["specialty" : specialtySegment.titleForSegment(at: specialtySegment.selectedSegmentIndex), "username" : username, "gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text, "receiveEmails" : emailSwitch.isOn])
         }
     }
     
-    //MARK: Certy Upload
+    //MARK: Cert Upload
     @IBAction func uploadCertButton(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

@@ -12,6 +12,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     //MARK: Outlets and Variables
     @IBOutlet var userImage: UIImageView!
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var check: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet var dobField: UITextField!
     @IBOutlet var userWeightField: UITextField!
@@ -28,7 +29,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreDetails" {
             let detailsCont = segue.destination as! UserDetailsContViewController
-            //TODO: Add checking if username exists
             detailsCont.username = usernameField.text
             detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
             detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(userImage.image!, 0.1)!)
@@ -45,6 +45,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
             displayAlert(title: "Error in form", message: "All fields must be filled")
             return false
         } else {
+            //TODO: Add checking if username exists
             return true
         }
     }

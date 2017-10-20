@@ -65,30 +65,9 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             let uploadTask = imageRef.putData(imageData!, metadata: nil)
             ref.setData(["username" : username, "gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight" : goalWeightField.text, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails" : emailSwitch.isOn])
             
-//            PFUser.current()?["gender"] = userGender
-//            PFUser.current()?["dob"] = dob
-//            PFUser.current()?["isTrainer"] = isTrainer
-//            PFUser.current()?["currentWeight"] = userWeight
-//            PFUser.current()?["userHeight"] = userHeight.text
-//            PFUser.current()?["weightGoal"] = weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)
-//            PFUser.current()?["goalWeight"] = goalWeightField.text
-//            if weightGoalSegment.selectedSegmentIndex != 1 {
-//                PFUser.current()?["weeklyGoal"] = weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)
-//            }
-//            PFUser.current()?["desiredOutcome"] = desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)
-//            PFUser.current()?["receiveEmails"] = emailSwitch.isOn
-//            
-//            PFUser.current()?.saveInBackground(block: { (success, error) in
-//                if error != nil {
-//                    var errorMessage = "Unable to save details"
-//                    if let parseError = (error!as NSError).userInfo["error"] as? String {
-//                        errorMessage = parseError
-//                        self.displayAlert(title: "Error", message: errorMessage)
-//                    }
-//                } else {
-//                    self.displayAlert(title: "Success", message: "Profile Saved!")
-//                }
-//            })
+            if weightGoalSegment.selectedSegmentIndex != 1 {
+                ref.updateData(["weeklyGoal" : weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)])
+            }
         }
     }
     
