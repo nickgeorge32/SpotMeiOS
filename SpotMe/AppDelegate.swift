@@ -11,6 +11,8 @@ import CoreData
 import Firebase
 import FirebaseAuthUI
 import TwitterKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 import UserNotifications
 
 @UIApplicationMain

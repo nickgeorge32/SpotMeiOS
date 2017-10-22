@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
 import FirebaseTwitterAuthUI
+import FirebaseFacebookAuthUI
 
 class ViewController: UIViewController, FUIAuthDelegate {
     //MARK: Outlets and Variables
@@ -33,7 +34,7 @@ class ViewController: UIViewController, FUIAuthDelegate {
         self.auth = Auth.auth()
         self.authUI = FUIAuth.defaultAuthUI()
         self.authUI?.delegate = self
-        self.authUI?.providers = [FUIGoogleAuth(), FUITwitterAuth()]
+        self.authUI?.providers = [FUIGoogleAuth(), FUITwitterAuth(), FUIFacebookAuth()]
         
     }
     
