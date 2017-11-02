@@ -38,6 +38,8 @@
 		01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4F8B41F361F3300FFAC20 /* TrainerDetailsContViewController.swift */; };
 		01FD22801F11274C00D090CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01FD227F1F11274C00D090CD /* GoogleService-Info.plist */; };
 		01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */; };
+		E4027B001FAA9F600055DA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4027AFF1FAA9F600055DA40 /* MapKit.framework */; };
+		E4027B021FAA9FA20055DA40 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4027B011FAA9FA20055DA40 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		7274C5EA8AE806E0780DAB24 /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
 		7DFB4D31259E10EA2CD06C74 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4027AFF1FAA9F600055DA40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E4027B011FAA9FA20055DA40 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		EC0B21B5FBA9050791D26C4F /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +94,9 @@
 			files = (
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
+				E4027B001FAA9F600055DA40 /* MapKit.framework in Frameworks */,
 				0170428843E5D6B142FE79D5 /* Pods_SpotMe.framework in Frameworks */,
+				E4027B021FAA9FA20055DA40 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +185,8 @@
 		22F8628B1AD9E23619C8ED68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4027B011FAA9FA20055DA40 /* HealthKit.framework */,
+				E4027AFF1FAA9F600055DA40 /* MapKit.framework */,
 				015B7B771F87E18600AB6924 /* JSQSystemSoundPlayer.framework */,
 				015B7B751F87E18000AB6924 /* GTMSessionFetcher.framework */,
 				015B7B731F87E17900AB6924 /* GoogleToolboxForMac.framework */,
@@ -242,12 +250,15 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 							com.apple.Push = {
