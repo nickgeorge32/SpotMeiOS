@@ -39,7 +39,7 @@ class ViewController: UIViewController, FUIAuthDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
+        //displayAlert(title: "Beta Test", message: "Data may be erased periodically during the testing period. If you find that your account has been removed, simply signup again.")
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {

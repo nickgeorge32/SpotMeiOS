@@ -68,6 +68,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             if weightGoalSegment.selectedSegmentIndex != 1 {
                 ref.updateData(["weeklyGoal" : weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)])
             }
+            
+            ref.updateData(["fcmToken" : token])
         }
     }
     
