@@ -9,10 +9,12 @@
 import UIKit
 
 class PageViewController: UIPageViewController {
+    //MARK: Outlets and Variables
     var pageTitles = ["Lift More", "Go Farther", "Set Goals", "Compete"]
     var bgImages = ["lift_more", "go_farther", "goals", "compete"]
     var pageDescriptions = ["Never workout alone again! Discover your new cycling, running, lifting, swimming pal today.", "Never workout alone again! Discover your new cycling, running, lifting, swimming pal today.", "Never workout alone again! Discover your new cycling, running, lifting, swimming pal today.", "Never workout alone again! Discover your new cycling, running, lifting, swimming pal today."]
     
+    //MARK: LIfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +43,6 @@ class PageViewController: UIPageViewController {
 }
     
     //MARK: DataSource
-    
     extension PageViewController: UIPageViewControllerDataSource {
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
             var index = (viewController as! ViewController).index
