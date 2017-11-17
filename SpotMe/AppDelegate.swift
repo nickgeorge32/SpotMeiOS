@@ -9,10 +9,6 @@
 import UIKit
 import CoreData
 import Firebase
-import FirebaseAuthUI
-import TwitterKit
-import FBSDKCoreKit
-import FBSDKLoginKit
 import UserNotifications
 
 @UIApplicationMain
@@ -24,13 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        Twitter.sharedInstance().start(withConsumerKey: "ooTFMdEnxO1f9k0tlYZDt9u4S", consumerSecret: "EWrwMWhjidU84QpRtlAJGSh84WtcUhHTByMlNVx1B6jTnheSJr")
-        
-        //UIApplication.shared.applicationIconBadgeNumber = 0
         
         // [START set_messaging_delegate]
         UNUserNotificationCenter.current().delegate = self
-        
         
         if let instanceId = InstanceID.instanceID().token() {
             token = instanceId
@@ -43,14 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         token = fcmToken
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        }
-        // other URL handling goes here.
-        return false
-    }
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+//        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+//        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+//            return true
+//        }
+//        // other URL handling goes here.
+//        return false
+//    }
 
 func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
