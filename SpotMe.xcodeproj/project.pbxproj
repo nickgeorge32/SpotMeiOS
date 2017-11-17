@@ -18,7 +18,6 @@
 		015B2A331F2E7868001C186E /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B2A321F2E7868001C186E /* EventDetailsViewController.swift */; };
 		015B2A351F2E787B001C186E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B2A341F2E787B001C186E /* HomeViewController.swift */; };
 		016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */; };
-		0170428843E5D6B142FE79D5 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB4D31259E10EA2CD06C74 /* Pods_SpotMe.framework */; };
 		0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B01E7E068F001EB3F6 /* UserDetailsViewController.swift */; };
 		0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B21E7E2E77001EB3F6 /* UserDetailsContViewController.swift */; };
 		0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */; };
@@ -31,15 +30,21 @@
 		01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */; };
 		01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */; };
 		01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */; };
-		01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */; };
 		01BF2D441F860E9500201B9E /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF2D431F860E9500201B9E /* ShopViewController.swift */; };
 		01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */; };
 		01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */; };
 		01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4F8B41F361F3300FFAC20 /* TrainerDetailsContViewController.swift */; };
 		01FD22801F11274C00D090CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01FD227F1F11274C00D090CD /* GoogleService-Info.plist */; };
 		01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */; };
+		E36BD75A3EA8D6F15F66F440 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */; };
 		E4027B001FAA9F600055DA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4027AFF1FAA9F600055DA40 /* MapKit.framework */; };
 		E4027B021FAA9FA20055DA40 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4027B011FAA9FA20055DA40 /* HealthKit.framework */; };
+		E420494B1FBE23C70080CDDC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E420494A1FBE22C00080CDDC /* AdSupport.framework */; };
+		E420494D1FBE243E0080CDDC /* AuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */; };
+		E420494F1FBE291D0080CDDC /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420494E1FBE291D0080CDDC /* PageViewController.swift */; };
+		E42049511FBE3FC10080CDDC /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42049501FBE3FC10080CDDC /* CustomViews.swift */; };
+		E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C85D1FB6427D003C84C0 /* LaunchVC.swift */; };
+		E465C8631FB659F8003C84C0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C8621FB659F8003C84C0 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +77,6 @@
 		01B8EEF31E7CF9BA00A1D2D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01B8EEF61E7CF9BA00A1D2D0 /* SpotMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpotMe.xcdatamodel; sourceTree = "<group>"; };
 		01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		01B8EEFB1E7CF9BA00A1D2D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01BF2D431F860E9500201B9E /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -80,11 +84,17 @@
 		01F4F8B41F361F3300FFAC20 /* TrainerDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerDetailsContViewController.swift; sourceTree = "<group>"; };
 		01FD227F1F11274C00D090CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		7274C5EA8AE806E0780DAB24 /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
-		7DFB4D31259E10EA2CD06C74 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		074DE70D31284C3D6C2284C7 /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
+		9113A85230CC863291D7948E /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
 		E4027AFF1FAA9F600055DA40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E4027B011FAA9FA20055DA40 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		EC0B21B5FBA9050791D26C4F /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
+		E420494A1FBE22C00080CDDC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHelper.swift; sourceTree = "<group>"; };
+		E420494E1FBE291D0080CDDC /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		E42049501FBE3FC10080CDDC /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		E465C85D1FB6427D003C84C0 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
+		E465C8621FB659F8003C84C0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +102,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E420494B1FBE23C70080CDDC /* AdSupport.framework in Frameworks */,
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
 				E4027B001FAA9F600055DA40 /* MapKit.framework in Frameworks */,
-				0170428843E5D6B142FE79D5 /* Pods_SpotMe.framework in Frameworks */,
 				E4027B021FAA9FA20055DA40 /* HealthKit.framework in Frameworks */,
+				E36BD75A3EA8D6F15F66F440 /* Pods_SpotMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +161,7 @@
 				01B8EEED1E7CF9BA00A1D2D0 /* SpotMe */,
 				01B8EEEC1E7CF9BA00A1D2D0 /* Products */,
 				22F8628B1AD9E23619C8ED68 /* Frameworks */,
-				C1743234B5F66720D4FFC970 /* Pods */,
+				CE8FA828B759223DDD0329D7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,13 +178,9 @@
 			children = (
 				013FF2E11E8788B9003403FB /* SpotMe.entitlements */,
 				01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */,
-				01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */,
-				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
-				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
-				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
-				016F1A571F09E430002D708D /* Distributors */,
-				016F1A561F09E134002D708D /* Trainer */,
-				016F1A551F09E129002D708D /* User */,
+				E465C8611FB659BA003C84C0 /* Controller */,
+				E465C8601FB659B5003C84C0 /* View */,
+				E465C85F1FB659AE003C84C0 /* Model */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
 				01FD227F1F11274C00D090CD /* GoogleService-Info.plist */,
@@ -185,6 +192,7 @@
 		22F8628B1AD9E23619C8ED68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E420494A1FBE22C00080CDDC /* AdSupport.framework */,
 				E4027B011FAA9FA20055DA40 /* HealthKit.framework */,
 				E4027AFF1FAA9F600055DA40 /* MapKit.framework */,
 				015B7B771F87E18600AB6924 /* JSQSystemSoundPlayer.framework */,
@@ -193,18 +201,50 @@
 				014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */,
 				013FF2E61E878902003403FB /* AudioToolbox.framework */,
 				013FF2E21E8788C5003403FB /* StoreKit.framework */,
-				7DFB4D31259E10EA2CD06C74 /* Pods_SpotMe.framework */,
+				F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C1743234B5F66720D4FFC970 /* Pods */ = {
+		CE8FA828B759223DDD0329D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EC0B21B5FBA9050791D26C4F /* Pods-SpotMe.debug.xcconfig */,
-				7274C5EA8AE806E0780DAB24 /* Pods-SpotMe.release.xcconfig */,
+				074DE70D31284C3D6C2284C7 /* Pods-SpotMe.debug.xcconfig */,
+				9113A85230CC863291D7948E /* Pods-SpotMe.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E465C85F1FB659AE003C84C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */,
+				E465C8621FB659F8003C84C0 /* Helper.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E465C8601FB659B5003C84C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E42049501FBE3FC10080CDDC /* CustomViews.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E465C8611FB659BA003C84C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
+				E465C85D1FB6427D003C84C0 /* LaunchVC.swift */,
+				E420494E1FBE291D0080CDDC /* PageViewController.swift */,
+				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
+				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
+				016F1A571F09E430002D708D /* Distributors */,
+				016F1A561F09E134002D708D /* Trainer */,
+				016F1A551F09E129002D708D /* User */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,12 +254,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01B8EF001E7CF9BA00A1D2D0 /* Build configuration list for PBXNativeTarget "SpotMe" */;
 			buildPhases = (
-				245E210EB367B1AB7087456C /* [CP] Check Pods Manifest.lock */,
+				BB5A475753C3540B5AE01632 /* [CP] Check Pods Manifest.lock */,
 				01B8EEE71E7CF9BA00A1D2D0 /* Sources */,
 				01B8EEE81E7CF9BA00A1D2D0 /* Frameworks */,
 				01B8EEE91E7CF9BA00A1D2D0 /* Resources */,
-				3DC5AE0A8274223A1085E621 /* [CP] Embed Pods Frameworks */,
-				E9D2DACEF7F42E7BE980F8C0 /* [CP] Copy Pods Resources */,
+				01349CA80B1A78B31600BB9E /* [CP] Embed Pods Frameworks */,
+				57C330D31010C8FB931DECC4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,7 +331,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B8EEFC1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard in Resources */,
 				01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */,
 				01B78C031F0C59DB00D65457 /* Trainers.storyboard in Resources */,
 				01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */,
@@ -304,7 +343,69 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		245E210EB367B1AB7087456C /* [CP] Check Pods Manifest.lock */ = {
+		01349CA80B1A78B31600BB9E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57C330D31010C8FB931DECC4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB5A475753C3540B5AE01632 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -322,83 +423,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3DC5AE0A8274223A1085E621 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E9D2DACEF7F42E7BE980F8C0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh",
-				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
-				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -411,16 +435,21 @@
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
 				015B2A351F2E787B001C186E /* HomeViewController.swift in Sources */,
 				011E0B371F656BBF009799DA /* PostViewController.swift in Sources */,
+				E420494D1FBE243E0080CDDC /* AuthenticationHelper.swift in Sources */,
 				01BF2D441F860E9500201B9E /* ShopViewController.swift in Sources */,
 				01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */,
 				01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */,
+				E42049511FBE3FC10080CDDC /* CustomViews.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
 				015B2A331F2E7868001C186E /* EventDetailsViewController.swift in Sources */,
+				E420494F1FBE291D0080CDDC /* PageViewController.swift in Sources */,
 				0121907D1F353CD2001E7799 /* SettingsTableViewController.swift in Sources */,
 				01C506C51E81FFC300ECFCB7 /* ActivityViewController.swift in Sources */,
 				01083E6A1E842EBF009925B0 /* NearbyUserInfoViewController.swift in Sources */,
 				0177D9B11E7E068F001EB3F6 /* UserDetailsViewController.swift in Sources */,
 				0177D9B51E7F5A60001EB3F6 /* NearMeViewController.swift in Sources */,
+				E465C8631FB659F8003C84C0 /* Helper.swift in Sources */,
+				E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */,
 				016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
 				01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */,
@@ -447,14 +476,6 @@
 				01B8EEF31E7CF9BA00A1D2D0 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		01B8EEFA1E7CF9BA00A1D2D0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01B8EEFB1E7CF9BA00A1D2D0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -565,7 +586,7 @@
 		};
 		01B8EF011E7CF9BA00A1D2D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC0B21B5FBA9050791D26C4F /* Pods-SpotMe.debug.xcconfig */;
+			baseConfigurationReference = 074DE70D31284C3D6C2284C7 /* Pods-SpotMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
@@ -589,7 +610,7 @@
 		};
 		01B8EF021E7CF9BA00A1D2D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7274C5EA8AE806E0780DAB24 /* Pods-SpotMe.release.xcconfig */;
+			baseConfigurationReference = 9113A85230CC863291D7948E /* Pods-SpotMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
