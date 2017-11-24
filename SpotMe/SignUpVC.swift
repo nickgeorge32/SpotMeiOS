@@ -23,9 +23,10 @@ class SignUpVC: UIViewController {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error == nil {
                 self.preferences.set(true, forKey: "isLoggedIn")
-                self.preferences.synchronize()
                 
                 self.performSegue(withIdentifier: "signUpToHomeSegue", sender: self)
+            } else {
+                Helper.displayAlert(title: "Error", message: (error?.localizedDescription)!)
             }
         }
     }

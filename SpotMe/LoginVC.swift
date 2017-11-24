@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class LoginVC: UIViewController {
     //MARK: Outlets and Variables
@@ -19,13 +20,17 @@ class LoginVC: UIViewController {
     @IBAction func login(_ sender: Any) {
         if usernameSwitch.isOn {
             preferences.set(usernameTextField.text, forKey: "username")
-            preferences.synchronize()
+        } else {
+            preferences.set(nil, forKey: "username")
         }
         Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
-            self.preferences.set(true, forKey: "isLoggedIn")
-            self.preferences.synchronize()
-            
-            self.performSegue(withIdentifier: "loginToHomeSegue", sender: self)
+            if error == nil {
+                self.preferences.set(true, forKey: "isLoggedIn")
+                
+                self.performSegue(withIdentifier: "loginToHomeSegue", sender: self)
+            } else {
+                Helper.displayAlert(title: "Error", message: (error?.localizedDescription)!)
+            }
         }
     }
     

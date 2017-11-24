@@ -68,7 +68,6 @@ class LaunchVC: UIViewController {
     func isUserLoggedIn()->Bool {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             self.preferences.set(true, forKey: "isLoggedIn")
-            self.preferences.synchronize()
         })
         return preferences.bool(forKey: "isLoggedIn")
     }

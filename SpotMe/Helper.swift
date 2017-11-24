@@ -34,23 +34,27 @@ class Helper {
     }
     
     //MARK: Display Alert
-//    class func displayAlert(title: String, message: String) {
-//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-//            UIAlertAction in
-//            self.authStateListenerHandle = self.auth?.addStateDidChangeListener { (auth, user) in
-//                if let activeUser = user {
-//                    if self.user != activeUser {
-//                        self.user = activeUser
-//                        self.loadProfile()
-//                    }
-//                } else {
-//                    self.authButton(self)
-//                }
-//            }
-//            
-//        }
-//        alertController.addAction(okAction)
-//        self.present(alertController, animated: true, completion: nil)
-//    }
+    static func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        UIApplication.topViewController()?.present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension UIApplication {
+    
+    static func topViewController(base: UIViewController? = UIApplication.shared.delegate?.window??.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return topViewController(base: selected)
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        
+        return base
+    }
 }
