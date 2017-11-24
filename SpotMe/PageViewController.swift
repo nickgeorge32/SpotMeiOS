@@ -26,12 +26,12 @@ class PageViewController: UIPageViewController {
     }
     
     //MARK: Navigate    
-    func viewControllerAtIndex(index: Int) -> ViewController? {
+    func viewControllerAtIndex(index: Int) -> WelcomeVC? {
         if (index == NSNotFound || index < 0 || index >= self.pageTitles.count) {
             return nil
         }
         
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as? ViewController {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeVC {
             viewController.bgImageName = bgImages[index]
             viewController.titleText = pageTitles[index]
             viewController.detailsText = pageDescriptions[index]
@@ -45,13 +45,13 @@ class PageViewController: UIPageViewController {
     //MARK: DataSource
     extension PageViewController: UIPageViewControllerDataSource {
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-            var index = (viewController as! ViewController).index
+            var index = (viewController as! WelcomeVC).index
             index -= 1
             return self.viewControllerAtIndex(index: index)
         }
         
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-            var index = (viewController as! ViewController).index
+            var index = (viewController as! WelcomeVC).index
             index += 1
             return self.viewControllerAtIndex(index: index)
         }

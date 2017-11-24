@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WelcomeVC: UIViewController {
     //MARK: Outlets and Variables
     let logoBlue = UIColor(red: 81/255, green: 198/255, blue: 232/255, alpha: 1)
     let logoOrange = UIColor(red: 1, green: 130/255, blue: 2/255, alpha: 1)
@@ -23,14 +23,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageDetailsLabel: UILabel!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
-    @IBAction func loginButton(_ sender: Any) {
-        performSegue(withIdentifier: "authSegue", sender: self)
-    }
-    
-    @IBAction func signUpButton(_ sender: Any) {
-        performSegue(withIdentifier: "authSegue", sender: self)
-    }
     
     @IBAction func unwindFromAuthVC(unwindSegue: UIStoryboardSegue) {
         

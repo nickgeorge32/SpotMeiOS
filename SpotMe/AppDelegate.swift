@@ -17,9 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     var token = ""
-
+    let preferences = UserDefaults.standard
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        preferences.set(false, forKey: "isLoggedIn")
         
         // [START set_messaging_delegate]
         UNUserNotificationCenter.current().delegate = self

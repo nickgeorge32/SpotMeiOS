@@ -26,7 +26,7 @@
 		01B78C031F0C59DB00D65457 /* Trainers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B78C021F0C59DB00D65457 /* Trainers.storyboard */; };
 		01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78C041F0C5A4F00D65457 /* TrainerDetailsViewController.swift */; };
 		01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */; };
-		01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */; };
+		01B8EEF11E7CF9BA00A1D2D0 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */; };
 		01B8EEF41E7CF9BA00A1D2D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */; };
 		01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */; };
 		01B8EEF91E7CF9BA00A1D2D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */; };
@@ -42,9 +42,10 @@
 		E420494D1FBE243E0080CDDC /* AuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */; };
 		E420494F1FBE291D0080CDDC /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420494E1FBE291D0080CDDC /* PageViewController.swift */; };
 		E42049511FBE3FC10080CDDC /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42049501FBE3FC10080CDDC /* CustomViews.swift */; };
+		E45CD6DB1FC7DC590003471C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6DA1FC7DC590003471C /* LoginVC.swift */; };
 		E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C85D1FB6427D003C84C0 /* LaunchVC.swift */; };
 		E465C8631FB659F8003C84C0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C8621FB659F8003C84C0 /* Helper.swift */; };
-		E4F0AE1D1FBE90B600556A6D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0AE1C1FBE90B600556A6D /* AuthViewController.swift */; };
+		E4F0AE1D1FBE90B600556A6D /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +74,7 @@
 		01B78C041F0C5A4F00D65457 /* TrainerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerDetailsViewController.swift; sourceTree = "<group>"; };
 		01B8EEEB1E7CF9BA00A1D2D0 /* SpotMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		01B8EEF31E7CF9BA00A1D2D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01B8EEF61E7CF9BA00A1D2D0 /* SpotMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpotMe.xcdatamodel; sourceTree = "<group>"; };
 		01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,9 +92,10 @@
 		E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHelper.swift; sourceTree = "<group>"; };
 		E420494E1FBE291D0080CDDC /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E42049501FBE3FC10080CDDC /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		E45CD6DA1FC7DC590003471C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E465C85D1FB6427D003C84C0 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		E465C8621FB659F8003C84C0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		E4F0AE1C1FBE90B600556A6D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,10 +236,11 @@
 			isa = PBXGroup;
 			children = (
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
-				E4F0AE1C1FBE90B600556A6D /* AuthViewController.swift */,
 				E465C85D1FB6427D003C84C0 /* LaunchVC.swift */,
+				01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */,
+				E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */,
+				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				E420494E1FBE291D0080CDDC /* PageViewController.swift */,
-				01B8EEF01E7CF9BA00A1D2D0 /* ViewController.swift */,
 				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
 				016F1A571F09E430002D708D /* Distributors */,
 				016F1A561F09E134002D708D /* Trainer */,
@@ -419,7 +422,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -429,14 +432,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B8EEF11E7CF9BA00A1D2D0 /* ViewController.swift in Sources */,
+				01B8EEF11E7CF9BA00A1D2D0 /* WelcomeVC.swift in Sources */,
 				014DB4131EEC4A43000E27FC /* MessageViewController.swift in Sources */,
+				E45CD6DB1FC7DC590003471C /* LoginVC.swift in Sources */,
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
 				015B2A351F2E787B001C186E /* HomeViewController.swift in Sources */,
 				011E0B371F656BBF009799DA /* PostViewController.swift in Sources */,
 				E420494D1FBE243E0080CDDC /* AuthenticationHelper.swift in Sources */,
 				01BF2D441F860E9500201B9E /* ShopViewController.swift in Sources */,
-				E4F0AE1D1FBE90B600556A6D /* AuthViewController.swift in Sources */,
+				E4F0AE1D1FBE90B600556A6D /* SignUpVC.swift in Sources */,
 				01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */,
 				01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */,
 				E42049511FBE3FC10080CDDC /* CustomViews.swift in Sources */,
@@ -598,13 +602,13 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = SpotMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -622,13 +626,13 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = SpotMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

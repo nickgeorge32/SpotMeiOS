@@ -9,23 +9,25 @@
 import UIKit
 import Firebase
 
-class AuthViewController: UIViewController {
+class SignUpVC: UIViewController {
     //MARK: Outlets and Variables
-    @IBOutlet weak var loginButton: LoginButton!
-    @IBOutlet weak var signUpButton: SignUpButton!
-    @IBOutlet weak var pageTitle: UILabel!
+    let preferences = UserDefaults.standard
     
-    @IBOutlet weak var rectView: UIView!
+    @IBOutlet weak var signUpButton: SignUpButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBAction func login(_ sender: Any) {
-        
-    }
     
     @IBAction func signUp(_ sender: Any) {
-        
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if error == nil {
+                self.preferences.set(true, forKey: "isLoggedIn")
+                self.preferences.synchronize()
+                
+                self.performSegue(withIdentifier: "signUpToHomeSegue", sender: self)
+            }
+        }
     }
     
     //MARK: LIfecycle
