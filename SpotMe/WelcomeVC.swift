@@ -6,6 +6,9 @@
 //  Copyright © 2017 Nicholas George. All rights reserved.
 //
 
+//TODO: Make Login and SignUp buttons float
+//TODO: Link Privacy Policy and ToS
+
 import UIKit
 
 class WelcomeVC: UIViewController {
@@ -42,9 +45,5 @@ class WelcomeVC: UIViewController {
         bgImageView.image = UIImage(named: bgImageName)
         
         pageControl.currentPage = index
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
     }
 }

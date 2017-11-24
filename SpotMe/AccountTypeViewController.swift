@@ -10,6 +10,8 @@ import UIKit
 
 class AccountTypeViewController: UIViewController {
     //MARK: Outlets and Variables
+    @IBOutlet weak var trainerImgButton: UIButton!
+    @IBOutlet weak var avgJoeImgButton: UIButton!
     @IBAction func trainerButton(_ sender: Any) {
         performSegue(withIdentifier: "trainerDetailsSegue", sender: nil)
     }
@@ -21,6 +23,9 @@ class AccountTypeViewController: UIViewController {
     //MARK: LIfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        trainerImgButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        avgJoeImgButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
     }
 }
 

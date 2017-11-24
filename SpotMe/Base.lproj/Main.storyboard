@@ -23,7 +23,7 @@
                 <pageViewController storyboardIdentifier="UIViewController-Welcome" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="rHs-AN-d0y" customClass="PageViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bh2-zS-JJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-847" y="194"/>
+            <point key="canvasLocation" x="-1823" y="883"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="X2N-Lk-l6V">
@@ -157,7 +157,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pa2-MB-vwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DzS-hi-kE9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1666.4000000000001" y="-694.00299850074964"/>
+            <point key="canvasLocation" x="-1393" y="1653"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="DpX-yO-mKy">
@@ -285,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMm-ch-4e0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-884" y="-694.00299850074964"/>
+            <point key="canvasLocation" x="-842" y="883"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="mX2-oA-1ar">
@@ -330,7 +330,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="49.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zsD-qN-eZX" customClass="customTextField" customModule="SpotMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="59.5" width="359" height="50"/>
@@ -399,13 +399,13 @@
                         <outlet property="nameTextField" destination="HLM-50-slq" id="hFp-XV-eSr"/>
                         <outlet property="passwordTextField" destination="QaL-Cd-zCx" id="MWk-px-vuV"/>
                         <outlet property="signUpButton" destination="oC8-GE-aeR" id="hUW-Aq-T1r"/>
-                        <segue destination="hBr-42-rvG" kind="show" identifier="signUpToHomeSegue" id="GPv-Fq-AjU"/>
+                        <segue destination="BvN-eU-QKI" kind="show" identifier="accountTypeSegue" id="Yfm-pU-Gr2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgb-CQ-RnA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="elB-bz-I9k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-90" y="-694"/>
+            <point key="canvasLocation" x="-313" y="1653"/>
         </scene>
         <!--LaunchVC-->
         <scene sceneID="q96-cw-CAG">
@@ -474,11 +474,12 @@
                         <outlet property="weightImg" destination="lbo-IH-9UL" id="lYs-Bf-wAn"/>
                         <segue destination="rHs-AN-d0y" kind="show" identifier="welcomeVCSegue" id="wpu-o1-zT5"/>
                         <segue destination="hBr-42-rvG" kind="show" identifier="segueHome" id="35O-6v-Sec"/>
+                        <segue destination="BvN-eU-QKI" kind="show" identifier="completeProfileSegue" id="ynz-uf-A6s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFc-b5-Rhd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1823.2" y="64.31784107946028"/>
+            <point key="canvasLocation" x="-2772" y="883"/>
         </scene>
         <!--Trainers-->
         <scene sceneID="WQj-NG-HZR">
@@ -486,7 +487,7 @@
                 <viewControllerPlaceholder storyboardName="Trainers" id="BKx-N7-7rb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pb-8g-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-847" y="781"/>
+            <point key="canvasLocation" x="1536" y="237"/>
         </scene>
         <!--Account Type View Controller-->
         <scene sceneID="XRP-II-XQC">
@@ -500,40 +501,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Are you a Trainer or an Average Joe?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJI-oo-508">
-                                <rect key="frame" x="16" y="28" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you a Trainer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJI-oo-508">
+                                <rect key="frame" x="66" y="28" width="243" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykG-xQ-S3I">
-                                <rect key="frame" x="68" y="318" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Trainer"/>
-                                <connections>
-                                    <action selector="trainerButton:" destination="BvN-eU-QKI" eventType="touchUpInside" id="nIV-hc-Qei"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrM-gY-OSZ">
-                                <rect key="frame" x="279" y="318" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Joe"/>
-                                <connections>
-                                    <action selector="joeButton:" destination="BvN-eU-QKI" eventType="touchUpInside" id="RtF-lD-8j5"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="69" translatesAutoresizingMaskIntoConstraints="NO" id="xU5-D7-v8R">
+                                <rect key="frame" x="16" y="76" width="343" height="571"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykG-xQ-S3I">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="251"/>
+                                        <state key="normal" backgroundImage="trainerImg"/>
+                                        <connections>
+                                            <action selector="trainerButton:" destination="BvN-eU-QKI" eventType="touchUpInside" id="nIV-hc-Qei"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrM-gY-OSZ">
+                                        <rect key="frame" x="0.0" y="320" width="343" height="251"/>
+                                        <state key="normal" backgroundImage="averageJoeImg"/>
+                                        <connections>
+                                            <action selector="joeButton:" destination="BvN-eU-QKI" eventType="touchUpInside" id="RtF-lD-8j5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or an Average Joe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ija-kl-Yun">
+                                <rect key="frame" x="66" y="351" width="243" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1647058824" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jGv-Ti-WdP" firstAttribute="top" secondItem="xU5-D7-v8R" secondAttribute="bottom" constant="20" id="0jS-WK-Th2"/>
+                            <constraint firstItem="MJI-oo-508" firstAttribute="top" secondItem="DPD-XM-Q5D" secondAttribute="bottom" constant="8" id="0n7-cd-ITi"/>
+                            <constraint firstItem="MJI-oo-508" firstAttribute="leading" secondItem="aRf-cF-YxP" secondAttribute="leadingMargin" constant="50" id="27C-PP-QHm"/>
+                            <constraint firstItem="MJI-oo-508" firstAttribute="centerX" secondItem="aRf-cF-YxP" secondAttribute="centerX" id="EeA-BE-YDZ"/>
+                            <constraint firstItem="Ija-kl-Yun" firstAttribute="top" secondItem="MJI-oo-508" secondAttribute="bottom" constant="290" id="EiJ-N6-A1G"/>
+                            <constraint firstItem="xU5-D7-v8R" firstAttribute="top" secondItem="MJI-oo-508" secondAttribute="bottom" constant="15" id="RWK-3s-a4n"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ija-kl-Yun" secondAttribute="trailing" constant="50" id="Wgd-Oc-EJK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xU5-D7-v8R" secondAttribute="trailing" id="dJU-uG-kRJ"/>
+                            <constraint firstItem="Ija-kl-Yun" firstAttribute="centerX" secondItem="aRf-cF-YxP" secondAttribute="centerX" id="hVW-8e-tDx"/>
+                            <constraint firstItem="xU5-D7-v8R" firstAttribute="leading" secondItem="aRf-cF-YxP" secondAttribute="leadingMargin" id="kJd-Pt-G5D"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MJI-oo-508" secondAttribute="trailing" constant="50" id="m0G-fM-lQK"/>
+                            <constraint firstItem="Ija-kl-Yun" firstAttribute="leading" secondItem="aRf-cF-YxP" secondAttribute="leadingMargin" constant="50" id="qk4-7p-PGd"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="avgJoeImgButton" destination="DrM-gY-OSZ" id="AWJ-9E-4kC"/>
+                        <outlet property="trainerImgButton" destination="ykG-xQ-S3I" id="ldG-3e-RDW"/>
                         <segue destination="BKx-N7-7rb" kind="show" identifier="trainerDetailsSegue" id="K0D-9J-JMu"/>
                         <segue destination="bNr-kb-bbW" kind="show" identifier="userDetailsSegue" id="fEg-pg-dn8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJL-FT-MWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164" y="824"/>
+            <point key="canvasLocation" x="764" y="64"/>
         </scene>
         <!--userDetails-->
         <scene sceneID="eeg-8e-M0z">
@@ -541,7 +566,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="userDetails" storyboardName="User" referencedIdentifier="userDetails" id="bNr-kb-bbW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8b-zJ-mMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="430" y="781"/>
+            <point key="canvasLocation" x="1537" y="-132"/>
         </scene>
         <!--UITabBarController-Base-->
         <scene sceneID="hQE-nV-sCI">
@@ -549,7 +574,7 @@
                 <viewControllerPlaceholder storyboardName="User" referencedIdentifier="UITabBarController-Base" id="hBr-42-rvG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yUd-iA-b4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-929" y="-223"/>
+            <point key="canvasLocation" x="-2772" y="2116"/>
         </scene>
         <!--NearbyUserInfo-->
         <scene sceneID="e92-Xe-h6Q">
@@ -561,15 +586,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="averageJoeImg" width="374" height="250"/>
         <image name="back" width="20" height="29"/>
         <image name="cycle" width="78" height="51"/>
         <image name="hike" width="50" height="77"/>
         <image name="lift_more" width="375" height="667"/>
         <image name="location_red" width="50" height="80"/>
         <image name="run" width="55" height="55"/>
+        <image name="trainerImg" width="374" height="250"/>
         <image name="weights" width="113" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3BV-hm-RcT"/>
+        <segue reference="35O-6v-Sec"/>
+        <segue reference="ynz-uf-A6s"/>
     </inferredMetricsTieBreakers>
 </document>

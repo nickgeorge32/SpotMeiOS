@@ -24,7 +24,7 @@ class SignUpVC: UIViewController {
             if error == nil {
                 self.preferences.set(true, forKey: "isLoggedIn")
                 
-                self.performSegue(withIdentifier: "signUpToHomeSegue", sender: self)
+                self.performSegue(withIdentifier: "accountTypeSegue", sender: self)
             } else {
                 Helper.displayAlert(title: "Error", message: (error?.localizedDescription)!)
             }

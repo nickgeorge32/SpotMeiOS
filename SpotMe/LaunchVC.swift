@@ -25,10 +25,14 @@ class LaunchVC: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
     let preferences = UserDefaults.standard
+    var ref: DocumentReference? = nil
+    var username: String?
     
     //MARK: LIfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        username = preferences.string(forKey: "username")!
         
         myMutableString = NSMutableAttributedString(string: spotMeLabel.text!, attributes: [NSAttributedStringKey.font:UIFont(name: "AvenirNext-Heavy", size: 64.0)!])
         myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoBlue, range: NSRange(location:0,length:4))
@@ -52,23 +56,45 @@ class LaunchVC: UIViewController {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             if Helper.isInternetAvailable(){
-                if self.isUserLoggedIn() {
-                    self.performSegue(withIdentifier: "segueHome", sender: self)
-                } else {
-                    self.performSegue(withIdentifier: "welcomeVCSegue", sender: self)
-                }
+                self.handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+                    if user != nil {
+                        if self.username != nil {
+                            self.ref = Firestore.firestore().collection("users").document(self.username!)
+                            self.ref?.getDocument(completion: { (userDoc, error) in
+                                if let document = userDoc {
+                                    if document.exists {
+                                        self.performSegue(withIdentifier: "segueHome", sender: self)
+                                    } else {
+                                        print("Document does not exist")
+                                        self.ref = Firestore.firestore().collection("trainers").document((self.preferences.string(forKey: "username"))!)
+                                        self.ref?.getDocument(completion: { (trainerDoc, error) in
+                                            if let document = trainerDoc {
+                                                if document.exists {
+                                                    self.performSegue(withIdentifier: "segueHome", sender: self)
+                                                } else {
+                                                    self.performSegue(withIdentifier: "completeProfileSegue", sender: self)
+                                                }
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        } else {
+                            self.performSegue(withIdentifier: "completeProfileSegue", sender: self)
+                        }
+                    } else {
+                        self.performSegue(withIdentifier: "welcomeVCSegue", sender: self)
+                    }
+                })
+            } else {
+                Helper.displayAlert(title: "Error", message: "It appears that you are not connected to the Internet. Please try again when your connection is restored.")
             }
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        Auth.auth().removeStateDidChangeListener(handle!)
-    }
     
-    //MARK: Misc
-    func isUserLoggedIn()->Bool {
-        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-            self.preferences.set(true, forKey: "isLoggedIn")
-        })
-        return preferences.bool(forKey: "isLoggedIn")
-    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        Auth.auth().removeStateDidChangeListener(handle!)
+    } 
 }

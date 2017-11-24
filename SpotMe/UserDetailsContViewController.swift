@@ -25,6 +25,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     var userWeight:String!
     var isTrainer:Bool!
     var token = ""
+    var preferences = UserDefaults.standard
     
     let storage = Storage.storage()
     
@@ -62,7 +63,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         let ref = Firestore.firestore().collection("users").document(username)
         if segue.identifier == "segueHome" {
             let imageData = UIImagePNGRepresentation(profileImage)
-            let uploadTask = imageRef.putData(imageData!, metadata: nil)
+            let _uploadTask = imageRef.putData(imageData!, metadata: nil)
             ref.setData(["username" : username, "gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight" : goalWeightField.text, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails" : emailSwitch.isOn])
             
             if weightGoalSegment.selectedSegmentIndex != 1 {
@@ -70,6 +71,8 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             }
             
             ref.updateData(["fcmToken" : token])
+            
+            preferences.set(username, forKey: "username")
         }
     }
     

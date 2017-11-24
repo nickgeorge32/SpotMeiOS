@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tabBarController?.tabBar.isHidden = true
         do {
             try Auth.auth().signOut()
-            //preferences.set(false, forKey: "isLoggedIn")
+            preferences.set(false, forKey: "isLoggedIn")
         } catch {
             print("error signing out")
         }
