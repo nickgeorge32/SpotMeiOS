@@ -23,7 +23,7 @@
                 <pageViewController storyboardIdentifier="UIViewController-Welcome" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="rHs-AN-d0y" customClass="PageViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bh2-zS-JJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1823" y="883"/>
+            <point key="canvasLocation" x="-1665" y="883"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="X2N-Lk-l6V">
@@ -574,7 +574,7 @@
                 <viewControllerPlaceholder storyboardName="User" referencedIdentifier="UITabBarController-Base" id="hBr-42-rvG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yUd-iA-b4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2772" y="2116"/>
+            <point key="canvasLocation" x="-2730" y="2106"/>
         </scene>
         <!--NearbyUserInfo-->
         <scene sceneID="e92-Xe-h6Q">
