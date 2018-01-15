@@ -56,36 +56,7 @@ class LaunchVC: UIViewController {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             if Helper.isInternetAvailable(){
-                self.handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-                    if user != nil {
-                        if self.username != nil {
-                            self.ref = Firestore.firestore().collection("users").document(self.username!)
-                            self.ref?.getDocument(completion: { (userDoc, error) in
-                                if let document = userDoc {
-                                    if document.exists {
-                                        self.performSegue(withIdentifier: "segueHome", sender: self)
-                                    } else {
-                                        print("Document does not exist")
-                                        self.ref = Firestore.firestore().collection("trainers").document((self.preferences.string(forKey: "username"))!)
-                                        self.ref?.getDocument(completion: { (trainerDoc, error) in
-                                            if let document = trainerDoc {
-                                                if document.exists {
-                                                    self.performSegue(withIdentifier: "segueHome", sender: self)
-                                                } else {
-                                                    self.performSegue(withIdentifier: "completeProfileSegue", sender: self)
-                                                }
-                                            }
-                                        })
-                                    }
-                                }
-                            })
-                        } else {
-                            self.performSegue(withIdentifier: "completeProfileSegue", sender: self)
-                        }
-                    } else {
-                        self.performSegue(withIdentifier: "welcomeVCSegue", sender: self)
-                    }
-                })
+                
             } else {
                 Helper.displayAlert(title: "Error", message: "It appears that you are not connected to the Internet. Please try again when your connection is restored.")
             }
