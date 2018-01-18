@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseMessaging
 import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {

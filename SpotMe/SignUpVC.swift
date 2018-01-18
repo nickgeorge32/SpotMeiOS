@@ -20,13 +20,11 @@ class SignUpVC: UIViewController {
     
     
     @IBAction func signUp(_ sender: Any) {
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-            if error == nil {
-                self.preferences.set(true, forKey: "isLoggedIn")
-                
-                self.performSegue(withIdentifier: "accountTypeSegue", sender: self)
+        AuthService.instance.registerUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
+            if success {
+                self.performSegue(withIdentifier: "segueAccountTypeVC", sender: nil)
             } else {
-                Helper.displayAlert(title: "Error", message: (error?.localizedDescription)!)
+                Helper.displayAlert(title: "Error", message: (registerError?.localizedDescription)!)
             }
         }
     }
@@ -35,5 +33,12 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
+}
+
+extension SignUpVC: UITextFieldDelegate {
+    
 }

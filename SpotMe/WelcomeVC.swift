@@ -33,17 +33,20 @@ class WelcomeVC: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        myMutableString = NSMutableAttributedString(string: spotMeLogoText.text!, attributes: [NSAttributedStringKey.font:UIFont(name: "AvenirNext-Heavy", size: 64.0)!])
-        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoBlue, range: NSRange(location:0,length:4))
-        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoOrange, range: NSRange(location:4,length:2))
-        // set label Attribute
-        spotMeLogoText.attributedText = myMutableString
+        setupView()
         
         pageTitleLabel.text = titleText
         pageDetailsLabel.text = detailsText
         bgImageView.image = UIImage(named: bgImageName)
         
         pageControl.currentPage = index
+    }
+    
+    func setupView() {
+        myMutableString = NSMutableAttributedString(string: spotMeLogoText.text!, attributes: [NSAttributedStringKey.font:UIFont(name: "AvenirNext-Heavy", size: 64.0)!])
+        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoBlue, range: NSRange(location:0,length:4))
+        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoOrange, range: NSRange(location:4,length:2))
+        // set label Attribute
+        spotMeLogoText.attributedText = myMutableString
     }
 }

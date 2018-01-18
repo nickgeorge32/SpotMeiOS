@@ -36,16 +36,20 @@
 		01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4F8B41F361F3300FFAC20 /* TrainerDetailsContViewController.swift */; };
 		01FD22801F11274C00D090CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01FD227F1F11274C00D090CD /* GoogleService-Info.plist */; };
 		01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */; };
-		E36BD75A3EA8D6F15F66F440 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */; };
 		E4027B001FAA9F600055DA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4027AFF1FAA9F600055DA40 /* MapKit.framework */; };
 		E420494B1FBE23C70080CDDC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E420494A1FBE22C00080CDDC /* AdSupport.framework */; };
-		E420494D1FBE243E0080CDDC /* AuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */; };
 		E420494F1FBE291D0080CDDC /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420494E1FBE291D0080CDDC /* PageViewController.swift */; };
 		E42049511FBE3FC10080CDDC /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42049501FBE3FC10080CDDC /* CustomViews.swift */; };
 		E45CD6DB1FC7DC590003471C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6DA1FC7DC590003471C /* LoginVC.swift */; };
 		E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C85D1FB6427D003C84C0 /* LaunchVC.swift */; };
 		E465C8631FB659F8003C84C0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C8621FB659F8003C84C0 /* Helper.swift */; };
+		E493DC4B201042E900149FCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E493DC4A201042E900149FCA /* User.swift */; };
+		E4B7CC8B200FEB1500B10A3A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8A200FEB1500B10A3A /* AuthService.swift */; };
+		E4B7CC8D200FEB4A00B10A3A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8C200FEB4A00B10A3A /* DataService.swift */; };
+		E4B7CC8F200FEB7E00B10A3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8E200FEB7E00B10A3A /* Constants.swift */; };
+		E4B7CC93200FEF1B00B10A3A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */; };
 		E4F0AE1D1FBE90B600556A6D /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */; };
+		E6879C63EDE4CFFDBF713927 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777C121F12A00759369C13C1 /* Pods_SpotMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,18 +89,24 @@
 		01F4F8B41F361F3300FFAC20 /* TrainerDetailsContViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerDetailsContViewController.swift; sourceTree = "<group>"; };
 		01FD227F1F11274C00D090CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		074DE70D31284C3D6C2284C7 /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
-		9113A85230CC863291D7948E /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
+		47D6C92B9F50C6BA74B8B62A /* Pods-SpotMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.release.xcconfig"; sourceTree = "<group>"; };
+		777C121F12A00759369C13C1 /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA20BFB948024207F50D713D /* Pods-SpotMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe.debug.xcconfig"; sourceTree = "<group>"; };
 		E4027AFF1FAA9F600055DA40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E420494A1FBE22C00080CDDC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHelper.swift; sourceTree = "<group>"; };
 		E420494E1FBE291D0080CDDC /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E42049501FBE3FC10080CDDC /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		E45CD6DA1FC7DC590003471C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E465C85D1FB6427D003C84C0 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		E465C8621FB659F8003C84C0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		E493DC4A201042E900149FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E4B7CC8A200FEB1500B10A3A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		E4B7CC8C200FEB4A00B10A3A /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		E4B7CC8E200FEB7E00B10A3A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E4B7CC90200FEF1800B10A3A /* SpotMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotMe-Bridging-Header.h"; sourceTree = "<group>"; };
+		E4B7CC91200FEF1A00B10A3A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
-		F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +118,7 @@
 				013FF2E31E8788C5003403FB /* StoreKit.framework in Frameworks */,
 				013FF2E71E878902003403FB /* AudioToolbox.framework in Frameworks */,
 				E4027B001FAA9F600055DA40 /* MapKit.framework in Frameworks */,
-				E36BD75A3EA8D6F15F66F440 /* Pods_SpotMe.framework in Frameworks */,
+				E6879C63EDE4CFFDBF713927 /* Pods_SpotMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +172,7 @@
 				01B8EEED1E7CF9BA00A1D2D0 /* SpotMe */,
 				01B8EEEC1E7CF9BA00A1D2D0 /* Products */,
 				22F8628B1AD9E23619C8ED68 /* Frameworks */,
-				CE8FA828B759223DDD0329D7 /* Pods */,
+				3FEFDC04BCD2D5F94379C4A3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,14 +187,19 @@
 		01B8EEED1E7CF9BA00A1D2D0 /* SpotMe */ = {
 			isa = PBXGroup;
 			children = (
-				013FF2E11E8788B9003403FB /* SpotMe.entitlements */,
 				01B8EEEE1E7CF9BA00A1D2D0 /* AppDelegate.swift */,
-				E465C8611FB659BA003C84C0 /* Controller */,
-				E465C8601FB659B5003C84C0 /* View */,
 				E465C85F1FB659AE003C84C0 /* Model */,
+				E465C8601FB659B5003C84C0 /* View */,
+				E465C8611FB659BA003C84C0 /* Controller */,
+				E4B7CC86200FE90300B10A3A /* Extensions */,
+				E4B7CC85200FE8E700B10A3A /* Services */,
+				E4B7CC89200FEABC00B10A3A /* Supporting Files */,
+				E4B7CC87200FE91100B10A3A /* Utilities */,
+				E4B7CC88200FE91B00B10A3A /* XIBs */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
 				01FD227F1F11274C00D090CD /* GoogleService-Info.plist */,
+				013FF2E11E8788B9003403FB /* SpotMe.entitlements */,
 				01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */,
 			);
 			path = SpotMe;
@@ -201,16 +216,16 @@
 				014DB4101EEC494E000E27FC /* JSQMessagesViewController.framework */,
 				013FF2E61E878902003403FB /* AudioToolbox.framework */,
 				013FF2E21E8788C5003403FB /* StoreKit.framework */,
-				F2EC9B2F6C4E73357753F43A /* Pods_SpotMe.framework */,
+				777C121F12A00759369C13C1 /* Pods_SpotMe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE8FA828B759223DDD0329D7 /* Pods */ = {
+		3FEFDC04BCD2D5F94379C4A3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				074DE70D31284C3D6C2284C7 /* Pods-SpotMe.debug.xcconfig */,
-				9113A85230CC863291D7948E /* Pods-SpotMe.release.xcconfig */,
+				BA20BFB948024207F50D713D /* Pods-SpotMe.debug.xcconfig */,
+				47D6C92B9F50C6BA74B8B62A /* Pods-SpotMe.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -218,8 +233,7 @@
 		E465C85F1FB659AE003C84C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E420494C1FBE243E0080CDDC /* AuthenticationHelper.swift */,
-				E465C8621FB659F8003C84C0 /* Helper.swift */,
+				E493DC4A201042E900149FCA /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -237,16 +251,58 @@
 			children = (
 				01B8EEF21E7CF9BA00A1D2D0 /* Main.storyboard */,
 				E465C85D1FB6427D003C84C0 /* LaunchVC.swift */,
+				E420494E1FBE291D0080CDDC /* PageViewController.swift */,
 				01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */,
 				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */,
-				E420494E1FBE291D0080CDDC /* PageViewController.swift */,
 				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
 				016F1A571F09E430002D708D /* Distributors */,
 				016F1A561F09E134002D708D /* Trainer */,
 				016F1A551F09E129002D708D /* User */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		E4B7CC85200FE8E700B10A3A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E4B7CC8A200FEB1500B10A3A /* AuthService.swift */,
+				E4B7CC8C200FEB4A00B10A3A /* DataService.swift */,
+				E465C8621FB659F8003C84C0 /* Helper.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		E4B7CC86200FE90300B10A3A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		E4B7CC87200FE91100B10A3A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E4B7CC8E200FEB7E00B10A3A /* Constants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		E4B7CC88200FE91B00B10A3A /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = XIBs;
+			sourceTree = "<group>";
+		};
+		E4B7CC89200FEABC00B10A3A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E4B7CC91200FEF1A00B10A3A /* SWRevealViewController.h */,
+				E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */,
+				E4B7CC90200FEF1800B10A3A /* SpotMe-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,12 +312,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01B8EF001E7CF9BA00A1D2D0 /* Build configuration list for PBXNativeTarget "SpotMe" */;
 			buildPhases = (
-				BB5A475753C3540B5AE01632 /* [CP] Check Pods Manifest.lock */,
+				98C34C8BC7A7FD5FDB8071D1 /* [CP] Check Pods Manifest.lock */,
 				01B8EEE71E7CF9BA00A1D2D0 /* Sources */,
 				01B8EEE81E7CF9BA00A1D2D0 /* Frameworks */,
 				01B8EEE91E7CF9BA00A1D2D0 /* Resources */,
-				01349CA80B1A78B31600BB9E /* [CP] Embed Pods Frameworks */,
-				57C330D31010C8FB931DECC4 /* [CP] Copy Pods Resources */,
+				3490CF14C324C71D4A7F8C62 /* [CP] Embed Pods Frameworks */,
+				2C311667A9525162F9AD25C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -285,7 +341,7 @@
 					01B8EEEA1E7CF9BA00A1D2D0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2XPA6ZBE84;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -345,7 +401,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01349CA80B1A78B31600BB9E /* [CP] Embed Pods Frameworks */ = {
+		2C311667A9525162F9AD25C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3490CF14C324C71D4A7F8C62 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,11 +424,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -369,11 +437,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -387,27 +452,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		57C330D31010C8FB931DECC4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh",
-				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
-				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BB5A475753C3540B5AE01632 /* [CP] Check Pods Manifest.lock */ = {
+		98C34C8BC7A7FD5FDB8071D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -436,13 +481,16 @@
 				014DB4131EEC4A43000E27FC /* MessageViewController.swift in Sources */,
 				E45CD6DB1FC7DC590003471C /* LoginVC.swift in Sources */,
 				0177D9B31E7E2E77001EB3F6 /* UserDetailsContViewController.swift in Sources */,
+				E493DC4B201042E900149FCA /* User.swift in Sources */,
 				015B2A351F2E787B001C186E /* HomeViewController.swift in Sources */,
 				011E0B371F656BBF009799DA /* PostViewController.swift in Sources */,
-				E420494D1FBE243E0080CDDC /* AuthenticationHelper.swift in Sources */,
 				01BF2D441F860E9500201B9E /* ShopViewController.swift in Sources */,
 				E4F0AE1D1FBE90B600556A6D /* SignUpVC.swift in Sources */,
+				E4B7CC8F200FEB7E00B10A3A /* Constants.swift in Sources */,
+				E4B7CC8D200FEB4A00B10A3A /* DataService.swift in Sources */,
 				01B78C051F0C5A4F00D65457 /* TrainerDetailsViewController.swift in Sources */,
 				01FFF0A11E942FB700FC4B2D /* FriendsTableViewController.swift in Sources */,
+				E4B7CC8B200FEB1500B10A3A /* AuthService.swift in Sources */,
 				E42049511FBE3FC10080CDDC /* CustomViews.swift in Sources */,
 				01B8EEEF1E7CF9BA00A1D2D0 /* AppDelegate.swift in Sources */,
 				015B2A331F2E7868001C186E /* EventDetailsViewController.swift in Sources */,
@@ -456,6 +504,7 @@
 				E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */,
 				016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
+				E4B7CC93200FEF1B00B10A3A /* SWRevealViewController.m in Sources */,
 				01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */,
 				0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,
@@ -590,9 +639,10 @@
 		};
 		01B8EF011E7CF9BA00A1D2D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 074DE70D31284C3D6C2284C7 /* Pods-SpotMe.debug.xcconfig */;
+			baseConfigurationReference = BA20BFB948024207F50D713D /* Pods-SpotMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -606,6 +656,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpotMe/SpotMe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -614,9 +666,10 @@
 		};
 		01B8EF021E7CF9BA00A1D2D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9113A85230CC863291D7948E /* Pods-SpotMe.release.xcconfig */;
+			baseConfigurationReference = 47D6C92B9F50C6BA74B8B62A /* Pods-SpotMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SpotMe/SpotMe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -630,6 +683,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spotmeasap.SpotMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpotMe/SpotMe-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

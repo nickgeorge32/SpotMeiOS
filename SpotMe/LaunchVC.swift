@@ -29,16 +29,18 @@ class LaunchVC: UIViewController {
     var username: String?
     
     //MARK: LIfecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        username = preferences.string(forKey: "username")!
-        
+    func setupView() {
         myMutableString = NSMutableAttributedString(string: spotMeLabel.text!, attributes: [NSAttributedStringKey.font:UIFont(name: "AvenirNext-Heavy", size: 64.0)!])
         myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoBlue, range: NSRange(location:0,length:4))
         myMutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: logoOrange, range: NSRange(location:4,length:2))
         // set label Attribute
         spotMeLabel.attributedText = myMutableString
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupView()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
@@ -56,7 +58,7 @@ class LaunchVC: UIViewController {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             if Helper.isInternetAvailable(){
-                
+                self.performSegue(withIdentifier: "segueWelcomeVC", sender: nil)
             } else {
                 Helper.displayAlert(title: "Error", message: "It appears that you are not connected to the Internet. Please try again when your connection is restored.")
             }
@@ -66,6 +68,6 @@ class LaunchVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        Auth.auth().removeStateDidChangeListener(handle!)
-    } 
+        //Auth.auth().removeStateDidChangeListener(handle!)
+    }
 }

@@ -11,7 +11,6 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-import MessageKit
 
 class MessageViewController: UIViewController {
     

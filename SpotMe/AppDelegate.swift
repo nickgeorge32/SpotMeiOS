@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        token = fcmToken
-    }
+//    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+//        print("Firebase registration token: \(fcmToken)")
+//        token = fcmToken
+//    }
     
 //    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
 //        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
