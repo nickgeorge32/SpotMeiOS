@@ -33,4 +33,8 @@ class AuthService {
             loginComplete(true, nil)
         }
     }
+    
+    func checkDBForAccountType() {
+        
+    }
 }

@@ -51,9 +51,6 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        token = appDelegate.token
         addDoneButtonOnKeyboard()
         
     }

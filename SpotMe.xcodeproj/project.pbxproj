@@ -48,6 +48,7 @@
 		E4B7CC8D200FEB4A00B10A3A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8C200FEB4A00B10A3A /* DataService.swift */; };
 		E4B7CC8F200FEB7E00B10A3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8E200FEB7E00B10A3A /* Constants.swift */; };
 		E4B7CC93200FEF1B00B10A3A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */; };
+		E4E6BB552017FF4F00EBEBF4 /* T&D_Portal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */; };
 		E4F0AE1D1FBE90B600556A6D /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */; };
 		E6879C63EDE4CFFDBF713927 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777C121F12A00759369C13C1 /* Pods_SpotMe.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		E4B7CC90200FEF1800B10A3A /* SpotMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		E4B7CC91200FEF1A00B10A3A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "T&D_Portal.swift"; sourceTree = "<group>"; };
 		E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 				01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */,
 				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */,
+				E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */,
 				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
 				016F1A571F09E430002D708D /* Distributors */,
 				016F1A561F09E134002D708D /* Trainer */,
@@ -427,6 +430,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -440,6 +444,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -508,6 +513,7 @@
 				01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */,
 				0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,
+				E4E6BB552017FF4F00EBEBF4 /* T&D_Portal.swift in Sources */,
 				01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

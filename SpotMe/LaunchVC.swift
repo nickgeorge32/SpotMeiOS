@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Reachability
 
 class LaunchVC: UIViewController {
     //MARK: Outlets and Variables
@@ -24,9 +25,9 @@ class LaunchVC: UIViewController {
     @IBOutlet weak var hikeImg: UIImageView!
     
     var handle: AuthStateDidChangeListenerHandle?
-    let preferences = UserDefaults.standard
     var ref: DocumentReference? = nil
-    var username: String?
+    
+    var reachability = Reachability()!
     
     //MARK: LIfecycle
     func setupView() {
@@ -37,37 +38,73 @@ class LaunchVC: UIViewController {
         spotMeLabel.attributedText = myMutableString
     }
     
+    @objc func reachabilityChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+        
+        switch reachability.connection {
+        case .wifi:
+            print("Reachable via WiFi")
+        case .cellular:
+            print("Reachable via Cellular")
+        case .none:
+            print("Network not reachable")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(LaunchVC.reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        do{
+            try reachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
                 self.locationImage.center.x = self.runImg.center.x + 15
             }, completion: nil)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
                 self.locationImage.center.x = self.cycleImg.center.x + 15
             }, completion: nil)        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
-                self.locationImage.center.x = self.hikeImg.center.x + 15
-            }, completion: nil)
+            if self.reachability.connection != .none {
+                    print("Reachable")
+                    UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
+                        self.locationImage.center.x = self.hikeImg.center.x + 15
+                    }, completion: nil)
+                }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+            }
+            
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-            if Helper.isInternetAvailable(){
+            if Auth.auth().currentUser == nil {
                 self.performSegue(withIdentifier: "segueWelcomeVC", sender: nil)
             } else {
-                Helper.displayAlert(title: "Error", message: "It appears that you are not connected to the Internet. Please try again when your connection is restored.")
+                //check DB for account to determine segue
             }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        reachability.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
         //Auth.auth().removeStateDidChangeListener(handle!)
     }
 }

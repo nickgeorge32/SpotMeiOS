@@ -55,7 +55,7 @@ class LoginVC: UIViewController {
                 
                 self.performSegue(withIdentifier: "loginToHomeSegue", sender: self)
                 } else {
-                    Helper.displayAlert(title: "Error", message: (error?.localizedDescription)!)
+                    Helper.instance.displayAlert(title: "Error", message: (error?.localizedDescription)!)
                 }
         }
     }
@@ -64,6 +64,6 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        username = preferences.string(forKey: "username")!
+        //username = preferences.string(forKey: "username")!
     }
 }

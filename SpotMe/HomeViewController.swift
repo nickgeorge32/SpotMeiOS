@@ -42,9 +42,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        token = appDelegate.token
 
         // Do any additional setup after loading the view.
         refresher = UIRefreshControl()

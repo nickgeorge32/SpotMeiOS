@@ -24,7 +24,7 @@ class SignUpVC: UIViewController {
             if success {
                 self.performSegue(withIdentifier: "segueAccountTypeVC", sender: nil)
             } else {
-                Helper.displayAlert(title: "Error", message: (registerError?.localizedDescription)!)
+                Helper.instance.displayAlert(title: "Error", message: (registerError?.localizedDescription)!)
             }
         }
     }

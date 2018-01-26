@@ -8,6 +8,8 @@ target 'SpotMe' do
   use_frameworks!
 
   # Pods for SpotMe
+  pod 'ReachabilitySwift'
+  
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'

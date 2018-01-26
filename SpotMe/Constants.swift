@@ -11,3 +11,4 @@ import Firebase
 
 // Firebase
 let DB_BASE = Database.database().reference()
+let FIRESTORE_DB = Firestore.firestore()

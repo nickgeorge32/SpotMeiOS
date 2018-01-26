@@ -31,7 +31,7 @@ class PageViewController: UIPageViewController {
             return nil
         }
         
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeVC {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC {
             viewController.bgImageName = bgImages[index]
             viewController.titleText = pageTitles[index]
             viewController.detailsText = pageDescriptions[index]
