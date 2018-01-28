@@ -24,14 +24,30 @@ class DataService {
         return _REF_USERS
     }
     
-    func createDBUser(uid: String, userData: Dictionary<String, Any>) {
-        REF_USERS.child(uid).updateChildValues(userData)
-        ref = FIRESTORE_DB.collection("users").addDocument(data: userData) {
-            err in
-            if let err = err {
-                print("Error adding document: \(err)")
+    func createDBUser(username: String, userData: Dictionary<String, Any>) {
+        REF_USERS.child(username).updateChildValues(userData)
+        ref = FIRESTORE_DB_USERS.document(username)
+        ref?.setData(userData)
+//        ref = FIRESTORE_DB_USERS.addDocument(data: userData) {
+//            err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(self.ref!.documentID)")
+//            }
+//        }
+    }
+    
+    func checkUsernameAvailability(username: String, checked: @escaping (_ success: Bool, _ error: Error?) -> ()) {
+        let docRef = FIRESTORE_DB_USERS.document(username)
+        docRef.getDocument { (document, error) in
+            if let document = document {
+                print("Document exists: \(String(describing: document.data()))")
+                checked(true, nil)
+            } else if error != nil {
+                checked(false, error)
             } else {
-                print("Document added with ID: \(self.ref!.documentID)")
+                print("does not exist")
             }
         }
     }

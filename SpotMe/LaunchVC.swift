@@ -97,6 +97,11 @@ class LaunchVC: UIViewController {
                 self.performSegue(withIdentifier: "segueWelcomeVC", sender: nil)
             } else {
                 //check DB for account to determine segue
+                do {
+                    try Auth.auth().signOut()
+                } catch {
+                    print("error signing out")
+                }
             }
         }
     }

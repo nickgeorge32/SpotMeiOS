@@ -11,16 +11,14 @@ import Firebase
 
 class SignUpVC: UIViewController {
     //MARK: Outlets and Variables
-    let preferences = UserDefaults.standard
-    
     @IBOutlet weak var signUpButton: SignUpButton!
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    @IBOutlet weak var usernameTextField: customTextField!
+    @IBOutlet weak var checkImg: UIImageView!
     
     @IBAction func signUp(_ sender: Any) {
-        AuthService.instance.registerUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
+        AuthService.instance.registerUser(withUsername: usernameTextField.text!, withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
             if success {
                 self.performSegue(withIdentifier: "segueAccountTypeVC", sender: nil)
             } else {
@@ -33,9 +31,30 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameTextField.delegate = self
+        usernameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        signUpButton.alpha = 0.5
+        signUpButton.isEnabled = false
+    }
+    
+    @IBAction func textFieldChanged(_ sender: UITextField) {
+        if usernameTextField.text != "" {
+            DataService.instance.checkUsernameAvailability(username: usernameTextField.text!) { (available, error) in
+                if available {
+                    self.checkImg.alpha = 1.0
+                    self.signUpButton.alpha = 1.0
+                    self.signUpButton.isEnabled = true
+                } else {
+                    Helper.instance.displayAlert(title: "", message: "That username is already in use.")
+                }
+            }
+        } else {
+            checkImg.alpha = 0.1
+            signUpButton.alpha = 0.5
+            signUpButton.isEnabled = false
+        }
     }
 }
 
