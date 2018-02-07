@@ -23,11 +23,9 @@ class LaunchVC: UIViewController {
     let logoOrange = UIColor(red: 1, green: 130/255, blue: 2/255, alpha: 1)
     var myMutableString = NSMutableAttributedString()
     
-    var ref: DocumentReference? = nil
-    
     var reachability = Reachability()!
     
-    let accountType = UserDefaults.standard.string(forKey: "accountType")
+    var accountType: String?
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +41,8 @@ class LaunchVC: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        
+        accountType = UserDefaults.standard.string(forKey: "accountType")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {

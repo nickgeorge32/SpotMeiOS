@@ -12,58 +12,36 @@ import FirebaseAuth
 
 class LoginVC: UIViewController {
     //MARK: Outlets and Variables
-    let preferences = UserDefaults.standard
-    @IBOutlet weak var usernameTextField: customTextField!
+    let defaults = UserDefaults.standard
+    @IBOutlet weak var emailTextField: customTextField!
     @IBOutlet weak var passwordTextField: customTextField!
-    @IBOutlet weak var usernameSwitch: UISwitch!
+    @IBOutlet weak var emailSwitch: UISwitch!
     
     var ref: DocumentReference? = nil
-    var username: String?
     
     @IBAction func login(_ sender: Any) {
-        if usernameSwitch.isOn {
-            preferences.set(usernameTextField.text, forKey: "username")
+        if emailSwitch.isOn {
+            defaults.set(true, forKey: "emailSwitch")
+            defaults.set(emailTextField.text, forKey: "email")
         } else {
-            preferences.set(nil, forKey: "username")
+            defaults.set(false, forKey: "emailSwitch")
+            defaults.set(nil, forKey: "email")
         }
-        Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error == nil {
-                    if self.username != nil {
-                        self.ref = Firestore.firestore().collection("users").document(self.username!)
-                        self.ref?.getDocument(completion: { (userDoc, error) in
-                            if let document = userDoc {
-                                if document.exists {
-                                    self.performSegue(withIdentifier: "segueHome", sender: self)
-                                } else {
-                                    print("Document does not exist")
-                                    self.ref = Firestore.firestore().collection("trainers").document((self.preferences.string(forKey: "username"))!)
-                                    self.ref?.getDocument(completion: { (trainerDoc, error) in
-                                        if let document = trainerDoc {
-                                            if document.exists {
-                                                self.performSegue(withIdentifier: "segueHome", sender: self)
-                                            } else {
-                                                self.performSegue(withIdentifier: "completeProfileSegue", sender: self)
-                                            }
-                                        }
-                                    })
-                                }
-                            }
-                        })
-                    } else {
-                        self.performSegue(withIdentifier: "completeProfileSegue", sender: self)
-                    }
-                
-                self.performSegue(withIdentifier: "loginToHomeSegue", sender: self)
-                } else {
-                    Helper.instance.displayAlert(title: "Error", message: (error?.localizedDescription)!)
-                }
+                self.performSegue(withIdentifier: "segueHome", sender: self)
+            } else {
+                Helper.instance.displayAlert(title: "Error", message: (error?.localizedDescription)!)
+            }
         }
     }
     
     //MARK Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //username = preferences.string(forKey: "username")!
+        if defaults.string(forKey: "email") != nil && defaults.bool(forKey: "emailSwitch") != nil {
+            emailTextField.text = defaults.string(forKey: "email")
+            emailSwitch.setOn(defaults.bool(forKey: "emailSwitch"), animated: true)
+        }
     }
 }
