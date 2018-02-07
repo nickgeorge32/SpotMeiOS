@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 
 // Firebase
-let DB_BASE = Database.database().reference()
 let FIRESTORE_DB = Firestore.firestore()
 let FIRESTORE_DB_USERS = Firestore.firestore().collection("users")
 let FIRESTORE_DB_TRAINERSS = Firestore.firestore().collection("trainers")

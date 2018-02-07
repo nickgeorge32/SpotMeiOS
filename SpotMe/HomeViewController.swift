@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var messages = [String]()
     var refresher: UIRefreshControl!
     var token = ""
-    let preferences = UserDefaults.standard
+    let defaults = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
 
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tabBarController?.tabBar.isHidden = true
         do {
             try Auth.auth().signOut()
-            preferences.set(false, forKey: "isLoggedIn")
+            defaults.set(nil, forKey: "accountType")
         } catch {
             print("error signing out")
         }

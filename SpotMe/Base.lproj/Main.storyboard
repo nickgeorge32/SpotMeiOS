@@ -449,7 +449,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="username"/>
                                                 <connections>
-                                                    <action selector="textFieldChanged:" destination="MOn-0U-VQS" eventType="editingChanged" id="QGn-1x-nmY"/>
+                                                    <action selector="textFieldChanged:" destination="MOn-0U-VQS" eventType="editingChanged" id="dTu-Yt-FwJ"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -574,11 +574,29 @@
                         <outlet property="spotMeLabel" destination="h6l-rQ-gw1" id="e7s-Fy-SYp"/>
                         <outlet property="weightImg" destination="lbo-IH-9UL" id="lYs-Bf-wAn"/>
                         <segue destination="rHs-AN-d0y" kind="show" identifier="segueWelcomeVC" id="eXl-BY-FVS"/>
+                        <segue destination="0pU-DX-L9z" kind="show" identifier="homeSegue" id="UvR-MF-BfE"/>
+                        <segue destination="5BE-S0-tGg" kind="show" identifier="distributorSegue" id="Uic-Nx-BBa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFc-b5-Rhd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2553" y="883"/>
+            <point key="canvasLocation" x="-2569" y="883"/>
+        </scene>
+        <!--UITabBarController-Base-->
+        <scene sceneID="cJs-dp-V0e">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="UITabBarController-Base" id="0pU-DX-L9z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trV-yR-rLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2724" y="1340"/>
+        </scene>
+        <!--Distributor-->
+        <scene sceneID="joy-eg-h8c">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Distributor" referencedIdentifier="Distributor" id="5BE-S0-tGg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DO7-nA-uA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2389" y="1340"/>
         </scene>
         <!--Trainers-->
         <scene sceneID="WQj-NG-HZR">

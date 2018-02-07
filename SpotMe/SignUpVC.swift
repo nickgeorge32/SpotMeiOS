@@ -17,10 +17,19 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var usernameTextField: customTextField!
     @IBOutlet weak var checkImg: UIImageView!
     
+    let defaults = UserDefaults.standard
+    
     @IBAction func signUp(_ sender: Any) {
         AuthService.instance.registerUser(withUsername: usernameTextField.text!, withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
             if success {
+                self.defaults.set("trainer", forKey: "accountType")
+                
+                Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                    
+                })
+                
                 self.performSegue(withIdentifier: "segueAccountTypeVC", sender: nil)
+                
             } else {
                 Helper.instance.displayAlert(title: "Error", message: (registerError?.localizedDescription)!)
             }
@@ -47,6 +56,9 @@ class SignUpVC: UIViewController {
                     self.signUpButton.alpha = 1.0
                     self.signUpButton.isEnabled = true
                 } else {
+                    self.checkImg.alpha = 0.05
+                    self.signUpButton.alpha = 0.5
+                    self.signUpButton.isEnabled = false
                     Helper.instance.displayAlert(title: "", message: "That username is already in use.")
                 }
             }

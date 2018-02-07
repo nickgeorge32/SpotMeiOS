@@ -15,12 +15,12 @@ target 'SpotMe' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
-  #pod 'Firebase/Messaging'
+  pod 'Firebase/Messaging'
   #pod 'Firebase/RemoteConfig'
   
   #pod 'Firebase/DynamicLinks'
   #pod 'Firebase/AdMob'
-  #pod 'Firebase/Invites'
+  pod 'Firebase/Invites'
   #pod 'Firebase/Performance'
   
   #pod 'GoogleSignIn'
