@@ -31,7 +31,7 @@ class LoginVC: UIViewController {
             if error == nil {
                 self.performSegue(withIdentifier: "segueHome", sender: self)
             } else {
-                Helper.instance.displayAlert(title: "Error", message: (error?.localizedDescription)!)
+                Helper.instance.displayAlert(alertTitle: "Error", message: (error?.localizedDescription)!, actionTitle: "Dismiss", style: .default, handler: {_ in })
             }
         }
     }

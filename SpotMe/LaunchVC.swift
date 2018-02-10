@@ -25,7 +25,9 @@ class LaunchVC: UIViewController {
     
     var reachability = Reachability()!
     
-    var accountType: String?
+    let accountType = UserDefaults.standard.string(forKey: "accountType")
+    let username = UserDefaults.standard.string(forKey: "username")
+    
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +43,6 @@ class LaunchVC: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        
-        accountType = UserDefaults.standard.string(forKey: "accountType")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
@@ -75,13 +75,30 @@ class LaunchVC: UIViewController {
             if Auth.auth().currentUser == nil {
                 self.performSegue(withIdentifier: "segueWelcomeVC", sender: nil)
             } else {
-                if self.accountType == "user" {
-                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
-                } else if self.accountType == "trainer" {
-                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
-                } else if self.accountType == "distributor" {
-                    self.performSegue(withIdentifier: "distributorSegue", sender: nil)
-                }
+                let docRef = FIRESTORE_DB_USERS.document(self.username!)
+                docRef.getDocument(completion: { (document, error) in
+                    if let document = document {
+                        if document.exists {
+                            if let profileComplete = document.get("profileComplete") as? Bool {
+                                if profileComplete == false {
+                                    Helper.instance.displayAlert(alertTitle: "Incomplete Profile", message: "Please complete your profile", actionTitle: "OK", style: .default, handler: { (action) in
+                                        let userDetailsVC = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userDetails") as UIViewController
+                                        self.present(userDetailsVC, animated: true, completion: nil)
+                                    })
+                                }
+                            }
+                        }
+                    }
+                })
+//                if self.accountType == "user" {
+//                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
+//                } else if self.accountType == "trainer" {
+//                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
+//                } else if self.accountType == "distributor" {
+//                    self.performSegue(withIdentifier: "distributorSegue", sender: nil)
+//                } else {
+//                    print("WTF")
+//                }
             }
         }
     }

@@ -18,7 +18,6 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var desiredOutcomeSegment: UISegmentedControl!
     @IBOutlet var emailSwitch: UISwitch!
     
-    var username: String!
     var profileImage:UIImage!
     var userGender:String!
     var dob:String!
@@ -56,20 +55,18 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let imageRef = storage.reference().child("userImages/\(username!)/profileImg.jpg")
-        let ref = Firestore.firestore().collection("users").document(username)
+        let imageRef = storage.reference().child("userImages/\(String(describing: UserDefaults.standard.string(forKey: "username")))/profileImg.jpg")
+        let ref = FIRESTORE_DB_USERS.document(UserDefaults.standard.string(forKey: "username")!)
         if segue.identifier == "segueHome" {
             let imageData = UIImagePNGRepresentation(profileImage)
             let _uploadTask = imageRef.putData(imageData!, metadata: nil)
-            ref.setData(["username" : username, "gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight" : goalWeightField.text, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails" : emailSwitch.isOn])
+            ref.updateData(["gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text!, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight" : goalWeightField.text, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails" : emailSwitch.isOn])
             
             if weightGoalSegment.selectedSegmentIndex != 1 {
-                ref.updateData(["weeklyGoal" : weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)])
+                ref.updateData(["weeklyGoal" : weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)!])
             }
             
             ref.updateData(["fcmToken" : token])
-            
-            preferences.set(username, forKey: "username")
         }
     }
     

@@ -22,7 +22,8 @@ class SignUpVC: UIViewController {
     @IBAction func signUp(_ sender: Any) {
         AuthService.instance.registerUser(withUsername: usernameTextField.text!, withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
             if success {
-                self.defaults.set("trainer", forKey: "accountType")
+                self.defaults.set("user", forKey: "accountType")
+                self.defaults.set(self.usernameTextField.text, forKey: "username")
                 
                 Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
                     
@@ -31,10 +32,12 @@ class SignUpVC: UIViewController {
                 self.performSegue(withIdentifier: "segueAccountTypeVC", sender: nil)
                 
             } else {
-                Helper.instance.displayAlert(title: "Error", message: (registerError?.localizedDescription)!)
+                Helper.instance.displayAlert(alertTitle: "Error", message: (registerError?.localizedDescription)!, actionTitle: "Dismiss", style: .default, handler: {_ in })
             }
         }
     }
+    
+
     
     //MARK: LIfecycle
     override func viewDidLoad() {
@@ -46,6 +49,7 @@ class SignUpVC: UIViewController {
         
         signUpButton.alpha = 0.5
         signUpButton.isEnabled = false
+        
     }
     
     @IBAction func textFieldChanged(_ sender: UITextField) {
@@ -59,7 +63,7 @@ class SignUpVC: UIViewController {
                     self.checkImg.alpha = 0.05
                     self.signUpButton.alpha = 0.5
                     self.signUpButton.isEnabled = false
-                    Helper.instance.displayAlert(title: "", message: "That username is already in use.")
+                    Helper.instance.displayAlert(alertTitle: "Unavailable", message: "That username is already in use", actionTitle: "Dismiss", style: .default, handler: {_ in })
                 }
             }
         } else {

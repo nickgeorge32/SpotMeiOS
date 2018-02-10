@@ -18,7 +18,7 @@ class AuthService {
                 userCreationComplete(false, error)
                 return
             }
-            let userData = ["provider": user.providerID, "email": user.email]
+            let userData = ["provider": user.providerID, "email": user.email!, "profileComplete": false] as [String : Any]
             DataService.instance.createDBUser(username: username, userData: userData)
             userCreationComplete(true, nil)
         }

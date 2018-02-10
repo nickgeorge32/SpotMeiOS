@@ -11,8 +11,6 @@ import UIKit
 class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     //MARK: Outlets and Variables
     @IBOutlet var userImage: UIImageView!
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var check: UIImageView!
     @IBOutlet var genderSegment: UISegmentedControl!
     @IBOutlet var dobField: UITextField!
     @IBOutlet var userWeightField: UITextField!
@@ -29,7 +27,6 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreDetails" {
             let detailsCont = segue.destination as! UserDetailsContViewController
-            detailsCont.username = usernameField.text
             detailsCont.userGender = genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)
             detailsCont.profileImage = UIImage(data: UIImageJPEGRepresentation(userImage.image!, 0.1)!)
             detailsCont.isTrainer = isTrainer
@@ -42,10 +39,9 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (dobField.text?.isEmpty)! || (userWeightField.text?.isEmpty)! {
-            displayAlert(title: "Error in form", message: "All fields must be filled")
+            Helper.instance.displayAlert(alertTitle: "Error in Form", message: "All fields must be filled", actionTitle: "Dismiss", style: .default, handler: {_ in })
             return false
         } else {
-            //TODO: Add checking if username exists
             return true
         }
     }
@@ -106,13 +102,7 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     
     //MARK: Misc
     @IBAction func disclaimer(_ sender: Any) {
-        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
-    }
-    
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        Helper.instance.displayAlert(alertTitle: "Info", message: "The information collected is used soley to help you meet your fitness goals", actionTitle: "OK", style: .default, handler: {_ in })
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

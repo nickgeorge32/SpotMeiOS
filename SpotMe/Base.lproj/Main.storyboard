@@ -64,13 +64,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r2Q-qz-zCF">
                                         <rect key="frame" x="8" y="28" width="359" height="94"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m87-4W-Xik" customClass="customTextField" customModule="SpotMe" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m87-4W-Xik" customClass="customTextField">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="42"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xfi-kX-jtl" customClass="customTextField" customModule="SpotMe" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xfi-kX-jtl" customClass="customTextField">
                                                 <rect key="frame" x="0.0" y="52" width="359" height="42"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -406,10 +406,10 @@
             </objects>
             <point key="canvasLocation" x="146" y="883"/>
         </scene>
-        <!--Sign UpVC-->
+        <!--SignUpVC-->
         <scene sceneID="mX2-oA-1ar">
             <objects>
-                <viewController id="MOn-0U-VQS" customClass="SignUpVC" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="MOn-0U-VQS" userLabel="SignUpVC" customClass="SignUpVC" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MqV-4i-Icf"/>
                         <viewControllerLayoutGuide type="bottom" id="elm-8R-PJc"/>

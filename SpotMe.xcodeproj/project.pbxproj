@@ -200,7 +200,6 @@
 				E4B7CC88200FE91B00B10A3A /* XIBs */,
 				01B8EEF81E7CF9BA00A1D2D0 /* Assets.xcassets */,
 				01B8EEFD1E7CF9BA00A1D2D0 /* Info.plist */,
-				01FD227F1F11274C00D090CD /* GoogleService-Info.plist */,
 				013FF2E11E8788B9003403FB /* SpotMe.entitlements */,
 				01B8EEF51E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld */,
 			);
@@ -255,8 +254,8 @@
 				E465C85D1FB6427D003C84C0 /* LaunchVC.swift */,
 				E420494E1FBE291D0080CDDC /* PageViewController.swift */,
 				01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */,
-				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */,
+				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */,
 				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
 				016F1A571F09E430002D708D /* Distributors */,
@@ -301,6 +300,7 @@
 		E4B7CC89200FEABC00B10A3A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01FD227F1F11274C00D090CD /* GoogleService-Info.plist */,
 				E4B7CC91200FEF1A00B10A3A /* SWRevealViewController.h */,
 				E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */,
 				E4B7CC90200FEF1800B10A3A /* SpotMe-Bridging-Header.h */,
@@ -413,12 +413,18 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-resources.sh",
 				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
 				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GINInviteResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GPPACLPickerResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,7 +439,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMe/Pods-SpotMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
@@ -449,7 +458,10 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",

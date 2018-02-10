@@ -43,17 +43,9 @@
 				<string>com.googleusercontent.apps.666125992054-n6lehc53k8f8k4p7017n195rqclt5rqs</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>twitterkit-ooTFMdEnxO1f9k0tlYZDt9u4S</string>
-			</array>
-		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>180</string>
+	<string>190</string>
 	<key>FacebookAppID</key>
 	<string>1973137616261877</string>
 	<key>FacebookDisplayName</key>

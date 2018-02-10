@@ -13,10 +13,10 @@ class Helper {
     static let instance = Helper()
     
     //MARK: Display Alert
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
-        alertController.addAction(okAction)
+    func displayAlert(alertTitle: String, message: String, actionTitle: String, style: UIAlertActionStyle, handler: @escaping ((UIAlertAction)->Void)) {
+        let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: actionTitle, style: style, handler: handler)
+        alertController.addAction(action)
         UIApplication.topViewController()?.present(alertController, animated: true, completion: nil)
     }
 }

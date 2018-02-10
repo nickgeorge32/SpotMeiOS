@@ -13,7 +13,7 @@
         <!--User Details View Controller-->
         <scene sceneID="BfZ-ep-8Yu">
             <objects>
-                <viewController storyboardIdentifier="userDetails" id="oMc-3O-LcU" customClass="UserDetailsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oMc-3O-LcU" customClass="UserDetailsViewController" customModule="SpotMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jTG-gh-Ru5"/>
                         <viewControllerLayoutGuide type="bottom" id="Qs1-bY-rLv"/>
@@ -946,7 +946,7 @@
         <image name="person_icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FdV-5z-TkF"/>
+        <segue reference="c2Z-TF-fiJ"/>
         <segue reference="Xfh-TR-vWA"/>
     </inferredMetricsTieBreakers>
 </document>
