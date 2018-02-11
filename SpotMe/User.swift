@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct User {
     public private(set) var fullName: String!
@@ -25,4 +26,10 @@ struct User {
     public private(set) var desiredOutcome: String!
     public private(set) var receiveEmails: Bool!
     public private(set) var fcmToken: String?
+    public private(set) var profileComplete: Bool!
+    
+    func asdfg() -> Dictionary<String, Any> {
+        return ["fullName": fullName, "email": email, "profileComplete": profileComplete]
+    }
 }
+

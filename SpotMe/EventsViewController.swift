@@ -32,7 +32,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         alertController.addAction(contactAction)
         self.present(alertController, animated: true, completion: nil)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,8 +54,19 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func addEvent(_ sender: Any) {
         displayAlert(title: "Coming Soon", message: "We currently do not support adding events via the app at this time. We are working diligently to make this available to all. If you would like to submit your event to us by email, we will add it to the app within 24hrs.")
     }
-
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var numOfSections: Int = 0
+        let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        noDataLabel.text          = "No data available"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .center
+        tableView.backgroundView  = noDataLabel
+        tableView.separatorStyle  = .none
+        
+        return numOfSections
+        
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -82,46 +93,46 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
-//        let query = PFQuery(className: "FriendRequests")
-//        query.includeKey("requestingUser")
-//        query.includeKey("pendingFriendRequest")
-//        
-//        query.findObjectsInBackground { (objects, error) in
-//            if error == nil && objects != nil {
-//                if (objects?.count)! > 0 {
-//                    if let users = objects {
-//                        for object in users {
-//                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
-//                                if requestedPointer["username"] as? String == PFUser.current()?.username {
-//                                    badgeValue += 1
-//                                    
-//                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
-//                                    
-//                                }
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
-//                }
-//            }
-//        }
-//        
-//    }
-//    
-//    func loadEvents() {
-//        let eventsQuery = PFQuery(className: "Events")
-//        eventsQuery.findObjectsInBackground { (objects, error) in
-//            if let events = objects {
-//                for object in events {
-//                    if let event = object as? PFObject {
-//                        self.events.append(String(describing: (event["title"])!))
-//                        self.refresher.endRefreshing()
-//                        self.tableView.reloadData()
-//                    }
-//                }
-//            }
-//        }
+        //        let query = PFQuery(className: "FriendRequests")
+        //        query.includeKey("requestingUser")
+        //        query.includeKey("pendingFriendRequest")
+        //
+        //        query.findObjectsInBackground { (objects, error) in
+        //            if error == nil && objects != nil {
+        //                if (objects?.count)! > 0 {
+        //                    if let users = objects {
+        //                        for object in users {
+        //                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+        //                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+        //                                    badgeValue += 1
+        //
+        //                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+        //
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                } else {
+        //                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
+        //                }
+        //            }
+        //        }
+        //
+        //    }
+        //
+        //    func loadEvents() {
+        //        let eventsQuery = PFQuery(className: "Events")
+        //        eventsQuery.findObjectsInBackground { (objects, error) in
+        //            if let events = objects {
+        //                for object in events {
+        //                    if let event = object as? PFObject {
+        //                        self.events.append(String(describing: (event["title"])!))
+        //                        self.refresher.endRefreshing()
+        //                        self.tableView.reloadData()
+        //                    }
+        //                }
+        //            }
+        //        }
     }
 }
 

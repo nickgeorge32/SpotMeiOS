@@ -20,24 +20,6 @@ class DataService {
         
     }
     
-    //    func checkUsernameAvailability(username: String) -> Bool {
-    //        let docRef = FIRESTORE_DB_USERS.document(username)
-    //        var exists: Bool? = nil
-    //        docRef.getDocument { (document, error) in
-    //            if let document = document {
-    //                if document.exists {
-    //                    print("Document exists: \(String(describing: document.data()))")
-    //                    exists = true
-    //                } else {
-    //                    print("does not exist")
-    //                    exists = false
-    //                }
-    //            }
-    //        }
-    //        //print(exists!)
-    //        return exists!
-    //    }
-    
     func checkUsernameAvailability(username: String, available: @escaping (_ success: Bool, _ error: Error?) -> ()) {
         let docRef = FIRESTORE_DB_USERS.document(username)
         docRef.getDocument { (document, error) in
@@ -53,5 +35,9 @@ class DataService {
                 available(false, error)
             }
         }
+    }
+    
+    func isProfileComplete() {
+        
     }
 }

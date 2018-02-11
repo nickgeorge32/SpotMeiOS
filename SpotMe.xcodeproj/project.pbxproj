@@ -47,7 +47,6 @@
 		E4B7CC8B200FEB1500B10A3A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8A200FEB1500B10A3A /* AuthService.swift */; };
 		E4B7CC8D200FEB4A00B10A3A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8C200FEB4A00B10A3A /* DataService.swift */; };
 		E4B7CC8F200FEB7E00B10A3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8E200FEB7E00B10A3A /* Constants.swift */; };
-		E4B7CC93200FEF1B00B10A3A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */; };
 		E4E6BB552017FF4F00EBEBF4 /* T&D_Portal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */; };
 		E4F0AE1D1FBE90B600556A6D /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */; };
 		E6879C63EDE4CFFDBF713927 /* Pods_SpotMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777C121F12A00759369C13C1 /* Pods_SpotMe.framework */; };
@@ -97,6 +96,7 @@
 		E420494A1FBE22C00080CDDC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		E420494E1FBE291D0080CDDC /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E42049501FBE3FC10080CDDC /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		E43940B3202F53D900D55BA9 /* SpotMe-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpotMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		E45CD6DA1FC7DC590003471C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E465C85D1FB6427D003C84C0 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		E465C8621FB659F8003C84C0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -104,9 +104,6 @@
 		E4B7CC8A200FEB1500B10A3A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E4B7CC8C200FEB4A00B10A3A /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		E4B7CC8E200FEB7E00B10A3A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E4B7CC90200FEF1800B10A3A /* SpotMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotMe-Bridging-Header.h"; sourceTree = "<group>"; };
-		E4B7CC91200FEF1A00B10A3A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "T&D_Portal.swift"; sourceTree = "<group>"; };
 		E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +135,7 @@
 				01FFF0A01E942FB700FC4B2D /* FriendsTableViewController.swift */,
 				016F1A531F09DB9B002D708D /* FeedTableViewCell.swift */,
 				015B2A341F2E787B001C186E /* HomeViewController.swift */,
+				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				014DB4121EEC4A43000E27FC /* MessageViewController.swift */,
 				0177D9B41E7F5A60001EB3F6 /* NearMeViewController.swift */,
 				01083E691E842EBF009925B0 /* NearbyUserInfoViewController.swift */,
@@ -255,7 +253,6 @@
 				E420494E1FBE291D0080CDDC /* PageViewController.swift */,
 				01B8EEF01E7CF9BA00A1D2D0 /* WelcomeVC.swift */,
 				E4F0AE1C1FBE90B600556A6D /* SignUpVC.swift */,
-				E45CD6DA1FC7DC590003471C /* LoginVC.swift */,
 				E4E6BB542017FF4F00EBEBF4 /* T&D_Portal.swift */,
 				0106512E1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift */,
 				016F1A571F09E430002D708D /* Distributors */,
@@ -300,10 +297,8 @@
 		E4B7CC89200FEABC00B10A3A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E43940B3202F53D900D55BA9 /* SpotMe-Bridging-Header.h */,
 				01FD227F1F11274C00D090CD /* GoogleService-Info.plist */,
-				E4B7CC91200FEF1A00B10A3A /* SWRevealViewController.h */,
-				E4B7CC92200FEF1A00B10A3A /* SWRevealViewController.m */,
-				E4B7CC90200FEF1800B10A3A /* SpotMe-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -447,6 +442,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
@@ -466,6 +462,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
@@ -532,7 +529,6 @@
 				E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */,
 				016F1A541F09DB9B002D708D /* FeedTableViewCell.swift in Sources */,
 				01B8EEF71E7CF9BA00A1D2D0 /* SpotMe.xcdatamodeld in Sources */,
-				E4B7CC93200FEF1B00B10A3A /* SWRevealViewController.m in Sources */,
 				01F4F8B51F361F3300FFAC20 /* TrainerDetailsContViewController.swift in Sources */,
 				0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,

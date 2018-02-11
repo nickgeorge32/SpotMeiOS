@@ -12,11 +12,16 @@ class AccountTypeViewController: UIViewController {
     //MARK: Outlets and Variables
     @IBOutlet weak var trainerImgButton: UIButton!
     @IBOutlet weak var avgJoeImgButton: UIButton!
+    let defaults = UserDefaults.standard
+
+    
     @IBAction func trainerButton(_ sender: Any) {
+        defaults.set("trainer", forKey: "accountType")
         performSegue(withIdentifier: "trainerDetailsSegue", sender: nil)
     }
     
     @IBAction func joeButton(_ sender: Any) {
+        defaults.set("user", forKey: "accountType")
         performSegue(withIdentifier: "userDetailsSegue", sender: nil)
     }
     

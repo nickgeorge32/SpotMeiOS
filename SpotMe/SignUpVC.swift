@@ -12,6 +12,7 @@ import Firebase
 class SignUpVC: UIViewController {
     //MARK: Outlets and Variables
     @IBOutlet weak var signUpButton: SignUpButton!
+    @IBOutlet weak var fullNameTextField: customTextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: customTextField!
@@ -20,9 +21,8 @@ class SignUpVC: UIViewController {
     let defaults = UserDefaults.standard
     
     @IBAction func signUp(_ sender: Any) {
-        AuthService.instance.registerUser(withUsername: usernameTextField.text!, withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
+        AuthService.instance.registerUser(fullName: fullNameTextField.text! ,withUsername: usernameTextField.text!, withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
             if success {
-                self.defaults.set("user", forKey: "accountType")
                 self.defaults.set(self.usernameTextField.text, forKey: "username")
                 
                 Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
@@ -49,7 +49,6 @@ class SignUpVC: UIViewController {
         
         signUpButton.alpha = 0.5
         signUpButton.isEnabled = false
-        
     }
     
     @IBAction func textFieldChanged(_ sender: UITextField) {

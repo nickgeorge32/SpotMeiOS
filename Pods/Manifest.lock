@@ -11,10 +11,16 @@ PODS:
   - BoringSSL/Implementation (9.2):
     - BoringSSL/Interface (= 9.2)
   - BoringSSL/Interface (9.2)
+  - Crashlytics (3.10.0):
+    - Fabric (~> 1.7.3)
+  - Fabric (1.7.3)
   - FBSDKCoreKit (4.30.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.30.0):
     - FBSDKCoreKit
+  - Firebase/AdMob (4.8.2):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (= 7.27.0)
   - Firebase/Auth (4.8.2):
     - Firebase/Core
     - FirebaseAuth (= 4.4.2)
@@ -36,6 +42,9 @@ PODS:
   - Firebase/Messaging (4.8.2):
     - Firebase/Core
     - FirebaseMessaging (= 2.0.8)
+  - Firebase/Performance (4.8.2):
+    - Firebase/Core
+    - FirebasePerformance (= 1.1.1)
   - Firebase/RemoteConfig (4.8.2):
     - Firebase/Core
     - FirebaseRemoteConfig (= 2.1.1)
@@ -90,6 +99,14 @@ PODS:
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
+  - FirebasePerformance (1.1.1):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - FirebaseSwizzlingUtilities (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.1)
   - FirebaseRemoteConfig (2.1.1):
     - FirebaseABTesting (~> 1.0)
     - FirebaseAnalytics (~> 4.0)
@@ -101,6 +118,7 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseSwizzlingUtilities (1.0.0)
   - FirebaseUI/Auth (4.5.1):
     - Firebase/Auth (~> 4.2)
   - FirebaseUI/Facebook (4.5.1):
@@ -109,6 +127,7 @@ PODS:
   - FirebaseUI/Google (4.5.1):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 4.0)
+  - Google-Mobile-Ads-SDK (7.27.0)
   - GoogleAPIClientForREST (1.3.2):
     - GoogleAPIClientForREST/Core (= 1.3.2)
     - GTMSessionFetcher (>= 1.1.7)
@@ -140,25 +159,25 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
     - GoogleToolboxForMac/NSDictionary+URLArguments (= 2.1.3)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
-  - gRPC (1.9.0):
-    - gRPC-RxLibrary (= 1.9.0)
-    - gRPC/Main (= 1.9.0)
-  - gRPC-Core (1.9.0):
-    - gRPC-Core/Implementation (= 1.9.0)
-    - gRPC-Core/Interface (= 1.9.0)
-  - gRPC-Core/Implementation (1.9.0):
+  - gRPC (1.9.1):
+    - gRPC-RxLibrary (= 1.9.1)
+    - gRPC/Main (= 1.9.1)
+  - gRPC-Core (1.9.1):
+    - gRPC-Core/Implementation (= 1.9.1)
+    - gRPC-Core/Interface (= 1.9.1)
+  - gRPC-Core/Implementation (1.9.1):
     - BoringSSL (~> 9.0)
-    - gRPC-Core/Interface (= 1.9.0)
+    - gRPC-Core/Interface (= 1.9.1)
     - nanopb (~> 0.3)
-  - gRPC-Core/Interface (1.9.0)
-  - gRPC-ProtoRPC (1.9.0):
-    - gRPC (= 1.9.0)
-    - gRPC-RxLibrary (= 1.9.0)
+  - gRPC-Core/Interface (1.9.1)
+  - gRPC-ProtoRPC (1.9.1):
+    - gRPC (= 1.9.1)
+    - gRPC-RxLibrary (= 1.9.1)
     - Protobuf (~> 3.0)
-  - gRPC-RxLibrary (1.9.0)
-  - gRPC/Main (1.9.0):
-    - gRPC-Core (= 1.9.0)
-    - gRPC-RxLibrary (= 1.9.0)
+  - gRPC-RxLibrary (1.9.1)
+  - gRPC/Main (1.9.1):
+    - gRPC-Core (= 1.9.1)
+    - gRPC-RxLibrary (= 1.9.1)
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.13):
@@ -167,6 +186,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.13):
     - GTMSessionFetcher/Core (= 1.1.13)
   - leveldb-library (1.20)
+  - MessageKit (0.13.1)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -176,6 +196,9 @@ PODS:
   - ReachabilitySwift (4.1.0)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - Firebase/AdMob
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -183,16 +206,20 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Invites
   - Firebase/Messaging
+  - Firebase/Performance
   - Firebase/RemoteConfig
   - Firebase/Storage
   - FirebaseUI/Auth
   - FirebaseUI/Facebook
   - FirebaseUI/Google
+  - MessageKit
   - ReachabilitySwift
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: f3d6b8ce199b9c450a8cfc14895d07a2627fc232
+  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
+  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
   FBSDKCoreKit: 7c4bba2877781a131ab5d54c0a78c405d4307b62
   FBSDKLoginKit: fe7a7e82373dc5daad92e1623219e86224ab1fb1
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
@@ -206,23 +233,27 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   FirebaseInvites: ae15e0636f9eb42bdf5c1ef4c8f7bd4a88f9878b
   FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
+  FirebasePerformance: 4e1f8091e400eaf88505234caef5718313653709
   FirebaseRemoteConfig: 3310f264fff78b6c2e78b24dcfc4c1b3d6766209
   FirebaseStorage: 181bb543d39ee3c53e0558de7ba86b1286a0427f
+  FirebaseSwizzlingUtilities: f1c49a5a372ac852c853722a5891a0a5e2344a6c
   FirebaseUI: 1dc9c8a87a776b488a28a28541f029e60c824cfd
+  Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
   GoogleAPIClientForREST: 4fa84fc61fdeea48dd7088de5c1a864ace18125b
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  gRPC: d12fb1fb68b1b3ff3e0a07f59a62312331b58693
-  gRPC-Core: b7ee510aa1e7c565d3670bf7bfd87e25a56050ed
-  gRPC-ProtoRPC: 3eb74b3bdbd3b67ef8095f44043b478cbf8b39ab
-  gRPC-RxLibrary: 4b9762497af0557201bba92abeef207c1bf3e3c8
+  gRPC: 58828d611419d49da19ad02a60679ffa10a10a87
+  gRPC-Core: 66413bf1f2d038a6221bc7bfcbeeaa5a117cee29
+  gRPC-ProtoRPC: f29e8b7445e0d3c0311678ab121e6c164da4ca5e
+  gRPC-RxLibrary: 8e0067bfe8a054022c7a81470baace4f2f633b48
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MessageKit: fc74d71d9b05385138d47b3a4b7beef5c687daf1
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
 
-PODFILE CHECKSUM: 2c6837a2562903aad83c218ef1d474c2f3dceaca
+PODFILE CHECKSUM: b2600c8c0b0eadb951ef08b5ecf478bb75a5ad3a
 
 COCOAPODS: 1.4.0

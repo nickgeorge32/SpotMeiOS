@@ -55,11 +55,11 @@ class LaunchVC: UIViewController {
             }, completion: nil)        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if self.reachability.connection != .none {
-                    print("Reachable")
-                    UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
-                        self.locationImage.center.x = self.hikeImg.center.x + 15
-                    }, completion: nil)
-                }
+                print("Reachable")
+                UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
+                    self.locationImage.center.x = self.hikeImg.center.x + 15
+                }, completion: nil)
+            }
             self.reachability.whenUnreachable = { _ in
                 print("Not reachable")
             }
@@ -69,7 +69,7 @@ class LaunchVC: UIViewController {
             } catch {
                 print("Unable to start notifier")
             }
-
+            
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             if Auth.auth().currentUser == nil {
@@ -85,20 +85,21 @@ class LaunchVC: UIViewController {
                                         let userDetailsVC = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userDetails") as UIViewController
                                         self.present(userDetailsVC, animated: true, completion: nil)
                                     })
+                                } else {
+                                    if self.accountType == "user" {
+                                        self.performSegue(withIdentifier: "homeSegue", sender: nil)
+                                    } else if self.accountType == "trainer" {
+                                        self.performSegue(withIdentifier: "homeSegue", sender: nil)
+                                    } else if self.accountType == "distributor" {
+                                        self.performSegue(withIdentifier: "distributorSegue", sender: nil)
+                                    } else {
+                                        print("WTF")
+                                    }
                                 }
                             }
                         }
                     }
                 })
-//                if self.accountType == "user" {
-//                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
-//                } else if self.accountType == "trainer" {
-//                    self.performSegue(withIdentifier: "homeSegue", sender: nil)
-//                } else if self.accountType == "distributor" {
-//                    self.performSegue(withIdentifier: "distributorSegue", sender: nil)
-//                } else {
-//                    print("WTF")
-//                }
             }
         }
     }

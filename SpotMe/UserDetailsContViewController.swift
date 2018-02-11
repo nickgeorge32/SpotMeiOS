@@ -42,7 +42,7 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func disclaimer(_ sender: Any) {
-        displayAlert(title: "Info", message: "The information collected is used soley to help you meet your fitness goals")
+        Helper.instance.displayAlert(alertTitle: "Info", message: "The information collected is used soley to help you meet your fitness goals", actionTitle: "Dismiss", style: .default, handler: {_ in })
         
     }
     
@@ -60,7 +60,9 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "segueHome" {
             let imageData = UIImagePNGRepresentation(profileImage)
             let _uploadTask = imageRef.putData(imageData!, metadata: nil)
-            ref.updateData(["gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text!, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex), "goalWeight" : goalWeightField.text, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex), "receiveEmails" : emailSwitch.isOn])
+            ref.updateData(["gender" : userGender, "dob" : dob, "currentWeight" : userWeight, "height" : userHeight.text!, "weightGoal" : weightGoalSegment.titleForSegment(at: weightGoalSegment.selectedSegmentIndex)!, "goalWeight" : goalWeightField.text!, "desiredOutcome" : desiredOutcomeSegment.titleForSegment(at: desiredOutcomeSegment.selectedSegmentIndex)!, "receiveEmails" : emailSwitch.isOn, "profileComplete": true])
+            
+            let currentUser = User.init(fullName: nil, email: nil, provider: nil, accountType: "trainer", profileImage: nil, username: nil, gender: nil, dob: nil, currentWeight: nil, height: nil, goal: nil, goalWeight: nil, weeklyGoal: nil, desiredOutcome: nil, receiveEmails: nil, fcmToken: nil, profileComplete: true)
             
             if weightGoalSegment.selectedSegmentIndex != 1 {
                 ref.updateData(["weeklyGoal" : weeklyGoalSegment.titleForSegment(at: weeklyGoalSegment.selectedSegmentIndex)!])
@@ -76,11 +78,11 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         } else {
             if weightGoalSegment.selectedSegmentIndex == 0 {
                 if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
-                    displayAlert(title: "Error in form", message: "All fields must be filled")
+                    Helper.instance.displayAlert(alertTitle: "Error in Form", message: "All fields must be filled", actionTitle: "Dismiss", style: .default, handler: {_ in })
                     return false
                 } else {
                     if Int(goalWeightField.text!)! > Int(userWeight)! {
-                        displayAlert(title: "Error in selection", message: "Because you chose to lose weight, your goal weight should be less than your current weight")
+                        Helper.instance.displayAlert(alertTitle: "Error in Selection", message: "Because you chose to lose weight, your goal weight should be less than your current weight", actionTitle: "Dismiss", style: .default, handler: {_ in })
                         return false
                     }
                     return true
@@ -88,18 +90,18 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
                 
             } else if weightGoalSegment.selectedSegmentIndex == 1 {
                 if (userHeight.text?.isEmpty)! {
-                    displayAlert(title: "Error in form", message: "All fields must be filled")
+                    Helper.instance.displayAlert(alertTitle: "Error in Form", message: "All fields must be filled", actionTitle: "Dismiss", style: .default, handler: {_ in })
                     return false
                 } else {
                     return true
                 }
             } else {
                 if (userHeight.text?.isEmpty)! || (goalWeightField.text?.isEmpty)! {
-                    displayAlert(title: "Error in form", message: "All fields must be filled")
+                    Helper.instance.displayAlert(alertTitle: "Error in Form", message: "All fields must be filled", actionTitle: "Dismiss", style: .default, handler: {_ in })
                     return false
                 } else {
                     if Int(goalWeightField.text!)! < Int(userWeight)! {
-                        displayAlert(title: "Error in Selection", message: "Because you chose to gain weight, your goal weight should be more than your current weight")
+                        Helper.instance.displayAlert(alertTitle: "Error in Selection", message: "Because you chose to gain weight, your goal weight should be more than your current weight", actionTitle: "Dismiss", style: .default, handler: {_ in })
                         return false
                     }
                     return true
@@ -108,13 +110,6 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-    }
-    
-    //MARK: Dislpay Alert
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK: Misc

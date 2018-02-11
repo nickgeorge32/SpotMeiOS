@@ -17,12 +17,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var token = ""
     
     @IBOutlet var tableView: UITableView!
-
+    
     @objc func refresh() {
         friends.removeAll()
         posts.removeAll()
         messages.removeAll()
-        //imageFiles.removeAll()
         
         loadPosts()
     }
@@ -37,10 +36,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -62,31 +61,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        PFSession.getCurrentSessionInBackground { (session, error) in
-//            if error != nil {
-//                self.displayAlert(title: "Invalid Session", message: "You have been logged out, please log back in")
-//            }
-//        }
-        
         pendingFriendRequestCheck()
         refresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if token.isEmpty {
-            
-        } else {
-//            PFUser.current()?["fcmReg"] = token
-//            PFUser.current()?.saveInBackground(block: { (success, error) in
-//                if error != nil {
-//                    var errorMessage = "Unable to save details"
-//                    if let parseError = (error!as NSError).userInfo["error"] as? String {
-//                        errorMessage = parseError
-//                        self.displayAlert(title: "Error", message: errorMessage)
-//                    }
-//                }
-//            })
-        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var numOfSections: Int = 0
+        let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        noDataLabel.text          = "No data available"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .center
+        tableView.backgroundView  = noDataLabel
+        tableView.separatorStyle  = .none
+        return numOfSections
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,14 +86,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
         
-//        imageFiles[indexPath.row].getDataInBackground { (data, error) in
-//            if let imageData = data {
-//                if let downloadedImage = UIImage(data: imageData) {
-//                    cell.profileImage.image = downloadedImage
-//                }
-//            }
+        //        imageFiles[indexPath.row].getDataInBackground { (data, error) in
+        //            if let imageData = data {
+        //                if let downloadedImage = UIImage(data: imageData) {
+        //                    cell.profileImage.image = downloadedImage
+        //                }
+        //            }
         
-//        }
+        //        }
         
         cell.username.text = "Username"//posts[indexPath.row]
         cell.postText.text = "Message"//messages[indexPath.row]
@@ -114,80 +104,80 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func pendingFriendRequestCheck() {
         var badgeValue = 0
         
-//        let query = PFQuery(className: "FriendRequests")
-//        query.includeKey("requestingUser")
-//        query.includeKey("pendingFriendRequest")
-//
-//        query.findObjectsInBackground { (objects, error) in
-//            if error == nil && objects != nil {
-//                if (objects?.count)! > 0 {
-//                    if let users = objects {
-//                        for object in users {
-//                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
-//                                if requestedPointer["username"] as? String == PFUser.current()?.username {
-//                                    badgeValue += 1
-//
-//                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
-//
-//                                }
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
-//                }
-//            }
-//        }
+        //        let query = PFQuery(className: "FriendRequests")
+        //        query.includeKey("requestingUser")
+        //        query.includeKey("pendingFriendRequest")
+        //
+        //        query.findObjectsInBackground { (objects, error) in
+        //            if error == nil && objects != nil {
+        //                if (objects?.count)! > 0 {
+        //                    if let users = objects {
+        //                        for object in users {
+        //                            if let requestedPointer:PFObject = object["pendingFriendRequest"] as? PFObject {
+        //                                if requestedPointer["username"] as? String == PFUser.current()?.username {
+        //                                    badgeValue += 1
+        //
+        //                                    self.tabBarController?.tabBar.items?[3].badgeValue = String(badgeValue)
+        //
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                } else {
+        //                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
+        //                }
+        //            }
+        //        }
         
     }
     
     //TODO: Add like and comment
     func loadPosts() {
-//        let query = PFQuery(className: "Friends")
-//        query.includeKey("requestingUser")
-//        query.includeKey("friend")
-//        
-//        query.findObjectsInBackground { (objects, error) in
-//            if(error == nil) {
-//                if let object = objects {
-//                    for friend in object {
-//                        if let requestingPointer:PFObject = friend["requestingUser"] as? PFObject {
-//                            if requestingPointer["username"] as? String == PFUser.current()?.username {
-//                                    self.friends.append(String(describing: ((friend["friend"] as! PFUser).username)!))
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    print(error!)
-//                }
-//            }
-//        }
+        //        let query = PFQuery(className: "Friends")
+        //        query.includeKey("requestingUser")
+        //        query.includeKey("friend")
+        //
+        //        query.findObjectsInBackground { (objects, error) in
+        //            if(error == nil) {
+        //                if let object = objects {
+        //                    for friend in object {
+        //                        if let requestingPointer:PFObject = friend["requestingUser"] as? PFObject {
+        //                            if requestingPointer["username"] as? String == PFUser.current()?.username {
+        //                                    self.friends.append(String(describing: ((friend["friend"] as! PFUser).username)!))
+        //                            }
+        //                        }
+        //                    }
+        //                } else {
+        //                    print(error!)
+        //                }
+        //            }
+        //        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-//            let postsQuery = PFQuery(className: "Posts")
-//            postsQuery.includeKey("username")
-//
-//            postsQuery.findObjectsInBackground { (objects, error) in
-//                if error == nil && objects != nil {
-//                    if (objects?.count)! > 0 {
-//                        for users in objects! {
-//                            if let pointer: PFObject = users["username"] as? PFObject {
-//                                if pointer["username"] as? String == PFUser.current()?.username || self.friends.contains(pointer["username"] as! String)   {
-//                                    self.posts.append(String(describing: ((users["username"] as! PFUser).username)!))
-//                                    self.messages.append(String(describing: (users["postText"])!))
-//                                    self.imageFiles.append(pointer["photo"] as! PFFile)
-//                                }
-//                            }
-//
-//                            self.refresher.endRefreshing()
-//
-//                            self.tableView.reloadData()
-//                        }
-//                    } else {
-//                        print("error is \(String(describing: error))")
-//                    }
-//                }
-//            }
+            //            let postsQuery = PFQuery(className: "Posts")
+            //            postsQuery.includeKey("username")
+            //
+            //            postsQuery.findObjectsInBackground { (objects, error) in
+            //                if error == nil && objects != nil {
+            //                    if (objects?.count)! > 0 {
+            //                        for users in objects! {
+            //                            if let pointer: PFObject = users["username"] as? PFObject {
+            //                                if pointer["username"] as? String == PFUser.current()?.username || self.friends.contains(pointer["username"] as! String)   {
+            //                                    self.posts.append(String(describing: ((users["username"] as! PFUser).username)!))
+            //                                    self.messages.append(String(describing: (users["postText"])!))
+            //                                    self.imageFiles.append(pointer["photo"] as! PFFile)
+            //                                }
+            //                            }
+            //
+            //                            self.refresher.endRefreshing()
+            //
+            //                            self.tableView.reloadData()
+            //                        }
+            //                    } else {
+            //                        print("error is \(String(describing: error))")
+            //                    }
+            //                }
+            //            }
         }
     }
     
@@ -196,12 +186,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let popoverViewController = segue.destination
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
             popoverViewController.popoverPresentationController!.delegate = self
-
+            
         }
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-
+    
 }

@@ -7,28 +7,30 @@ target 'SpotMe' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for SpotMe
-  pod 'ReachabilitySwift'
-  
+  # Pods for SpotMe  
   pod 'Firebase/Core'
+  
   pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/RemoteConfig'
-  
-  pod 'Firebase/DynamicLinks'
-  #pod 'Firebase/AdMob'
-  pod 'Firebase/Invites'
-  #pod 'Firebase/Performance'
-  
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Google'
   pod 'FirebaseUI/Facebook'
   
-  #pod 'Fabric'
-  #pod 'Crashlytics'
+  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   
-  #pod 'MessageKit'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Invites'
+  
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/DynamicLinks'
+  
+  pod 'Firebase/Performance'
+  pod 'Firebase/AdMob'
+  
+  pod 'Fabric'
+  pod 'Crashlytics'
+  
+  pod 'ReachabilitySwift'
+  pod 'MessageKit'
 end
