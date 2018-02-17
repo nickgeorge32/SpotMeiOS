@@ -47,6 +47,20 @@ class LaunchVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
                 self.locationImage.center.x = self.runImg.center.x + 15
+                if Auth.auth().currentUser != nil {
+                    let docRef = FIRESTORE_DB_USERS.document(self.username!)
+                    docRef.getDocument(completion: { (document, error) in
+                        if let document = document {
+                            if !document.exists {
+                                do {
+                                    try Auth.auth().signOut()
+                                } catch {
+                                    
+                                }
+                            }
+                        }
+                    })
+                }
             }, completion: nil)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

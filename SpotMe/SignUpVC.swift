@@ -24,9 +24,10 @@ class SignUpVC: UIViewController {
         AuthService.instance.registerUser(fullName: fullNameTextField.text! ,withUsername: usernameTextField.text!, withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (success, registerError) in
             if success {
                 self.defaults.set(self.usernameTextField.text, forKey: "username")
+                self.defaults.set(self.emailTextField.text, forKey: "email")
+                self.defaults.set(self.fullNameTextField.text, forKey: "name")
                 
                 Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-                    
                 })
                 
                 self.performSegue(withIdentifier: "segueAccountTypeVC", sender: nil)

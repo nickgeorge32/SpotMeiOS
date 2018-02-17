@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountTypeViewController: UIViewController {
     //MARK: Outlets and Variables
     @IBOutlet weak var trainerImgButton: UIButton!
     @IBOutlet weak var avgJoeImgButton: UIButton!
     let defaults = UserDefaults.standard
-
     
     @IBAction func trainerButton(_ sender: Any) {
         defaults.set("trainer", forKey: "accountType")
@@ -22,6 +22,8 @@ class AccountTypeViewController: UIViewController {
     
     @IBAction func joeButton(_ sender: Any) {
         defaults.set("user", forKey: "accountType")
+        let userData = ["email": defaults.string(forKey: "email")!, "provider": Auth.auth().currentUser?.providerID, "profileComplete": false] as [String : Any]
+        DataService.instance.createDBUser(firestoreRef: FIRESTORE_DB_USERS.document(defaults.string(forKey: "username")!), username: defaults.string(forKey: "username")!, userData: userData)
         performSegue(withIdentifier: "userDetailsSegue", sender: nil)
     }
     

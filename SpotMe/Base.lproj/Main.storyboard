@@ -357,7 +357,7 @@
                                                 <rect key="frame" x="0.0" y="134.5" width="319" height="34.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" textContentType="username"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" textContentType="username"/>
                                                 <connections>
                                                     <action selector="textFieldChanged:" destination="MOn-0U-VQS" eventType="editingChanged" id="dTu-Yt-FwJ"/>
                                                 </connections>

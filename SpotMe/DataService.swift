@@ -11,13 +11,9 @@ import Firebase
 
 class DataService {
     static let instance = DataService()
-    
-    private var ref: DocumentReference? = nil
-    
-    func createDBUser(username: String, userData: Dictionary<String, Any>) {
-        ref = FIRESTORE_DB_USERS.document(username)
-        ref?.setData(userData)
         
+    func createDBUser(firestoreRef: DocumentReference,username: String, userData: Dictionary<String, Any>) {
+        firestoreRef.setData(userData)
     }
     
     func checkUsernameAvailability(username: String, available: @escaping (_ success: Bool, _ error: Error?) -> ()) {
