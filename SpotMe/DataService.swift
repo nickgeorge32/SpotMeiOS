@@ -21,7 +21,6 @@ class DataService {
         docRef.getDocument { (document, error) in
             if let document = document {
                 if document.exists {
-                    print("Document exists: \(String(describing: document.data()))")
                     available(false, nil)
                 } else {
                     print("does not exist")

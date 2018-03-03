@@ -44,6 +44,7 @@
 		E465C85E1FB6427D003C84C0 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C85D1FB6427D003C84C0 /* LaunchVC.swift */; };
 		E465C8631FB659F8003C84C0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C8621FB659F8003C84C0 /* Helper.swift */; };
 		E493DC4B201042E900149FCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E493DC4A201042E900149FCA /* User.swift */; };
+		E4B6BDAC204B196A00DF56E9 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B6BDAB204B196900DF56E9 /* TestVC.swift */; };
 		E4B7CC8B200FEB1500B10A3A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8A200FEB1500B10A3A /* AuthService.swift */; };
 		E4B7CC8D200FEB4A00B10A3A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8C200FEB4A00B10A3A /* DataService.swift */; };
 		E4B7CC8F200FEB7E00B10A3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7CC8E200FEB7E00B10A3A /* Constants.swift */; };
@@ -101,6 +102,7 @@
 		E465C85D1FB6427D003C84C0 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		E465C8621FB659F8003C84C0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E493DC4A201042E900149FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E4B6BDAB204B196900DF56E9 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		E4B7CC8A200FEB1500B10A3A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E4B7CC8C200FEB4A00B10A3A /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		E4B7CC8E200FEB7E00B10A3A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				010651391F0BF96500D9DFF8 /* User.storyboard */,
+				E4B6BDAB204B196900DF56E9 /* TestVC.swift */,
 				01C506C41E81FFC300ECFCB7 /* ActivityViewController.swift */,
 				0177D9BA1E7F6B7C001EB3F6 /* BaseTabViewController.swift */,
 				01C506C21E81FF9E00ECFCB7 /* EventsViewController.swift */,
@@ -533,6 +536,7 @@
 				0106512F1F0BF5DC00D9DFF8 /* AccountTypeViewController.swift in Sources */,
 				0177D9BB1E7F6B7C001EB3F6 /* BaseTabViewController.swift in Sources */,
 				E4E6BB552017FF4F00EBEBF4 /* T&D_Portal.swift in Sources */,
+				E4B6BDAC204B196A00DF56E9 /* TestVC.swift in Sources */,
 				01C506C31E81FF9E00ECFCB7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

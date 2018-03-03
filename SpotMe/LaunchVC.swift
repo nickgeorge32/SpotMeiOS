@@ -96,7 +96,7 @@ class LaunchVC: UIViewController {
                             if let profileComplete = document.get("profileComplete") as? Bool {
                                 if profileComplete == false {
                                     Helper.instance.displayAlert(alertTitle: "Incomplete Profile", message: "Please complete your profile", actionTitle: "OK", style: .default, handler: { (action) in
-                                        let userDetailsVC = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userDetails") as UIViewController
+                                        let userDetailsVC = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "profileDetails") as UIViewController
                                         self.present(userDetailsVC, animated: true, completion: nil)
                                     })
                                 } else {

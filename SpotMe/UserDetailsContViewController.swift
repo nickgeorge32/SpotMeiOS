@@ -54,6 +54,10 @@ class UserDetailsContViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let imageRef = storage.reference().child("userImages/\(UserDefaults.standard.string(forKey: "username")!)/profileImg.jpg")
         let ref = FIRESTORE_DB_USERS.document(UserDefaults.standard.string(forKey: "username")!)
