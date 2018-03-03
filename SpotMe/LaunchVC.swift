@@ -52,6 +52,7 @@ class LaunchVC: UIViewController {
                     docRef.getDocument(completion: { (document, error) in
                         if let document = document {
                             if !document.exists {
+                                //FIXME: Shouldn't Logout, but won't segue without this
                                 do {
                                     try Auth.auth().signOut()
                                 } catch {
